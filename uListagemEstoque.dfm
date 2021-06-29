@@ -21,6 +21,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
     Height = 196
     Align = alBottom
     DataSource = DmEstoque.dsEstoque
+    ReadOnly = True
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
