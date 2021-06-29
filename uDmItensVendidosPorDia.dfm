@@ -4,8 +4,8 @@ object DmItensVendidosPorDia: TDmItensVendidosPorDia
   Width = 215
   object qrProdutos: TFDQuery
     Connection = DmConexaoFB.Conexao
-    Left = 88
-    Top = 56
+    Left = 120
+    Top = 24
   end
   object dsProdutos: TDataSource
     DataSet = qrProdutos

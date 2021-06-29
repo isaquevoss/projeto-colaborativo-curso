@@ -5,7 +5,8 @@ uses
   uPrincipal in 'uPrincipal.pas' {Form1},
   uDmConexaoFB in 'uDmConexaoFB.pas' {DmConexaoFB: TDataModule},
   uItensVendidosPorDia in 'uItensVendidosPorDia.pas' {frmItensVendidosPorDia},
-  uDmItensVendidosPorDia in 'uDmItensVendidosPorDia.pas' {DmItensVendidosPorDia: TDataModule};
+  uDmItensVendidosPorDia in 'uDmItensVendidosPorDia.pas' {DmItensVendidosPorDia: TDataModule},
+  uDmEstoque in 'uDmEstoque.pas' {DmEstoque: TDataModule};
 
 {$R *.res}
 
@@ -16,5 +17,6 @@ begin
   Application.CreateForm(TDmConexaoFB, DmConexaoFB);
   Application.CreateForm(TfrmItensVendidosPorDia, frmItensVendidosPorDia);
   Application.CreateForm(TDmItensVendidosPorDia, DmItensVendidosPorDia);
+  Application.CreateForm(TDmEstoque, DmEstoque);
   Application.Run;
 end.
