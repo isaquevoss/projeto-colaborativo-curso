@@ -47,7 +47,7 @@ begin
     qrEstoque.SQL.Add('       e.preco_venda');
     qrEstoque.SQL.Add('from estoque e');
     qrEstoque.SQL.Add('where upper(e.descricao) containing upper(:descricao)');
-    qrEstoque.ParamByName('descricao').AsString = _descricao;
+    qrEstoque.ParamByName('descricao').AsString := _descricao;
     qrEstoque.Open();
 
 end;
