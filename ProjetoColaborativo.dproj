@@ -101,6 +101,15 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="uClientes.pas">
+            <Form>Form2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="udmClientes.pas">
+            <Form>Dmclientes</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+		</DCCReference>
         <DCCReference Include="uDmVendasPorCliente.pas">
             <Form>dmVendasPorCliente</Form>
             <FormType>dfm</FormType>

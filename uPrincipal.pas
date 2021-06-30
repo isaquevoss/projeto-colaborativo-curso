@@ -15,6 +15,7 @@ type
     Button4: TButton;
     Button5: TButton;
     procedure Button1Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
   private
     { Private declarations }
@@ -27,7 +28,9 @@ var
 
 implementation
   uses
+    uItensVendidosPorDia, uClientes;
     uItensVendidosPorDia,uVendasPorCliente;
+
 
 {$R *.dfm}
 
@@ -36,10 +39,17 @@ begin
   frmItensVendidosPorDia.Show();
 end;
 
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+form2.Show();
+end;
+
 procedure TForm1.Button5Click(Sender: TObject);
 begin
 frmVendasPorCliente.Show();
 end;
 
 end.
+
 
