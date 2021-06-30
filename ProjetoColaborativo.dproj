@@ -109,6 +109,15 @@
             <Form>Dmclientes</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+		</DCCReference>
+        <DCCReference Include="uDmVendasPorCliente.pas">
+            <Form>dmVendasPorCliente</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uVendasPorCliente.pas">
+            <Form>frmVendasPorCliente</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
