@@ -11,10 +11,10 @@ type
   TFrmListagemEstoque = class(TForm)
     grid: TDBGrid;
     edDescricao: TEdit;
-    btnBuscar: TButton;
     procedure btnBuscarClick(Sender: TObject);
     procedure edDescricaoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure edDescricaoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +30,16 @@ implementation
 
 procedure TFrmListagemEstoque.btnBuscarClick(Sender: TObject);
 begin
+  listarProduto();
+end;
+
+procedure TFrmListagemEstoque.edDescricaoChange(Sender: TObject);
+begin
+  if edDescricao.Text = '' then
+  begin
+    Exit;
+  end;
+
   listarProduto();
 end;
 

@@ -22,7 +22,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
     Align = alBottom
     DataSource = DmEstoque.dsEstoque
     ReadOnly = True
-    TabOrder = 2
+    TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -30,21 +30,14 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TitleFont.Style = []
   end
   object edDescricao: TEdit
-    Left = 8
+    Left = 5
     Top = 26
-    Width = 241
+    Width = 492
     Height = 21
+    MaxLength = 120
     TabOrder = 0
     TextHint = 'Digite o nome do Produto'
+    OnChange = edDescricaoChange
     OnKeyDown = edDescricaoKeyDown
-  end
-  object btnBuscar: TButton
-    Left = 264
-    Top = 24
-    Width = 75
-    Height = 25
-    Caption = 'Buscar'
-    TabOrder = 1
-    OnClick = btnBuscarClick
   end
 end
