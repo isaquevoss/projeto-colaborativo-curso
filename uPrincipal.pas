@@ -30,8 +30,8 @@ var
 
 implementation
   uses
-    uItensVendidosPorDia, uClientes;
-    uItensVendidosPorDia,uVendasPorCliente;
+    uItensVendidosPorDia, uClientes,
+    uVendasPorCliente;
 
 
 {$R *.dfm}

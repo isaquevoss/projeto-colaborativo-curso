@@ -7,9 +7,9 @@ uses
   uItensVendidosPorDia in 'uItensVendidosPorDia.pas' {frmItensVendidosPorDia},
   uDmItensVendidosPorDia in 'uDmItensVendidosPorDia.pas' {DmItensVendidosPorDia: TDataModule},
   uDmEstoque in 'uDmEstoque.pas' {DmEstoque: TDataModule},
-  uListagemEstoque in 'uListagemEstoque.pas' {FrmListagemEstoque};
+  uListagemEstoque in 'uListagemEstoque.pas' {FrmListagemEstoque},
   uClientes in 'uClientes.pas' {Form2},
-  udmClientes in 'udmClientes.pas' {Dmclientes: TDataModule};
+  udmClientes in 'udmClientes.pas' {Dmclientes: TDataModule},
   uDmVendasPorCliente in 'uDmVendasPorCliente.pas' {dmVendasPorCliente: TDataModule},
   uVendasPorCliente in 'uVendasPorCliente.pas' {frmVendasPorCliente};
 
