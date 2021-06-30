@@ -8,6 +8,10 @@ uses
   uDmItensVendidosPorDia in 'uDmItensVendidosPorDia.pas' {DmItensVendidosPorDia: TDataModule},
   uDmEstoque in 'uDmEstoque.pas' {DmEstoque: TDataModule},
   uListagemEstoque in 'uListagemEstoque.pas' {FrmListagemEstoque};
+  uClientes in 'uClientes.pas' {Form2},
+  udmClientes in 'udmClientes.pas' {Dmclientes: TDataModule};
+  uDmVendasPorCliente in 'uDmVendasPorCliente.pas' {dmVendasPorCliente: TDataModule},
+  uVendasPorCliente in 'uVendasPorCliente.pas' {frmVendasPorCliente};
 
 {$R *.res}
 
@@ -20,5 +24,9 @@ begin
   Application.CreateForm(TDmItensVendidosPorDia, DmItensVendidosPorDia);
   Application.CreateForm(TDmEstoque, DmEstoque);
   Application.CreateForm(TFrmListagemEstoque, FrmListagemEstoque);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TDmclientes, Dmclientes);
+  Application.CreateForm(TdmVendasPorCliente, dmVendasPorCliente);
+  Application.CreateForm(TfrmVendasPorCliente, frmVendasPorCliente);
   Application.Run;
 end.
