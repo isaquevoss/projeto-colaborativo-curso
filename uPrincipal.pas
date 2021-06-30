@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, uListagemEstoque;
 
 type
   TForm1 = class(TForm)
@@ -15,8 +15,10 @@ type
     Button4: TButton;
     Button5: TButton;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -39,6 +41,10 @@ begin
   frmItensVendidosPorDia.Show();
 end;
 
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  FrmListagemEstoque.Show();
+end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
