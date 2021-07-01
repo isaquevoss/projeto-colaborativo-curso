@@ -6,6 +6,8 @@ uses
   uDmConexaoFB in 'uDmConexaoFB.pas' {DmConexaoFB: TDataModule},
   uItensVendidosPorDia in 'uItensVendidosPorDia.pas' {frmItensVendidosPorDia},
   uDmItensVendidosPorDia in 'uDmItensVendidosPorDia.pas' {DmItensVendidosPorDia: TDataModule},
+  uVersoesExe in 'uVersoesExe.pas' {frmVersoesExe},
+  uDmVersoesExe in 'uDmVersoesExe.pas' {dmVersoes: TDataModule},
   uDmEstoque in 'uDmEstoque.pas' {DmEstoque: TDataModule},
   uListagemEstoque in 'uListagemEstoque.pas' {FrmListagemEstoque},
   uClientes in 'uClientes.pas' {Form2},
@@ -23,6 +25,8 @@ begin
   Application.CreateForm(TDmConexaoFB, DmConexaoFB);
   Application.CreateForm(TfrmItensVendidosPorDia, frmItensVendidosPorDia);
   Application.CreateForm(TDmItensVendidosPorDia, DmItensVendidosPorDia);
+  Application.CreateForm(TfrmVersoesExe, frmVersoesExe);
+  Application.CreateForm(TdmVersoes, dmVersoes);
   Application.CreateForm(TDmEstoque, DmEstoque);
   Application.CreateForm(TFrmListagemEstoque, FrmListagemEstoque);
   Application.CreateForm(TForm2, Form2);

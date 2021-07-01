@@ -31,13 +31,14 @@ object Form1: TForm1
     TabOrder = 1
     OnClick = Button2Click
   end
-  object Button3: TButton
+  object btn_Versoes: TButton
     Left = 32
     Top = 65
     Width = 169
     Height = 25
     Caption = 'Versoes Exe'
     TabOrder = 2
+    OnClick = btn_VersoesClick
   end
   object Button4: TButton
     Left = 32
