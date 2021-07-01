@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, uVersoesExe;
+  uVersoesExe, Vcl.StdCtrls, uListagemEstoque;
 
 type
   TForm1 = class(TForm)
@@ -16,6 +16,10 @@ type
     Button5: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -27,7 +31,9 @@ var
 
 implementation
   uses
-    uItensVendidosPorDia;
+    uItensVendidosPorDia, uClientes,
+    uVendasPorCliente;
+
 
 {$R *.dfm}
 
@@ -41,5 +47,21 @@ begin
   frmItensVendidosPorDia.Show();
 end;
 
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  FrmListagemEstoque.Show();
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+form2.Show();
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+frmVendasPorCliente.Show();
+end;
+
 end.
+
 

@@ -29,6 +29,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'Estoque'
     TabOrder = 1
+    OnClick = Button2Click
   end
   object btn_Versoes: TButton
     Left = 32
@@ -46,6 +47,7 @@ object Form1: TForm1
     Height = 25
     Caption = 'Clientes'
     TabOrder = 3
+    OnClick = Button4Click
   end
   object Button5: TButton
     Left = 32
@@ -54,5 +56,6 @@ object Form1: TForm1
     Height = 25
     Caption = 'Vendas'
     TabOrder = 4
+    OnClick = Button5Click
   end
 end

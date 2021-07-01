@@ -110,6 +110,28 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="uDmEstoque.pas">
+            <Form>DmEstoque</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uListagemEstoque.pas">
+            <Form>FrmListagemEstoque</Form>
+        </DCCReference>
+        <DCCReference Include="uClientes.pas">
+            <Form>Form2</Form>
+        </DCCReference>
+        <DCCReference Include="udmClientes.pas">
+            <Form>Dmclientes</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uDmVendasPorCliente.pas">
+            <Form>dmVendasPorCliente</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uVendasPorCliente.pas">
+            <Form>frmVendasPorCliente</Form>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
