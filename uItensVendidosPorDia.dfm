@@ -20,6 +20,12 @@ object frmItensVendidosPorDia: TfrmItensVendidosPorDia
     Height = 13
     Caption = 'Descri'#231#227'o do Produto'
   end
+  object lbQtdProdutosEncontrados: TLabel
+    Left = 384
+    Top = 61
+    Width = 3
+    Height = 13
+  end
   object Grid: TDBGrid
     Left = 0
     Top = 80
@@ -33,6 +39,8 @@ object frmItensVendidosPorDia: TfrmItensVendidosPorDia
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = GridDblClick
+    OnTitleClick = GridTitleClick
   end
   object EdDescricaoProduto: TEdit
     Left = 152
@@ -43,12 +51,15 @@ object frmItensVendidosPorDia: TfrmItensVendidosPorDia
     Text = 'EdDescricaoProduto'
   end
   object BtBuscar: TButton
-    Left = 440
+    Left = 400
     Top = 27
     Width = 75
     Height = 25
     Caption = 'Buscar'
     TabOrder = 2
     OnClick = BtBuscarClick
+  end
+  object ACBrExtenso1: TACBrExtenso
+    Left = 568
   end
 end
