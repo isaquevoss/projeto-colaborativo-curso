@@ -11,10 +11,13 @@ type
   TFrmListagemEstoque = class(TForm)
     grid: TDBGrid;
     edDescricao: TEdit;
+    label1: TLabel;
+    lblNumRegistro: TLabel;
     procedure btnBuscarClick(Sender: TObject);
     procedure edDescricaoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edDescricaoChange(Sender: TObject);
+    procedure mostrarResultado;
   private
     { Private declarations }
   public
@@ -54,6 +57,7 @@ begin
   if Key=8 then
   begin
     DmEstoque.qrEstoque.Close();
+    lblNumRegistro.Caption := '0';
   end;
 end;
 
@@ -66,6 +70,19 @@ begin
    end;
 
   DmEstoque.buscarEstoque(edDescricao.Text);
+  mostrarResultado();
+
+end;
+
+procedure TFrmListagemEstoque.mostrarResultado;
+begin
+  DmEstoque.qrEstoque.FetchAll();
+
+  if DmEstoque.qrEstoque.RecordCount > 0 then
+    begin
+      lblNumRegistro.Caption := IntToStr(DmEstoque.qrEstoque.RecordCount);
+      lblNumRegistro.Visible := True;
+    end;
 end;
 
 end.
