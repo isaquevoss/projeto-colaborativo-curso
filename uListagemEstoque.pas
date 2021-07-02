@@ -19,6 +19,7 @@ type
     procedure edDescricaoChange(Sender: TObject);
     procedure mostrarResultado;
     procedure gridTitleClick(Column: TColumn);
+    procedure gridDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -84,6 +85,11 @@ begin
       lblNumRegistro.Caption := IntToStr(DmEstoque.qrEstoque.RecordCount);
       lblNumRegistro.Visible := True;
     end;
+end;
+
+procedure TFrmListagemEstoque.gridDblClick(Sender: TObject);
+begin
+  ShowMessage('Produto: '+DmEstoque.qrEstoque.FieldByName('codigo').AsString+' '+DmEstoque.qrEstoque.FieldByName('descricao').AsString+#13+'Com o preço de: '+DmEstoque.qrEstoque.FieldByName('preco_venda').AsString+#13+'Com '+DmEstoque.qrEstoque.FieldByName('qtd').AsString+' quantidades em estoque.');
 end;
 
 procedure TFrmListagemEstoque.gridTitleClick(Column: TColumn);

@@ -37,16 +37,16 @@ begin
 
     qrEstoque.Close();
     qrEstoque.SQL.Clear();
-    qrEstoque.SQL.Add('select e.codigo,');
-    qrEstoque.SQL.Add('       e.barras,');
-    qrEstoque.SQL.Add('       e.descricao,');
-    qrEstoque.SQL.Add('       e.und,');
-    qrEstoque.SQL.Add('       e.und_compra,');
-    qrEstoque.SQL.Add('       e.qtd,');
-    qrEstoque.SQL.Add('       e.preco_custo,');
-    qrEstoque.SQL.Add('       e.preco_venda');
+    qrEstoque.SQL.Add('select codigo,');
+    qrEstoque.SQL.Add('       barras,');
+    qrEstoque.SQL.Add('       descricao,');
+    qrEstoque.SQL.Add('       und,');
+    qrEstoque.SQL.Add('       und_compra,');
+    qrEstoque.SQL.Add('       qtd,');
+    qrEstoque.SQL.Add('       preco_custo,');
+    qrEstoque.SQL.Add('       preco_venda');
     qrEstoque.SQL.Add('from estoque e');
-    qrEstoque.SQL.Add('where upper(e.descricao) containing upper(:descricao)');
+    qrEstoque.SQL.Add('where upper(descricao) containing upper(:descricao)');
     qrEstoque.ParamByName('descricao').AsString := _descricao;
     qrEstoque.Open();
 

@@ -43,6 +43,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = gridDblClick
     OnTitleClick = gridTitleClick
   end
   object edDescricao: TEdit
