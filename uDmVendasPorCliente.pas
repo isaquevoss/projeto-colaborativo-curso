@@ -16,7 +16,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure buscarVendas(_nome : string =''; _dataEmissao : TDateTime = 0);
+    procedure buscarVendas(_nome : string =''; _dataEmissaoIni : TDateTime = 0; _dataEmissaoFin:TDateTime =0 );
 
   end;
 
@@ -31,19 +31,24 @@ implementation
 
 { TdmVendasPorCliente }
 
-procedure TdmVendasPorCliente.buscarVendas(_nome: string ; _dataEmissao : TDateTime );
+procedure TdmVendasPorCliente.buscarVendas(_nome: string ; _dataEmissaoIni : TDateTime;_dataEmissaoFin : TDateTime );
 begin
  if not DmConexaoFB.Conexao.Connected then
 DmConexaoFB.conectarBanco();
-qrVendas.SQL.Add('select cliente.codigo');
-qrVendas.SQL.Add('      ,sum(vendas.valor_tot_pro)' );
-qrVendas.SQL.Add('      from vendas');
+qrVendas.Close;
+qrVendas.SQL.Clear();
+qrVendas.SQL.Add('select vendas.modelo');
+qrVendas.SQL.Add('      ,cliente.codigo');
 qrVendas.SQL.Add('      , cliente.nome');
+qrVendas.SQL.Add('      ,sum(vendas.valor_tot_pro) as Valor' );
+qrVendas.SQL.Add('      from vendas');
 qrVendas.SQL.Add('      left join cliente on vendas.cliente = cliente.codigo' );
-qrVendas.SQL.Add('      where upper(nome) containing upper(:nome) and data_emissao=  :data');
-qrVendas.SQL.Add('      group by 1,2');
+qrVendas.SQL.Add('      where upper(nome) containing upper(:nome)');
+qrVendas.SQL.Add(' and data_emissao>=  (:dataIni) and data_emissao <= (:dataFin)');
+qrVendas.SQL.Add('      group by 1,2,3');
 qrVendas.ParamByName('nome').AsString :=_nome;
-qrVendas.ParamByName('data').AsDate:= _dataEmissao;
+qrVendas.ParamByName('dataIni').AsDate:= _dataEmissaoIni;
+qrVendas.ParamByName('dataFin').AsDate:= _dataEmissaoFin;
 qrVendas.Open();
 end;
 

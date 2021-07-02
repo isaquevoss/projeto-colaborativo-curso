@@ -13,7 +13,11 @@ type
     dtpEmisaoInicial: TDateTimePicker;
     edtCliente: TEdit;
     btnBuscar: TButton;
+    dtEmissaoFinal: TDateTimePicker;
+    lblDescValor: TLabel;
+    lblValor: TLabel;
     procedure btnBuscarClick(Sender: TObject);
+    procedure lblValorDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,8 +34,14 @@ implementation
 procedure TfrmVendasPorCliente.btnBuscarClick(Sender: TObject);
 begin
 
-  dmVendasPorCliente.buscarVendas(edtCliente.Text,dtpEmisaoInicial.DateTime);
+  dmVendasPorCliente.buscarVendas(edtCliente.Text,dtpEmisaoInicial.DateTime,dtEmissaoFinal.DateTime);
 
+
+end;
+
+procedure TfrmVendasPorCliente.lblValorDblClick(Sender: TObject);
+begin
+//ShowMessage('Você clicou no registro: ' + dmVendasPorCliente.qrVendas.FieldByName('CODIGO').AsString + ' ' + dmVendasPorCliente.qrVendas.FieldByName('DESCRICAO').AsString + ' R$ ' + DmItensVendidosPorDia.qrProdutos.FieldByName('VALOR_TOTAL').AsString);
 end;
 
 end.
