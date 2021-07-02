@@ -1,7 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Form2'
+  Caption = 'Busca Clientes'
   ClientHeight = 253
   ClientWidth = 517
   Color = clBtnFace
@@ -20,6 +20,12 @@ object Form2: TForm2
     Height = 13
     Caption = 'Nome Cliente'
   end
+  object lbqtdclientesencontrados: TLabel
+    Left = 363
+    Top = 40
+    Width = 14
+    Height = 13
+  end
   object dbgrd1: TDBGrid
     Left = 0
     Top = 69
@@ -33,10 +39,11 @@ object Form2: TForm2
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnTitleClick = dbgrd1TitleClick
   end
   object btnCliente: TButton
     Left = 344
-    Top = 16
+    Top = 8
     Width = 75
     Height = 25
     Caption = 'Buscar'
@@ -49,6 +56,5 @@ object Form2: TForm2
     Width = 137
     Height = 21
     TabOrder = 2
-    Text = 'edtCliente'
   end
 end
