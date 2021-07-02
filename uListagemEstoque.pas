@@ -18,6 +18,7 @@ type
       Shift: TShiftState);
     procedure edDescricaoChange(Sender: TObject);
     procedure mostrarResultado;
+    procedure gridTitleClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -83,6 +84,11 @@ begin
       lblNumRegistro.Caption := IntToStr(DmEstoque.qrEstoque.RecordCount);
       lblNumRegistro.Visible := True;
     end;
+end;
+
+procedure TFrmListagemEstoque.gridTitleClick(Column: TColumn);
+begin
+  DmEstoque.qrEstoque.IndexFieldNames := Column.FieldName;
 end;
 
 end.
