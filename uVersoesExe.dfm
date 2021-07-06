@@ -2,8 +2,8 @@ object frmVersoesExe: TfrmVersoesExe
   Left = 0
   Top = 0
   Caption = 'Vers'#245'es'
-  ClientHeight = 235
-  ClientWidth = 466
+  ClientHeight = 260
+  ClientWidth = 544
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,10 +13,17 @@ object frmVersoesExe: TfrmVersoesExe
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object lbl1: TLabel
+    Left = 302
+    Top = 97
+    Width = 36
+    Height = 13
+    Caption = 'Buscar:'
+  end
   object Grid_Exes: TDBGrid
     Left = 0
-    Top = 97
-    Width = 466
+    Top = 122
+    Width = 544
     Height = 138
     Align = alBottom
     DataSource = dmVersoes.dsVersoes
@@ -29,7 +36,7 @@ object frmVersoesExe: TfrmVersoesExe
   end
   object btn_Carregar: TButton
     Left = 8
-    Top = 16
+    Top = 48
     Width = 129
     Height = 25
     Caption = 'Carregar'
@@ -38,10 +45,25 @@ object frmVersoesExe: TfrmVersoesExe
   end
   object Nav_Versoes: TDBNavigator
     Left = 8
-    Top = 66
-    Width = 240
+    Top = 91
+    Width = 230
     Height = 25
     DataSource = dmVersoes.dsVersoes
     TabOrder = 2
+  end
+  object edt_buscar: TEdit
+    Left = 344
+    Top = 95
+    Width = 185
+    Height = 21
+    TabOrder = 3
+    OnChange = edt_buscarChange
+  end
+  object tmr_Buscar: TTimer
+    Enabled = False
+    Interval = 1700
+    OnTimer = tmr_BuscarTimer
+    Left = 16
+    Top = 8
   end
 end
