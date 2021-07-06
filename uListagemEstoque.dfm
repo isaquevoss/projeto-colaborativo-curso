@@ -29,6 +29,16 @@ object FrmListagemEstoque: TFrmListagemEstoque
     Caption = '0'
     Visible = False
   end
+  object lblNenhumProdEncontrado: TLabel
+    Left = 8
+    Top = 6
+    Width = 489
+    Height = 13
+    Align = alCustom
+    Alignment = taCenter
+    Caption = 'lblNenhumProdEncontrado'
+    Visible = False
+  end
   object grid: TDBGrid
     Left = 0
     Top = 80
@@ -56,5 +66,12 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TextHint = 'Digite o nome do Produto'
     OnChange = edDescricaoChange
     OnKeyDown = edDescricaoKeyDown
+  end
+  object timerBusca: TTimer
+    Enabled = False
+    Interval = 1500
+    OnTimer = timerBuscaTimer
+    Left = 440
+    Top = 128
   end
 end

@@ -49,7 +49,7 @@ begin
     qrEstoque.SQL.Add('where upper(descricao) containing upper(:descricao)');
     qrEstoque.ParamByName('descricao').AsString := _descricao;
     qrEstoque.Open();
-
+    qrEstoque.FetchAll();
 end;
 
 end.

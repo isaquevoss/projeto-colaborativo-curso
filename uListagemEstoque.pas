@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, uDmEstoque;
+  Vcl.DBGrids, uDmEstoque, Vcl.ExtCtrls;
 
 type
   TFrmListagemEstoque = class(TForm)
@@ -13,6 +13,8 @@ type
     edDescricao: TEdit;
     label1: TLabel;
     lblNumRegistro: TLabel;
+    timerBusca: TTimer;
+    lblNenhumProdEncontrado: TLabel;
     procedure btnBuscarClick(Sender: TObject);
     procedure edDescricaoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -20,6 +22,7 @@ type
     procedure mostrarResultado;
     procedure gridTitleClick(Column: TColumn);
     procedure gridDblClick(Sender: TObject);
+    procedure timerBuscaTimer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,12 +43,14 @@ end;
 
 procedure TFrmListagemEstoque.edDescricaoChange(Sender: TObject);
 begin
-  if edDescricao.Text = '' then
-  begin
-    Exit;
-  end;
-
-  listarProduto();
+  timerBusca.Enabled := False;
+  timerBusca.Enabled := True;
+//  if edDescricao.Text = '' then
+//  begin
+//    Exit;
+//  end;
+//
+//  listarProduto();
 end;
 
 procedure TFrmListagemEstoque.edDescricaoKeyDown(Sender: TObject; var Key: Word;
@@ -67,8 +72,16 @@ procedure TFrmListagemEstoque.listarProduto();
 begin
   if edDescricao.Text = '' then
    begin
-     ShowMessage('Preencha o nome do produto!');
+     lblNumRegistro.Visible := True;
+     lblNenhumProdEncontrado.Caption := 'Nenhum produto localizado';
      Exit;
+   end;
+
+   if DmEstoque.qrEstoque.RecordCount = 0 then
+   begin
+     lblNumRegistro.Visible := True;
+     lblNenhumProdEncontrado.Caption := 'Nenhum produto localizado';
+//     Exit;
    end;
 
   DmEstoque.buscarEstoque(edDescricao.Text);
@@ -78,13 +91,17 @@ end;
 
 procedure TFrmListagemEstoque.mostrarResultado;
 begin
-  DmEstoque.qrEstoque.FetchAll();
-
   if DmEstoque.qrEstoque.RecordCount > 0 then
     begin
       lblNumRegistro.Caption := IntToStr(DmEstoque.qrEstoque.RecordCount);
       lblNumRegistro.Visible := True;
     end;
+end;
+
+procedure TFrmListagemEstoque.timerBuscaTimer(Sender: TObject);
+begin
+  timerBusca.Enabled := False;
+  listarProduto();
 end;
 
 procedure TFrmListagemEstoque.gridDblClick(Sender: TObject);
