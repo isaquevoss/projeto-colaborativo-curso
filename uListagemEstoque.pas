@@ -11,10 +11,15 @@ type
   TFrmListagemEstoque = class(TForm)
     grid: TDBGrid;
     edDescricao: TEdit;
+    label1: TLabel;
+    lblNumRegistro: TLabel;
     procedure btnBuscarClick(Sender: TObject);
     procedure edDescricaoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure edDescricaoChange(Sender: TObject);
+    procedure mostrarResultado;
+    procedure gridTitleClick(Column: TColumn);
+    procedure gridDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -54,6 +59,7 @@ begin
   if Key=8 then
   begin
     DmEstoque.qrEstoque.Close();
+    lblNumRegistro.Caption := '0';
   end;
 end;
 
@@ -66,6 +72,29 @@ begin
    end;
 
   DmEstoque.buscarEstoque(edDescricao.Text);
+  mostrarResultado();
+
+end;
+
+procedure TFrmListagemEstoque.mostrarResultado;
+begin
+  DmEstoque.qrEstoque.FetchAll();
+
+  if DmEstoque.qrEstoque.RecordCount > 0 then
+    begin
+      lblNumRegistro.Caption := IntToStr(DmEstoque.qrEstoque.RecordCount);
+      lblNumRegistro.Visible := True;
+    end;
+end;
+
+procedure TFrmListagemEstoque.gridDblClick(Sender: TObject);
+begin
+  ShowMessage('Produto: '+DmEstoque.qrEstoque.FieldByName('codigo').AsString+' '+DmEstoque.qrEstoque.FieldByName('descricao').AsString+#13+'Com o preço de: '+DmEstoque.qrEstoque.FieldByName('preco_venda').AsString+#13+'Com '+DmEstoque.qrEstoque.FieldByName('qtd').AsString+' quantidades em estoque.');
+end;
+
+procedure TFrmListagemEstoque.gridTitleClick(Column: TColumn);
+begin
+  DmEstoque.qrEstoque.IndexFieldNames := Column.FieldName;
 end;
 
 end.
