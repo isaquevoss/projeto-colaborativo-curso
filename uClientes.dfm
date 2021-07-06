@@ -23,7 +23,7 @@ object Form2: TForm2
   object lbqtdclientesencontrados: TLabel
     Left = 363
     Top = 40
-    Width = 14
+    Width = 3
     Height = 13
   end
   object dbgrd1: TDBGrid
@@ -56,5 +56,13 @@ object Form2: TForm2
     Width = 137
     Height = 21
     TabOrder = 2
+    OnChange = edtClienteChange
+  end
+  object TimerBusca: TTimer
+    Enabled = False
+    Interval = 3000
+    OnTimer = TimerBuscaTimer
+    Left = 448
+    Top = 16
   end
 end

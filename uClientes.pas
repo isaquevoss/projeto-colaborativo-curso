@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, udmClientes;
+  Vcl.DBGrids, udmClientes, Vcl.ExtCtrls;
 
 type
   TForm2 = class(TForm)
@@ -14,13 +14,18 @@ type
     lblCliente: TLabel;
     edtCliente: TEdit;
     lbqtdclientesencontrados: TLabel;
+    TimerBusca: TTimer;
     procedure btnClienteClick(Sender: TObject);
     procedure dbgrd1TitleClick(Column: TColumn);
+    procedure TimerBuscaTimer(Sender: TObject);
+    procedure edtClienteChange(Sender: TObject);
   private
     { Private declarations }
   public
 
    procedure mostrarResultadosBusca();
+
+   procedure buscar();
 
   end;
 
@@ -35,14 +40,29 @@ implementation
 
 
 procedure TForm2.btnClienteClick(Sender: TObject);
+
 begin
+buscar;
+
+end;
+procedure TForm2.buscar;
+
+begin
+TimerBusca.Enabled := false;
 Dmclientes.buscarclientes(edtCliente.text);
-mostrarResultadosBusca()
+mostrarResultadosBusca();
+
 end;
 
 procedure TForm2.dbgrd1TitleClick(Column: TColumn);
 begin
 Dmclientes.qrClientes.IndexFieldNames := column.fieldname;
+end;
+
+procedure TForm2.edtClienteChange(Sender: TObject);
+begin
+TimerBusca.Enabled := false;
+TimerBusca.Enabled := true;
 end;
 
 procedure TForm2.mostrarResultadosBusca;
@@ -58,6 +78,11 @@ begin
 
   lbqtdclientesencontrados.Caption := 'Foram encontrados ' + IntToStr(dmClientes.qrclientes.RecordCount);
 
+end;
+
+procedure TForm2.TimerBuscaTimer(Sender: TObject);
+begin
+Buscar();
 end;
 
 end.
