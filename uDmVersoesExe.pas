@@ -16,6 +16,7 @@ type
     { Private declarations }
   public
     procedure carregarProdutos();
+    procedure buscarPorDescricao(_descricao: string);
   end;
 
 var
@@ -28,6 +29,23 @@ implementation
 {$R *.dfm}
 
 { TdmVersoes }
+
+procedure TdmVersoes.buscarPorDescricao(_descricao: string);
+begin
+  if not DmConexaoFB.Conexao.Connected then
+      DmConexaoFB.conectarBanco();
+
+  qrVersoes.Close;
+  qrVersoes.SQL.Clear;
+
+  //iniciando o SQL
+  qrVersoes.SQL.Add('select * from versao_exe v where v.programa like :descricao;');
+  qrVersoes.ParamByName('descricao').AsString := '%'+_descricao+'%';
+  qrVersoes.Open();
+
+
+
+end;
 
 procedure TdmVersoes.carregarProdutos;
 begin
