@@ -13,6 +13,20 @@ object frmVendasPorCliente: TfrmVendasPorCliente
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object lblDescValor: TLabel
+    Left = 8
+    Top = 96
+    Width = 58
+    Height = 13
+    Caption = 'Valor Total: '
+  end
+  object lblValor: TLabel
+    Left = 72
+    Top = 96
+    Width = 3
+    Height = 13
+    OnDblClick = lblValorDblClick
+  end
   object dbgrdVendasPorCliente: TDBGrid
     Left = 0
     Top = 160
@@ -52,5 +66,14 @@ object frmVendasPorCliente: TfrmVendasPorCliente
     Caption = 'Buscar'
     TabOrder = 3
     OnClick = btnBuscarClick
+  end
+  object dtEmissaoFinal: TDateTimePicker
+    Left = 423
+    Top = 104
+    Width = 113
+    Height = 21
+    Date = 44378.872751307870000000
+    Time = 44378.872751307870000000
+    TabOrder = 4
   end
 end
