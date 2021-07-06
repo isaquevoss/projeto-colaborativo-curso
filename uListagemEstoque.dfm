@@ -14,12 +14,13 @@ object FrmListagemEstoque: TFrmListagemEstoque
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object label1: TLabel
+  object lblRegistros: TLabel
     Left = 380
     Top = 60
     Width = 49
     Height = 13
     Caption = 'Registros:'
+    Visible = False
   end
   object lblNumRegistro: TLabel
     Left = 431
@@ -27,6 +28,16 @@ object FrmListagemEstoque: TFrmListagemEstoque
     Width = 6
     Height = 13
     Caption = '0'
+    Visible = False
+  end
+  object lblNenhumProdEncontrado: TLabel
+    Left = 8
+    Top = 6
+    Width = 489
+    Height = 13
+    Align = alCustom
+    Alignment = taCenter
+    Caption = 'lblNenhumProdEncontrado'
     Visible = False
   end
   object grid: TDBGrid
@@ -45,6 +56,11 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TitleFont.Style = []
     OnDblClick = gridDblClick
     OnTitleClick = gridTitleClick
+    Columns = <
+      item
+        Expanded = False
+        Visible = True
+      end>
   end
   object edDescricao: TEdit
     Left = 5
@@ -56,5 +72,12 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TextHint = 'Digite o nome do Produto'
     OnChange = edDescricaoChange
     OnKeyDown = edDescricaoKeyDown
+  end
+  object timerBusca: TTimer
+    Enabled = False
+    Interval = 1500
+    OnTimer = timerBuscaTimer
+    Left = 440
+    Top = 128
   end
 end
