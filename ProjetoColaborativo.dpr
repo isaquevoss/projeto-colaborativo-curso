@@ -13,8 +13,9 @@ uses
   uClientes in 'uClientes.pas' {Form2},
   udmClientes in 'udmClientes.pas' {Dmclientes: TDataModule},
   uDmVendasPorCliente in 'uDmVendasPorCliente.pas' {dmVendasPorCliente: TDataModule},
-  uVendasPorCliente in 'uVendasPorCliente.pas' {frmVendasPorCliente};
-
+  uVendasPorCliente in 'uVendasPorCliente.pas' {frmVendasPorCliente},
+  uFrmFornecedor in 'uFrmFornecedor.pas' {FrmFornecedor},
+  uFrmTransportadora in 'uFrmTransportadora.pas' {FrmTransportadora};
 
 {$R *.res}
 
@@ -33,5 +34,7 @@ begin
   Application.CreateForm(TDmclientes, Dmclientes);
   Application.CreateForm(TdmVendasPorCliente, dmVendasPorCliente);
   Application.CreateForm(TfrmVendasPorCliente, frmVendasPorCliente);
+  Application.CreateForm(TFrmFornecedor, FrmFornecedor);
+  Application.CreateForm(TFrmTransportadora, FrmTransportadora);
   Application.Run;
 end.
