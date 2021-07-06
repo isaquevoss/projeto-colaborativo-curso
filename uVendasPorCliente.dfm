@@ -13,19 +13,11 @@ object frmVendasPorCliente: TfrmVendasPorCliente
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
-  object lblDescValor: TLabel
-    Left = 8
-    Top = 96
-    Width = 58
+  object lblResultBusca: TLabel
+    Left = 340
+    Top = 141
+    Width = 196
     Height = 13
-    Caption = 'Valor Total: '
-  end
-  object lblValor: TLabel
-    Left = 72
-    Top = 96
-    Width = 3
-    Height = 13
-    OnDblClick = lblValorDblClick
   end
   object dbgrdVendasPorCliente: TDBGrid
     Left = 0
@@ -57,6 +49,7 @@ object frmVendasPorCliente: TfrmVendasPorCliente
     Height = 21
     TabOrder = 2
     Text = 'edtCliente'
+    OnChange = edtClienteChange
   end
   object btnBuscar: TButton
     Left = 296
@@ -75,5 +68,12 @@ object frmVendasPorCliente: TfrmVendasPorCliente
     Date = 44378.872751307870000000
     Time = 44378.872751307870000000
     TabOrder = 4
+  end
+  object TimerBusca: TTimer
+    Enabled = False
+    Interval = 1500
+    OnTimer = TimerBuscaTimer
+    Left = 456
+    Top = 8
   end
 end

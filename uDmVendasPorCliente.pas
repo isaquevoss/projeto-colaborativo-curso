@@ -50,6 +50,7 @@ qrVendas.ParamByName('nome').AsString :=_nome;
 qrVendas.ParamByName('dataIni').AsDate:= _dataEmissaoIni;
 qrVendas.ParamByName('dataFin').AsDate:= _dataEmissaoFin;
 qrVendas.Open();
+qrVendas.FetchAll;
 end;
 
 end.
