@@ -56,6 +56,11 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TitleFont.Style = []
     OnDblClick = gridDblClick
     OnTitleClick = gridTitleClick
+    Columns = <
+      item
+        Expanded = False
+        Visible = True
+      end>
   end
   object edDescricao: TEdit
     Left = 5

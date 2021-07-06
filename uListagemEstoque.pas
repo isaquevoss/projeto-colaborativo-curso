@@ -45,12 +45,6 @@ procedure TFrmListagemEstoque.edDescricaoChange(Sender: TObject);
 begin
   timerBusca.Enabled := False;
   timerBusca.Enabled := True;
-//  if edDescricao.Text = '' then
-//  begin
-//    Exit;
-//  end;
-//
-//  listarProduto();
 end;
 
 procedure TFrmListagemEstoque.edDescricaoKeyDown(Sender: TObject; var Key: Word;
