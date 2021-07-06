@@ -2,10 +2,10 @@
 
 
 
-Instruções criar branch
+  Instruções criar branch
 
-  git fetch
-  git checkout nome_branch
+    git fetch
+    git checkout nome_branch
   
   Subir alterações
   
