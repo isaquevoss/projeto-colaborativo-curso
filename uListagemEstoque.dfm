@@ -14,12 +14,13 @@ object FrmListagemEstoque: TFrmListagemEstoque
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object label1: TLabel
+  object lblRegistros: TLabel
     Left = 380
     Top = 60
     Width = 49
     Height = 13
     Caption = 'Registros:'
+    Visible = False
   end
   object lblNumRegistro: TLabel
     Left = 431

@@ -11,7 +11,7 @@ type
   TFrmListagemEstoque = class(TForm)
     grid: TDBGrid;
     edDescricao: TEdit;
-    label1: TLabel;
+    lblRegistros: TLabel;
     lblNumRegistro: TLabel;
     timerBusca: TTimer;
     lblNenhumProdEncontrado: TLabel;
@@ -72,20 +72,25 @@ procedure TFrmListagemEstoque.listarProduto();
 begin
   if edDescricao.Text = '' then
    begin
-     lblNumRegistro.Visible := True;
-     lblNenhumProdEncontrado.Caption := 'Nenhum produto localizado';
+     lblNenhumProdEncontrado.Visible := True;
+     lblNenhumProdEncontrado.Caption := 'Preencha o nome do produto para realizar a busca!';
+     lblNumRegistro.Caption := '0';
      Exit;
-   end;
-
-   if DmEstoque.qrEstoque.RecordCount = 0 then
-   begin
-     lblNumRegistro.Visible := True;
-     lblNenhumProdEncontrado.Caption := 'Nenhum produto localizado';
-//     Exit;
    end;
 
   DmEstoque.buscarEstoque(edDescricao.Text);
   mostrarResultado();
+
+   if DmEstoque.qrEstoque.RecordCount = 0 then
+     begin
+       lblNenhumProdEncontrado.Visible := True;
+       lblNenhumProdEncontrado.Caption := 'Nenhum produto localizado com a descrição: "'+edDescricao.Text+'"';
+       lblNumRegistro.Caption := '0';
+     end
+   else
+     begin
+       lblNenhumProdEncontrado.Visible := false;
+     end;
 
 end;
 
@@ -95,12 +100,14 @@ begin
     begin
       lblNumRegistro.Caption := IntToStr(DmEstoque.qrEstoque.RecordCount);
       lblNumRegistro.Visible := True;
+      lblRegistros.Visible := True;
     end;
 end;
 
 procedure TFrmListagemEstoque.timerBuscaTimer(Sender: TObject);
 begin
   timerBusca.Enabled := False;
+
   listarProduto();
 end;
 
