@@ -43,12 +43,13 @@ object frmItensVendidosPorDia: TfrmItensVendidosPorDia
     OnTitleClick = GridTitleClick
   end
   object EdDescricaoProduto: TEdit
-    Left = 152
+    Left = 154
     Top = 29
     Width = 233
     Height = 21
     TabOrder = 1
     Text = 'EdDescricaoProduto'
+    OnChange = EdDescricaoProdutoChange
   end
   object BtBuscar: TButton
     Left = 400
@@ -60,6 +61,18 @@ object frmItensVendidosPorDia: TfrmItensVendidosPorDia
     OnClick = BtBuscarClick
   end
   object ACBrExtenso1: TACBrExtenso
-    Left = 568
+    StrMoeda = 'Real'
+    StrMoedas = 'Reais'
+    StrCentavo = 'Centavo'
+    StrCentavos = 'Centavos'
+    Left = 576
+    Top = 24
+  end
+  object TimerBusca: TTimer
+    Enabled = False
+    Interval = 1500
+    OnTimer = TimerBuscaTimer
+    Left = 512
+    Top = 24
   end
 end

@@ -36,16 +36,18 @@ begin
 
   qrProdutos.Close();
   qrProdutos.SQL.Clear();
-  qrProdutos.SQL.Add('select ');
-  qrProdutos.SQL.Add('      cast( itevendas.data_emissao as date) data_emissao');
+  qrProdutos.SQL.Add('select itevendas.*  ');
+  qrProdutos.SQL.Add('     , cast( itevendas.data_emissao as date) data_emissao');
   qrProdutos.SQL.Add('     , itevendas.codigo');
   qrProdutos.SQL.Add('     , itevendas.descricao');
-  qrProdutos.SQL.Add('     , sum(itevendas.valor_total) VALOR_TOTAL');
+//  qrProdutos.SQL.Add('     , sum(itevendas.valor_total) VALOR_TOTAL');
   qrProdutos.SQL.Add('     from itevendas');
   qrProdutos.SQL.Add('   where upper(descricao) containing upper(:descricao)');
-  qrProdutos.SQL.Add('  group by 1,2,3');
+ // qrProdutos.SQL.Add('  group by 1,2,3');
   qrProdutos.ParamByName('descricao').AsString := _descricao;
   qrProdutos.Open();
+  qrProdutos.FetchAll();
+
 
 end;
 
