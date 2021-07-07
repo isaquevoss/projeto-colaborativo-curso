@@ -14,11 +14,15 @@ type
     btn_Versoes: TButton;
     Button4: TButton;
     Button5: TButton;
+    Button3: TButton;
+    Button6: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -32,7 +36,7 @@ var
 implementation
   uses
     uItensVendidosPorDia, uClientes,
-    uVendasPorCliente;
+    uVendasPorCliente, uFrmFornecedor, uFrmTransportadora;
 
 
 {$R *.dfm}
@@ -52,6 +56,11 @@ begin
   FrmListagemEstoque.Show();
 end;
 
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+  frmFornecedor.Show();
+end;
+
 procedure TForm1.Button4Click(Sender: TObject);
 begin
 form2.Show();
@@ -60,6 +69,11 @@ end;
 procedure TForm1.Button5Click(Sender: TObject);
 begin
 frmVendasPorCliente.Show();
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+  frmTransportadora.Show();
 end;
 
 end.
