@@ -134,11 +134,14 @@
         </DCCReference>
         <DCCReference Include="uFrmFornecedor.pas">
             <Form>FrmFornecedor</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uFrmTransportadora.pas">
             <Form>FrmTransportadora</Form>
+        </DCCReference>
+        <DCCReference Include="uDmFornecedor.pas">
+            <Form>dmFornecedor</Form>
             <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
