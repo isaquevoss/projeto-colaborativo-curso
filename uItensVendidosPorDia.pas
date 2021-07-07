@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB,
   Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, uDmItensVendidosPorDia, ACBrBase,
-  ACBrExtenso, FireDAC.Comp.DataSet;
+  ACBrExtenso, FireDAC.Comp.DataSet, Vcl.ExtCtrls;
 
 type
   TfrmItensVendidosPorDia = class(TForm)
@@ -16,9 +16,12 @@ type
     Label1: TLabel;
     lbQtdProdutosEncontrados: TLabel;
     ACBrExtenso1: TACBrExtenso;
+    TimerBusca: TTimer;
     procedure BtBuscarClick(Sender: TObject);
     procedure GridDblClick(Sender: TObject);
     procedure GridTitleClick(Column: TColumn);
+    procedure EdDescricaoProdutoChange(Sender: TObject);
+    procedure TimerBuscaTimer(Sender: TObject);
   private
     { Private declarations }
     procedure eventoGetRecord(dataset: TFDDataSet);
@@ -26,6 +29,8 @@ type
     { Public declarations }
 
     procedure mostrarResultadosBusca();
+
+    procedure buscar();
   end;
 
 var
@@ -37,8 +42,20 @@ implementation
 
 procedure TfrmItensVendidosPorDia.BtBuscarClick(Sender: TObject);
 begin
+  buscar;
+end;
+
+procedure TfrmItensVendidosPorDia.buscar;
+begin
+  TimerBusca.Enabled := false;
   DmItensVendidosPorDia.buscarProdutos(EdDescricaoProduto.Text);
   mostrarResultadosBusca();
+end;
+
+procedure TfrmItensVendidosPorDia.EdDescricaoProdutoChange(Sender: TObject);
+begin
+  TimerBusca.Enabled := false;
+  TimerBusca.Enabled := true;
 end;
 
 procedure TfrmItensVendidosPorDia.eventoGetRecord(dataset: TFDDataSet);
@@ -60,8 +77,7 @@ procedure TfrmItensVendidosPorDia.mostrarResultadosBusca;
 begin
   if DmItensVendidosPorDia.qrProdutos.RecordCount = 0 then
   begin
-    lbQtdProdutosEncontrados.Caption := 'Nenhum Produto encontrado';
-    ShowMessage('Não foram encontrados produtos com a descrição ' + EdDescricaoProduto.Text);
+    lbQtdProdutosEncontrados.Caption := 'Nenhum Produto encontrado contendo "'+ EdDescricaoProduto.Text+'"';
     exit;
   end;
   DmItensVendidosPorDia.qrProdutos.AfterGetRecord := self.eventoGetRecord;
@@ -70,6 +86,11 @@ begin
 
   lbQtdProdutosEncontrados.Caption := 'Foram encontrados ' + IntToStr(DmItensVendidosPorDia.qrProdutos.RecordCount);
 
+end;
+
+procedure TfrmItensVendidosPorDia.TimerBuscaTimer(Sender: TObject);
+begin
+  buscar();
 end;
 
 end.
