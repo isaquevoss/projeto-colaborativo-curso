@@ -3,7 +3,7 @@ object FrmFornecedor: TFrmFornecedor
   Top = 0
   Caption = 'Fornecedor'
   ClientHeight = 299
-  ClientWidth = 635
+  ClientWidth = 502
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,15 +16,23 @@ object FrmFornecedor: TFrmFornecedor
   object lbl_Busca: TLabel
     Left = 8
     Top = 29
-    Width = 80
+    Width = 151
     Height = 13
-    Caption = 'Busca por nome:'
+    Caption = 'Busca por nome do fornecedor:'
+  end
+  object lbl_qtdRegistros: TLabel
+    Left = 352
+    Top = 69
+    Width = 58
+    Height = 13
+    Caption = 'Registros: 0'
   end
   object Grid_Fornecedor: TDBGrid
     Left = 8
     Top = 88
-    Width = 619
+    Width = 489
     Height = 208
+    DataSource = dmFornecedor.ds_Fornecedr
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -38,9 +46,13 @@ object FrmFornecedor: TFrmFornecedor
     Width = 201
     Height = 21
     TabOrder = 1
+    OnChange = edt_BuscaFornedrChange
   end
   object tmr_Busca_Forncedr: TTimer
-    Left = 528
-    Top = 24
+    Enabled = False
+    Interval = 1700
+    OnTimer = tmr_Busca_ForncedrTimer
+    Left = 296
+    Top = 16
   end
 end
