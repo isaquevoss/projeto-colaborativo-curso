@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.ExtCtrls, Vcl.StdCtrls, uDmFornecedor;
 
 type
   TFrmFornecedor = class(TForm)
@@ -13,6 +13,9 @@ type
     edt_BuscaFornedr: TEdit;
     lbl_Busca: TLabel;
     tmr_Busca_Forncedr: TTimer;
+    lbl_qtdRegistros: TLabel;
+    procedure tmr_Busca_ForncedrTimer(Sender: TObject);
+    procedure edt_BuscaFornedrChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -25,5 +28,37 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmFornecedor.edt_BuscaFornedrChange(Sender: TObject);
+begin
+ if edt_BuscaFornedr.Text <> '' then
+  begin
+    tmr_Busca_Forncedr.Enabled := False;
+    tmr_Busca_Forncedr.Enabled := True;
+  end;
+
+  if edt_BuscaFornedr.Text = '' then
+  begin
+    dmFornecedor.Qr_fornecedr.SQL.Clear;
+    lbl_qtdRegistros.Caption := 'Registros: 0';
+    Exit
+  end;
+
+end;
+
+procedure TFrmFornecedor.tmr_Busca_ForncedrTimer(Sender: TObject);
+begin
+  tmr_Busca_Forncedr.Enabled := False;
+  dmFornecedor.buscarFornecedor(edt_BuscaFornedr.Text);
+
+  if dmFornecedor.Qr_fornecedr.RecordCount = 0 then
+  begin
+      lbl_qtdRegistros.Caption := 'Nenhum registro encontrado!';
+      exit
+  end;
+
+
+  lbl_qtdRegistros.Caption := 'Registros: '+ IntToStr(dmFornecedor.Qr_fornecedr.RecordCount);
+end;
 
 end.
