@@ -19,6 +19,12 @@ type
     lblCnpj: TLabel;
     edtCnpj: TEdit;
     edtEndereco: TEdit;
+    edtCidade: TEdit;
+    cbxUF: TComboBox;
+    edtTelefone: TEdit;
+    edtEmail: TEdit;
+    edtRntrc: TEdit;
+    btnSalvar: TButton;
   private
     { Private declarations }
   public
