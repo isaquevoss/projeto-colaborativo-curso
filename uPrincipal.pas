@@ -16,6 +16,7 @@ type
     Button5: TButton;
     Button3: TButton;
     Button6: TButton;
+    Button7: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -23,6 +24,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -36,7 +38,8 @@ var
 implementation
   uses
     uItensVendidosPorDia, uClientes,
-    uVendasPorCliente, uFrmFornecedor, uFrmTransportadora;
+    uVendasPorCliente, uFrmFornecedor, uFrmTransportadora,
+  ufrmCadastroVendedor, ufrmVendedores;
 
 
 {$R *.dfm}
@@ -74,6 +77,11 @@ end;
 procedure TForm1.Button6Click(Sender: TObject);
 begin
   frmTransportadora.Show();
+end;
+
+procedure TForm1.Button7Click(Sender: TObject);
+begin
+  frmVendedores.Show();
 end;
 
 end.
