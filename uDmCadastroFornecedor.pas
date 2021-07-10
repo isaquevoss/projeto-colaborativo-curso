@@ -33,6 +33,17 @@ implementation
 procedure TdmCadastroFornecedr.cadastrarFornecedor(_nomeForn, _fantasiaForn,
   _cnpj_cpfForn, _ie_rgForn, enderecoForn: string);
 begin
+  //Limpando e fechando a Query
+  qrInsertFornecedr.Close;
+  qrInsertFornecedr.SQL.Clear;
+
+  //Iniciando o SQL
+  qrInsertFornecedr.SQL.Add('Insert into fornecedor (nome, fantasia, cnpj_cnpf, ie_rg, endereco)');
+  qrInsertFornecedr.SQL.Add('values ();');
+
+
+
+
 
 end;
 
