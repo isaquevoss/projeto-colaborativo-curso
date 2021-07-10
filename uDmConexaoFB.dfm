@@ -3,12 +3,12 @@ object DmConexaoFB: TDmConexaoFB
   Height = 224
   Width = 355
   object Conexao: TFDConnection
-    Left = 56
+    Left = 48
     Top = 24
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    Left = 160
-    Top = 16
+    Left = 144
+    Top = 24
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'

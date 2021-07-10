@@ -11,6 +11,8 @@ object frmEstoque: TfrmEstoque
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlTela: TPanel
@@ -20,7 +22,6 @@ object frmEstoque: TfrmEstoque
     Height = 317
     Align = alBottom
     TabOrder = 0
-    ExplicitTop = 128
   end
   object pnlOpcoes: TPanel
     Left = 0
@@ -30,7 +31,7 @@ object frmEstoque: TfrmEstoque
     Align = alTop
     TabOrder = 1
     object btnListagem: TButton
-      Left = 63
+      Left = 31
       Top = 21
       Width = 75
       Height = 25
@@ -39,7 +40,7 @@ object frmEstoque: TfrmEstoque
       OnClick = btnListagemClick
     end
     object btnCadastro: TButton
-      Left = 160
+      Left = 136
       Top = 21
       Width = 75
       Height = 25

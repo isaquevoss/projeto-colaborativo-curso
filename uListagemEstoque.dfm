@@ -6,7 +6,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
   BorderStyle = bsNone
   Caption = 'FrmListagemEstoque'
   ClientHeight = 315
-  ClientWidth = 521
+  ClientWidth = 676
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblRegistros: TLabel
@@ -36,7 +37,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
   object lblNenhumProdEncontrado: TLabel
     Left = 8
     Top = 6
-    Width = 126
+    Width = 489
     Height = 13
     Align = alCustom
     Alignment = taCenter
@@ -45,9 +46,9 @@ object FrmListagemEstoque: TFrmListagemEstoque
   end
   object grid: TDBGrid
     Left = 0
-    Top = 119
-    Width = 521
-    Height = 196
+    Top = 79
+    Width = 676
+    Height = 236
     Align = alBottom
     DataSource = DmEstoque.dsEstoque
     ReadOnly = True

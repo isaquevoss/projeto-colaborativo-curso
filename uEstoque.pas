@@ -13,8 +13,9 @@ type
     btnListagem: TButton;
     btnCadastro: TButton;
     procedure btnListagemClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    procedure mostrarListagem();
   public
     { Public declarations }
   end;
@@ -28,9 +29,19 @@ implementation
 
 procedure TfrmEstoque.btnListagemClick(Sender: TObject);
 begin
+  mostrarListagem();
+end;
+
+
+procedure TfrmEstoque.FormShow(Sender: TObject);
+begin
+  mostrarListagem();
+end;
+
+procedure TfrmEstoque.mostrarListagem;
+begin
     FrmListagemEstoque.Parent := pnlTela;
     FrmListagemEstoque.Show();
 end;
-
 
 end.
