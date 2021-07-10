@@ -46,7 +46,7 @@ implementation
 
 procedure TForm1.btn_VersoesClick(Sender: TObject);
 begin
- frmVersoesExe.ShowModal;
+ frmVersoesExe.Show;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);

@@ -14,8 +14,10 @@ type
     lbl_Busca: TLabel;
     tmr_Busca_Forncedr: TTimer;
     lbl_qtdRegistros: TLabel;
+    btnNovoFornecedr: TButton;
     procedure tmr_Busca_ForncedrTimer(Sender: TObject);
     procedure edt_BuscaFornedrChange(Sender: TObject);
+    procedure btnNovoFornecedrClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,6 +30,13 @@ var
 implementation
 
 {$R *.dfm}
+uses
+  ufrmCadastroFornecedor;
+
+procedure TFrmFornecedor.btnNovoFornecedrClick(Sender: TObject);
+begin
+  frmCadastroFornecedr.show();
+end;
 
 procedure TFrmFornecedor.edt_BuscaFornedrChange(Sender: TObject);
 begin
