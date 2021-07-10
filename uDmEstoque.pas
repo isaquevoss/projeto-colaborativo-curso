@@ -52,4 +52,5 @@ begin
     qrEstoque.FetchAll();
 end;
 
+
 end.
