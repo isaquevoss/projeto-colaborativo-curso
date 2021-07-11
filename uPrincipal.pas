@@ -38,7 +38,7 @@ var
 implementation
   uses
     uItensVendidosPorDia, uClientes,
-    uVendasPorCliente, uFrmFornecedor, uFrmTransportadora,
+    uVendasPorCliente, uFrmFornecedor, uFrmListaTransportadora,
   ufrmCadastroVendedor, ufrmVendedores;
 
 
@@ -76,7 +76,7 @@ end;
 
 procedure TForm1.Button6Click(Sender: TObject);
 begin
-  frmTransportadora.Show();
+  frmListaTransportadora.Show();
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
