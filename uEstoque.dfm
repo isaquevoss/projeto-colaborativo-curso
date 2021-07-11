@@ -46,6 +46,7 @@ object frmEstoque: TfrmEstoque
       Height = 25
       Caption = 'Cadastrar'
       TabOrder = 1
+      OnClick = btnCadastroClick
     end
   end
 end

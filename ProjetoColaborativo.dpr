@@ -20,7 +20,8 @@ uses
   ufrmVendedores in 'ufrmVendedores.pas' {frmVendedores},
   ufrmCadastroVendedor in 'ufrmCadastroVendedor.pas' {frmCadastroVendedor},
   uDmVendedor in 'uDmVendedor.pas' {DmVendedor: TDataModule},
-  uEstoque in 'uEstoque.pas' {frmEstoque};
+  uEstoque in 'uEstoque.pas' {frmEstoque},
+  uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque};
 
 {$R *.res}
 
@@ -46,5 +47,6 @@ begin
   Application.CreateForm(TfrmCadastroVendedor, frmCadastroVendedor);
   Application.CreateForm(TDmVendedor, DmVendedor);
   Application.CreateForm(TfrmEstoque, frmEstoque);
+  Application.CreateForm(TfrmCadastroEstoque, frmCadastroEstoque);
   Application.Run;
 end.
