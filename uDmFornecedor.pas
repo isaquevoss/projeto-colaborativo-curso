@@ -16,6 +16,7 @@ type
     { Private declarations }
   public
     procedure buscarFornecedor(_nomeFornecedor : string);
+    procedure carregarFornecedor();
   end;
 
 var
@@ -43,6 +44,19 @@ begin
   Qr_fornecedr.Open();
 
 
+end;
+
+procedure TdmFornecedor.carregarFornecedor;
+begin
+   if not DmConexaoFB.Conexao.Connected then
+      DmConexaoFB.conectarBanco();
+
+  Qr_fornecedr.Close;
+  Qr_fornecedr.SQL.Clear;
+
+  //iniciando o SQL
+  Qr_fornecedr.SQL.Add('select * from fornecedor;');
+  Qr_fornecedr.Open();
 end;
 
 end.

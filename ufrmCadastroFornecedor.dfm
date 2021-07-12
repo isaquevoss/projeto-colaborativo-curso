@@ -2,7 +2,7 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
   Left = 0
   Top = 0
   Caption = 'Cadastrar Fornecedor'
-  ClientHeight = 275
+  ClientHeight = 290
   ClientWidth = 360
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,6 +11,7 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lbl_CodigoFornecedr: TLabel
@@ -76,14 +77,14 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     Height = 21
     TabOrder = 2
   end
-  object Edit1: TEdit
+  object edt_IeRgFornecedr: TEdit
     Left = 77
     Top = 149
     Width = 124
     Height = 21
     TabOrder = 3
   end
-  object Edit2: TEdit
+  object edt_EnderFornecedr: TEdit
     Left = 77
     Top = 181
     Width = 252
@@ -92,18 +93,20 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
   end
   object btn_SalvaFornecedr: TButton
     Left = 16
-    Top = 224
-    Width = 97
+    Top = 216
+    Width = 313
     Height = 29
     Caption = 'Salvar'
     TabOrder = 5
+    OnClick = btn_SalvaFornecedrClick
   end
-  object btn_CancelarFornecedr: TButton
-    Left = 232
-    Top = 224
-    Width = 97
-    Height = 29
-    Caption = 'Cancelar'
+  object btn_limparFrmFornecedr: TButton
+    Left = 16
+    Top = 251
+    Width = 313
+    Height = 31
+    Caption = 'Limpar o formulario'
     TabOrder = 6
+    OnClick = btn_limparFrmFornecedrClick
   end
 end
