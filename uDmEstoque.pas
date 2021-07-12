@@ -90,8 +90,6 @@ begin
   qrEstoque.Open();
 
   _proxCodigo := qrEstoque.FieldByName('proxcod').AsString;
-
-
 end;
 
 end.

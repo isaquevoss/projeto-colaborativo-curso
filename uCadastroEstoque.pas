@@ -65,10 +65,15 @@ begin
   or (frmCadastroEstoque.edtQtd.Text <> '') then
   begin
     if MessageDlg('Deseja cancelar a operação?', mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrNo then
-    begin
-      Action := caNone;
-      Abort;
-    end;
+      begin
+        Action := caNone;
+        Abort;
+      end
+    else
+      begin
+        frmCadastroEstoque.limparFormulario();
+        DmEstoque.qrEstoque.Close();
+      end;
   end;
 end;
 
