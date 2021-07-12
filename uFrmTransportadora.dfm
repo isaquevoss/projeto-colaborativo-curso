@@ -11,6 +11,7 @@ object FrmTransportadora: TFrmTransportadora
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblNome: TLabel
@@ -156,11 +157,20 @@ object FrmTransportadora: TFrmTransportadora
     TabOrder = 7
   end
   object btnSalvar: TButton
-    Left = 384
-    Top = 232
+    Left = 488
+    Top = 248
     Width = 75
     Height = 25
     Caption = 'Salvar'
     TabOrder = 8
+    OnClick = btnSalvarClick
+  end
+  object btnCancelar: TButton
+    Left = 96
+    Top = 248
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 9
   end
 end

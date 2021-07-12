@@ -9,7 +9,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, uDmConexaoFB;
 
 type
-  TDataModule1 = class(TDataModule)
+  TDmTransportadora = class(TDataModule)
     qrInsertUpdate: TFDQuery;
     qrTransportadora: TFDQuery;
     dsTransportadora: TDataSource;
@@ -17,11 +17,12 @@ type
     { Private declarations }
   public
     { Public declarations }
-      procedure Cadastrar( _codigo : Integer;_razao:string; _endereco :string; _cidade : string; _uf : string; _telefone :string; _email: string; _cnpj: string; _rntrc:string );
+      procedure Cadastrar(_razao:string; _endereco :string; _cidade : string; _uf : string; _telefone :string; _email: string; _cnpj: string; _rntrc:string );
+      procedure CarregarTransportadora();
   end;
 
 var
-  DataModule1: TDataModule1;
+  DmTransportadora: TDmTransportadora;
 
 implementation
 
@@ -32,15 +33,14 @@ implementation
 
 { TDataModule1 }
 
-procedure TDataModule1.Cadastrar(_codigo: Integer; _razao, _endereco, _cidade,
-  _uf, _telefone, _email, _cnpj, _rntrc: string);
+procedure TDmTransportadora.Cadastrar( _razao, _endereco, _cidade, _uf, _telefone, _email, _cnpj, _rntrc: string);
 begin
+  qrInsertUpdate.Close();
   qrInsertUpdate.SQL.Clear();
-  qrInsertUpdate.SQL.Add('INSERT INTO TRANSPORTE (CODIGO, RAZAO_SOCIAL, ENDERECO, CIDADE, UF, TELEFONE, EMAIL, CNPJ, IE, PLACA, UFV, RNTRC)');
+  qrInsertUpdate.SQL.Add('INSERT INTO TRANSPORTE (CODIGO, RAZAO_SOCIAL, ENDERECO, CIDADE, UF, TELEFONE, EMAIL, CNPJ, RNTRC)');
   qrInsertUpdate.SQL.Add('VALUES');
-  qrInsertUpdate.SQL.Add(':CODIGO,:RAZAO_SOCIAL, :ENDERECO, :CIDADE, :UF, :TELEFONE, :EMAIL, :CNPJ, :RNTRC');
-  qrInsertUpdate.ParamByName('CODIGO').AsInteger := _codigo;
-  qrInsertUpdate.ParamByName('RAZAO_SOCIAL').AsString := _razao;
+  qrInsertUpdate.SQL.Add('(select max(transporte.codigo)+1 from transporte),:RAZAO_SOCIAL, :ENDERECO, :CIDADE, :UF, :TELEFONE, :EMAIL, :CNPJ, :RNTRC');
+   qrInsertUpdate.ParamByName('RAZAO_SOCIAL').AsString := _razao;
   qrInsertUpdate.ParamByName('ENDERECO').AsString := _endereco;
   qrInsertUpdate.ParamByName('CIDADE').AsString := _cidade;
   qrInsertUpdate.ParamByName('UF').AsString := _uf;
@@ -49,6 +49,13 @@ begin
   qrInsertUpdate.ParamByName('CNPJ').AsString := _cnpj;
   qrInsertUpdate.ParamByName('RNTRC').AsString := _rntrc;
   qrInsertUpdate.ExecSQL();
+end;
+
+procedure TDmTransportadora.CarregarTransportadora;
+begin
+ qrTransportadora.Close();
+ qrTransportadora.SQL.Clear();
+ qrTransportadora.Open('Select * from transporte');
 end;
 
 end.

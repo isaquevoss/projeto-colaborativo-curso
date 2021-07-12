@@ -161,7 +161,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDmTransportadora.pas">
-            <Form>DataModule1</Form>
+            <Form>DmTransportadora</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>

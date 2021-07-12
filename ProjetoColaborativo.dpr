@@ -21,7 +21,7 @@ uses
   ufrmCadastroVendedor in 'ufrmCadastroVendedor.pas' {frmCadastroVendedor},
   uDmVendedor in 'uDmVendedor.pas' {DmVendedor: TDataModule},
   uFrmListaTransportadora in 'uFrmListaTransportadora.pas' {frmListaTransportadora},
-  uDmTransportadora in 'uDmTransportadora.pas' {DataModule1: TDataModule};
+  uDmTransportadora in 'uDmTransportadora.pas' {DmTransportadora: TDataModule};
 
 {$R *.res}
 
@@ -47,6 +47,6 @@ begin
   Application.CreateForm(TfrmCadastroVendedor, frmCadastroVendedor);
   Application.CreateForm(TDmVendedor, DmVendedor);
   Application.CreateForm(TfrmListaTransportadora, frmListaTransportadora);
-  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TDmTransportadora, DmTransportadora);
   Application.Run;
 end.

@@ -12,10 +12,12 @@ type
     dbgrdTransportadora: TDBGrid;
     btnCadastrar: TButton;
     procedure btnCadastrarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    procedure CarregarLista();
   end;
 
 var
@@ -23,13 +25,24 @@ var
 
 implementation
   uses
-  uFrmTransportadora;
+  uFrmTransportadora, uDmTransportadora,uDmConexaoFB;
 
 {$R *.dfm}
 
 procedure TfrmListaTransportadora.btnCadastrarClick(Sender: TObject);
 begin
   FrmTransportadora.ShowModal;
+end;
+
+procedure TfrmListaTransportadora.CarregarLista;
+begin
+  DmConexaoFB.conectarBanco();
+  DmTransportadora.CarregarTransportadora();
+end;
+
+procedure TfrmListaTransportadora.FormShow(Sender: TObject);
+begin
+  CarregarLista();
 end;
 
 end.

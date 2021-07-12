@@ -11,6 +11,7 @@ object frmListaTransportadora: TfrmListaTransportadora
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object dbgrdTransportadora: TDBGrid
@@ -19,6 +20,7 @@ object frmListaTransportadora: TfrmListaTransportadora
     Width = 635
     Height = 219
     Align = alBottom
+    DataSource = DmTransportadora.dsTransportadora
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
