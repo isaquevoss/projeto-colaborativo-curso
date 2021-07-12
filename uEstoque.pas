@@ -15,6 +15,7 @@ type
     procedure btnListagemClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCadastroClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     procedure mostrarListagem();
     procedure mostrarCadastro();
@@ -36,9 +37,20 @@ end;
 
 procedure TfrmEstoque.btnListagemClick(Sender: TObject);
 begin
+  if frmCadastroEstoque.Visible then
+    frmCadastroEstoque.Close();
+
   mostrarListagem();
 end;
 
+
+procedure TfrmEstoque.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if frmCadastroEstoque.Visible then
+  begin
+    frmCadastroEstoque.Close();
+  end;
+end;
 
 procedure TfrmEstoque.FormShow(Sender: TObject);
 begin

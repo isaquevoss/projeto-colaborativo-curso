@@ -22,6 +22,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure limparFormulario();
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -38,6 +39,7 @@ implementation
 procedure TfrmCadastroEstoque.btnCancelarClick(Sender: TObject);
 begin
   //
+  Close();
 end;
 
 procedure TfrmCadastroEstoque.btnGravarClick(Sender: TObject);
@@ -54,6 +56,20 @@ begin
   ModalResult := mrOk;
   ShowMessage('Produto cadastrado com sucesso!');
   limparFormulario();
+end;
+
+procedure TfrmCadastroEstoque.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  if (frmCadastroEstoque.edtDescricao.Text <> '') or (frmCadastroEstoque.edtprecoVenda.Text <> '')
+  or (frmCadastroEstoque.edtQtd.Text <> '') then
+  begin
+    if MessageDlg('Deseja cancelar a operação?', mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrNo then
+    begin
+      Action := caNone;
+      Abort;
+    end;
+  end;
 end;
 
 procedure TfrmCadastroEstoque.FormShow(Sender: TObject);
