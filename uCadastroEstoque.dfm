@@ -1,9 +1,12 @@
 object frmCadastroEstoque: TfrmCadastroEstoque
   Left = 0
   Top = 0
+  Align = alClient
+  BorderIcons = []
+  BorderStyle = bsNone
   Caption = 'frmCadastroEstoque'
-  ClientHeight = 227
-  ClientWidth = 371
+  ClientHeight = 236
+  ClientWidth = 413
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

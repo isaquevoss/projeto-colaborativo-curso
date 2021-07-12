@@ -21,6 +21,7 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure limparFormulario();
   private
     { Private declarations }
   public
@@ -36,8 +37,7 @@ implementation
 
 procedure TfrmCadastroEstoque.btnCancelarClick(Sender: TObject);
 begin
-  ModalResult := mrCancel;
-  Close();
+  //
 end;
 
 procedure TfrmCadastroEstoque.btnGravarClick(Sender: TObject);
@@ -53,6 +53,7 @@ begin
 
   ModalResult := mrOk;
   ShowMessage('Produto cadastrado com sucesso!');
+  limparFormulario();
 end;
 
 procedure TfrmCadastroEstoque.FormShow(Sender: TObject);
@@ -63,6 +64,17 @@ begin
 
   DmEstoque.proximoCodigo(proxCodigo);
   edtCodigo.Text := proxCodigo;
+end;
+
+procedure TfrmCadastroEstoque.limparFormulario;
+var
+  i: Integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if Components[I] is TEdit then
+      TEdit( Components[I] ).Text := '';
+  end;
 end;
 
 end.
