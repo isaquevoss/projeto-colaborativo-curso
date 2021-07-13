@@ -150,6 +150,17 @@
         </DCCReference>
         <DCCReference Include="uDmVendedor.pas">
             <Form>DmVendedor</Form>
+            
+            
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="ufrmCadastroFornecedor.pas">
+            <Form>frmCadastroFornecedr</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uDmCadastroFornecedor.pas">
+            <Form>dmCadastroFornecedr</Form>
+            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uEstoque.pas">
