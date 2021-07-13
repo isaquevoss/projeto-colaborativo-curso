@@ -66,7 +66,6 @@ begin
     Except on E: Exception do
       begin
         ShowMessage('Houve erros na gravação dos dados: '+E.Message);
-        dmCadastroFornecedr.qrInsertFornecedr.Free;
       end;
     end;
 end;
