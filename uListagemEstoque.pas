@@ -23,6 +23,7 @@ type
     procedure gridTitleClick(Column: TColumn);
     procedure gridDblClick(Sender: TObject);
     procedure timerBuscaTimer(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,6 +61,12 @@ begin
     DmEstoque.qrEstoque.Close();
     lblNumRegistro.Caption := '0';
   end;
+end;
+
+procedure TFrmListagemEstoque.FormShow(Sender: TObject);
+begin
+  lblNenhumProdEncontrado.Caption := 'Pesquisa';
+  lblNenhumProdEncontrado.Visible := True;
 end;
 
 procedure TFrmListagemEstoque.listarProduto();
