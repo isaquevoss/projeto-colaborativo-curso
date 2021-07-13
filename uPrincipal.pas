@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  uVersoesExe, Vcl.StdCtrls, uListagemEstoque;
+  uVersoesExe, Vcl.StdCtrls, uEstoque;
 
 type
   TForm1 = class(TForm)
@@ -46,7 +46,7 @@ implementation
 
 procedure TForm1.btn_VersoesClick(Sender: TObject);
 begin
- frmVersoesExe.ShowModal;
+ frmVersoesExe.Show;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -56,7 +56,7 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-  FrmListagemEstoque.Show();
+  frmEstoque.Show();
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);

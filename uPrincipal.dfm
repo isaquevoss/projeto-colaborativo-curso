@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'Projeto'
   ClientHeight = 299
   ClientWidth = 635
   Color = clBtnFace
@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object Button1: TButton

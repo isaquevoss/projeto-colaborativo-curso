@@ -1,9 +1,12 @@
 object FrmListagemEstoque: TFrmListagemEstoque
   Left = 0
   Top = 0
+  Align = alClient
+  BorderIcons = []
+  BorderStyle = bsNone
   Caption = 'FrmListagemEstoque'
-  ClientHeight = 276
-  ClientWidth = 505
+  ClientHeight = 315
+  ClientWidth = 676
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,6 +15,7 @@ object FrmListagemEstoque: TFrmListagemEstoque
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lblRegistros: TLabel
@@ -42,9 +46,9 @@ object FrmListagemEstoque: TFrmListagemEstoque
   end
   object grid: TDBGrid
     Left = 0
-    Top = 80
-    Width = 505
-    Height = 196
+    Top = 79
+    Width = 676
+    Height = 236
     Align = alBottom
     DataSource = DmEstoque.dsEstoque
     ReadOnly = True
@@ -56,11 +60,6 @@ object FrmListagemEstoque: TFrmListagemEstoque
     TitleFont.Style = []
     OnDblClick = gridDblClick
     OnTitleClick = gridTitleClick
-    Columns = <
-      item
-        Expanded = False
-        Visible = True
-      end>
   end
   object edDescricao: TEdit
     Left = 5

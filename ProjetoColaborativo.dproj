@@ -140,19 +140,26 @@
         </DCCReference>
         <DCCReference Include="uDmFornecedor.pas">
             <Form>dmFornecedor</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="ufrmVendedores.pas">
             <Form>frmVendedores</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ufrmCadastroVendedor.pas">
             <Form>frmCadastroVendedor</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDmVendedor.pas">
             <Form>DmVendedor</Form>
+            
+            
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="ufrmCadastroFornecedor.pas">
+            <Form>frmCadastroFornecedr</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uDmCadastroFornecedor.pas">
+            <Form>dmCadastroFornecedr</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -164,6 +171,13 @@
             <Form>DmTransportadora</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
+        <DCCReference Include="uEstoque.pas">
+            <Form>frmEstoque</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadastroEstoque.pas">
+            <Form>frmCadastroEstoque</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
