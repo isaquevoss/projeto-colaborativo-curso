@@ -16,23 +16,24 @@ object FrmFornecedor: TFrmFornecedor
   TextHeight = 13
   object lbl_Busca: TLabel
     Left = 8
-    Top = 13
+    Top = 58
     Width = 151
     Height = 13
     Caption = 'Busca por nome do fornecedor:'
   end
   object lbl_qtdRegistros: TLabel
-    Left = 8
-    Top = 85
+    Left = 439
+    Top = 93
     Width = 58
     Height = 13
     Caption = 'Registros: 0'
   end
   object Grid_Fornecedor: TDBGrid
-    Left = 8
-    Top = 104
-    Width = 489
+    Left = 0
+    Top = 112
+    Width = 507
     Height = 184
+    Align = alBottom
     DataSource = dmFornecedor.ds_Fornecedr
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -43,15 +44,15 @@ object FrmFornecedor: TFrmFornecedor
   end
   object edt_BuscaFornedr: TEdit
     Left = 8
-    Top = 32
+    Top = 77
     Width = 201
     Height = 21
     TabOrder = 1
     OnChange = edt_BuscaFornedrChange
   end
   object btnNovoFornecedr: TButton
-    Left = 400
-    Top = 30
+    Left = 402
+    Top = 8
     Width = 97
     Height = 25
     Caption = 'Novo Fornecedor'
@@ -60,9 +61,9 @@ object FrmFornecedor: TFrmFornecedor
   end
   object tmr_Busca_Forncedr: TTimer
     Enabled = False
-    Interval = 1700
+    Interval = 1500
     OnTimer = tmr_Busca_ForncedrTimer
-    Left = 256
-    Top = 8
+    Left = 208
+    Top = 208
   end
 end

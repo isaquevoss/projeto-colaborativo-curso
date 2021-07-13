@@ -39,8 +39,9 @@ begin
   Qr_fornecedr.SQL.Clear;
 
   //iniciando o SQL
-  Qr_fornecedr.SQL.Add('select * from fornecedor f where f.nome like :nome;');
-  Qr_fornecedr.ParamByName('nome').AsString := '%'+_nomeFornecedor+'%';
+  Qr_fornecedr.SQL.Add('select * from fornecedor');
+  Qr_fornecedr.SQL.Add('where upper(nome) containing upper(:nome)');
+  Qr_fornecedr.ParamByName('nome').AsString := _nomeFornecedor;
   Qr_fornecedr.Open();
 
 
