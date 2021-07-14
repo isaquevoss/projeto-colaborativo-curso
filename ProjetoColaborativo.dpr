@@ -21,8 +21,8 @@ uses
   ufrmCadastroVendedor in 'ufrmCadastroVendedor.pas' {frmCadastroVendedor},
   uDmVendedor in 'uDmVendedor.pas' {DmVendedor: TDataModule},
   uFrmListaTransportadora in 'uFrmListaTransportadora.pas' {frmListaTransportadora},
-  uDmTransportadora in 'uDmTransportadora.pas' {DmTransportadora: TDataModule};
-  uEstoque in 'uEstoque.pas' {frmEstoque},
+  uDmTransportadora in 'uDmTransportadora.pas' {DmTransportadora: TDataModule},
+  uEstoque in 'uEstoque.pas' {frmEstoque};
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque};
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule};
@@ -56,6 +56,6 @@ begin
   Application.CreateForm(TfrmCadastroEstoque, frmCadastroEstoque);
   Application.CreateForm(TfrmCadastroFornecedr, frmCadastroFornecedr);
   Application.CreateForm(TdmCadastroFornecedr, dmCadastroFornecedr);
-
+  Application.CreateForm(TfrmEstoque, frmEstoque);
   Application.Run;
 end.
