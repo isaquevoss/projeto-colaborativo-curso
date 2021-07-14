@@ -16,7 +16,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure cadastrarFornecedor(_nomeForn: string; _fantasiaForn: string; _cnpj_cpfForn: string; _ie_rgForn: string; _enderecoForn : string);
+    procedure cadastrarFornecedor(_codForn : Integer; _nomeForn: string; _fantasiaForn: string; _cnpj_cpfForn: string; _ie_rgForn: string; _enderecoForn : string);
   end;
 
 var
@@ -30,7 +30,7 @@ implementation
 
 { TdmCadastroFornecedr }
 
-procedure TdmCadastroFornecedr.cadastrarFornecedor(_nomeForn, _fantasiaForn,
+procedure TdmCadastroFornecedr.cadastrarFornecedor(_codForn : Integer; _nomeForn, _fantasiaForn,
   _cnpj_cpfForn, _ie_rgForn, _enderecoForn: string);
 begin
   if not DmConexaoFB.Conexao.Connected then
@@ -41,8 +41,9 @@ begin
   qrInsertFornecedr.SQL.Clear;
 
   //Iniciando o SQL
-  qrInsertFornecedr.SQL.Add('Insert into fornecedor (nome, fantasia, cnpj_cnpf, ie_rg, endereco)');
-  qrInsertFornecedr.SQL.Add('values (:nome, :fantasia, :cnpj_cpf, :ie_rg, :endereco);');
+  qrInsertFornecedr.SQL.Add('Insert into fornecedor (codigo, nome, fantasia, cnpj_cnpf, ie_rg, endereco)');
+  qrInsertFornecedr.SQL.Add('values (:codigo, :nome, :fantasia, :cnpj_cpf, :ie_rg, :endereco);');
+  qrInsertFornecedr.ParamByName('codigo').AsInteger := _codForn;
   qrInsertFornecedr.ParamByName('nome').AsString := _nomeForn;
   qrInsertFornecedr.ParamByName('fantasia').AsString := _fantasiaForn;
   qrInsertFornecedr.ParamByName('cnpj_cpf').AsString := _cnpj_cpfForn;

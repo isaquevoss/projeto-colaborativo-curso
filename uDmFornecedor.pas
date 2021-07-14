@@ -12,11 +12,13 @@ type
   TdmFornecedor = class(TDataModule)
     ds_Fornecedr: TDataSource;
     Qr_fornecedr: TFDQuery;
+    qrProximoCodigo: TFDQuery;
   private
     { Private declarations }
   public
     procedure buscarFornecedor(_nomeFornecedor : string);
     procedure carregarFornecedor();
+    procedure proximoCodigo(var _proximoCodigo : string);
   end;
 
 var
@@ -58,6 +60,19 @@ begin
   //iniciando o SQL
   Qr_fornecedr.SQL.Add('select * from fornecedor;');
   Qr_fornecedr.Open();
+end;
+
+procedure TdmFornecedor.proximoCodigo(var _proximoCodigo: string);
+begin
+  if not DmConexaoFB.Conexao.Connected then
+    DmConexaoFB.conectarBanco();
+
+  qrProximoCodigo.Close();
+  qrProximoCodigo.SQL.Clear();
+  qrProximoCodigo.SQL.Add('select cast(max(codigo) as integer) + 1 as "proxcod" from fornecedor');
+  qrProximoCodigo.Open();
+
+  _proximoCodigo := qrProximoCodigo.FieldByName('proxcod').AsString;
 end;
 
 end.

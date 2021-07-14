@@ -1,7 +1,7 @@
 object dmFornecedor: TdmFornecedor
   OldCreateOrder = False
-  Height = 150
-  Width = 291
+  Height = 201
+  Width = 310
   object ds_Fornecedr: TDataSource
     DataSet = Qr_fornecedr
     Left = 56
@@ -11,5 +11,10 @@ object dmFornecedor: TdmFornecedor
     Connection = DmConexaoFB.Conexao
     Left = 136
     Top = 48
+  end
+  object qrProximoCodigo: TFDQuery
+    Connection = DmConexaoFB.Conexao
+    Left = 136
+    Top = 112
   end
 end
