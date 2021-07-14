@@ -22,8 +22,8 @@ uses
   uDmVendedor in 'uDmVendedor.pas' {DmVendedor: TDataModule},
   uFrmListaTransportadora in 'uFrmListaTransportadora.pas' {frmListaTransportadora},
   uDmTransportadora in 'uDmTransportadora.pas' {DmTransportadora: TDataModule},
-  uEstoque in 'uEstoque.pas' {frmEstoque};
-  uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque};
+  uEstoque in 'uEstoque.pas' {frmEstoque},
+  uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule};
 
