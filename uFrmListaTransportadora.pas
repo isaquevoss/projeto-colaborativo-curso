@@ -42,14 +42,7 @@ end;
 
 procedure TfrmListaTransportadora.CarregarLista;
 begin
-  DmConexaoFB.conectarBanco();
   DmTransportadora.CarregarTransportadora();
-  if edt_BuscarRzTransp.Text = '' then
-  begin
-    DmTransportadora.qrTransportadora.SQL.Clear;
-    lbl_qtdRegistros.Caption := 'Registros: 0';
-    Exit
-  end;
 
   lbl_qtdRegistros.Caption := 'Registros: '+ IntToStr(DmTransportadora.qrTransportadora.RecordCount);
 end;
@@ -73,6 +66,7 @@ end;
 procedure TfrmListaTransportadora.FormShow(Sender: TObject);
 begin
   CarregarLista();
+
 end;
 
 procedure TfrmListaTransportadora.tmr_BuscaTranspTimer(Sender: TObject);

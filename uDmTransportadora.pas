@@ -57,7 +57,7 @@ begin
   qrInsertUpdate.SQL.Clear();
   qrInsertUpdate.SQL.Add('INSERT INTO TRANSPORTE (CODIGO, RAZAO_SOCIAL, ENDERECO, CIDADE, UF, TELEFONE, EMAIL, CNPJ, RNTRC)');
   qrInsertUpdate.SQL.Add('VALUES');
-  qrInsertUpdate.SQL.Add('((select max(transporte.codigo)+1 from transporte),:RAZAO_SOCIAL, :ENDERECO, :CIDADE, :UF, :TELEFONE, :EMAIL, :CNPJ, :RNTRC)');
+  qrInsertUpdate.SQL.Add('((select case when max(transporte.codigo) is null then 1 else max(transporte.codigo)+1 end from transporte),:RAZAO_SOCIAL, :ENDERECO, :CIDADE, :UF, :TELEFONE, :EMAIL, :CNPJ, :RNTRC)');
    qrInsertUpdate.ParamByName('RAZAO_SOCIAL').AsString := _razao;
   qrInsertUpdate.ParamByName('ENDERECO').AsString := _endereco;
   qrInsertUpdate.ParamByName('CIDADE').AsString := _cidade;
