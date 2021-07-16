@@ -1,9 +1,10 @@
 object FrmTransportadora: TFrmTransportadora
   Left = 0
   Top = 0
-  Caption = 'FrmTransportadora'
+  Anchors = [akLeft, akTop, akRight, akBottom]
+  Caption = 'Cadastro da Transportadora'
   ClientHeight = 299
-  ClientWidth = 635
+  ClientWidth = 391
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +12,7 @@ object FrmTransportadora: TFrmTransportadora
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  ShowHint = False
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -103,8 +105,9 @@ object FrmTransportadora: TFrmTransportadora
     Top = 128
     Width = 53
     Height = 21
+    AutoComplete = False
+    Style = csDropDownList
     TabOrder = 4
-    Text = 'cbxUF'
     Items.Strings = (
       'AC'
       'AL'
@@ -157,20 +160,21 @@ object FrmTransportadora: TFrmTransportadora
     TabOrder = 7
   end
   object btnSalvar: TButton
-    Left = 488
+    Left = 200
     Top = 248
-    Width = 75
+    Width = 168
     Height = 25
     Caption = 'Salvar'
     TabOrder = 8
     OnClick = btnSalvarClick
   end
   object btnCancelar: TButton
-    Left = 96
+    Left = 8
     Top = 248
-    Width = 75
+    Width = 168
     Height = 25
-    Caption = 'Cancelar'
+    Caption = 'Voltar'
     TabOrder = 9
+    OnClick = btnCancelarClick
   end
 end

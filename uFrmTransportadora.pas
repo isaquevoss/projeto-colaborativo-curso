@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmTransportadora;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmTransportadora, uFrmListaTransportadora;
 
 type
   TFrmTransportadora = class(TForm)
@@ -28,6 +28,7 @@ type
     btnCancelar: TButton;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,9 +43,48 @@ implementation
 
 {$R *.dfm}
 
-procedure TFrmTransportadora.btnSalvarClick(Sender: TObject);
+procedure TFrmTransportadora.btnCancelarClick(Sender: TObject);
 begin
-  DmTransportadora.Cadastrar(edtNome.Text,edtEndereco.Text,edtCidade.Text,cbxUF.Text,edtTelefone.Text,edtEmail.Text,edtCnpj.Text,edtRntrc.Text);
+  Close;
+end;
+
+procedure TFrmTransportadora.btnSalvarClick(Sender: TObject);
+var
+  i: Integer;
+begin
+    for i := 0 to ComponentCount - 1 do
+    begin
+      if Components[I] is TEdit then
+        if TEdit( Components[I] ).Text = '' then
+        begin
+          ShowMessage('Existem campos em branco, verifique!');
+          exit
+        end;
+
+      if Components[I] is TComboBox then
+        if TComboBox( Components[I] ).Text = '' then
+        begin
+          ShowMessage('O ComboBox está em branco, verifique!');
+          exit
+        end;
+
+    end;
+
+
+    try
+      DmTransportadora.Cadastrar(edtNome.Text,edtEndereco.Text,edtCidade.Text,cbxUF.Text,edtTelefone.Text,edtEmail.Text,edtCnpj.Text,edtRntrc.Text);
+      ShowMessage('Transportadora cadastrado com sucesso!');
+      LimparFormulario();
+      // Atualizando a Label REGISTROS, e atualizando o grid com a transportadora nova
+      DmTransportadora.CarregarTransportadora;
+      frmListaTransportadora.lbl_qtdRegistros.Caption := 'Registros: '+ IntToStr(DmTransportadora.qrTransportadora.RecordCount);
+    Except on E: Exception do
+      begin
+        ShowMessage('Houve erros na gravação dos dados: '+E.Message);
+      end;
+    end;
+
+
 end;
 
 procedure TFrmTransportadora.FormShow(Sender: TObject);
@@ -63,6 +103,7 @@ begin
 
     end;
 
+  cbxUF.ItemIndex := -1;
 
 end;
 
