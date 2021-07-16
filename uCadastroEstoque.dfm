@@ -53,6 +53,7 @@ object frmCadastroEstoque: TfrmCadastroEstoque
     Width = 265
     Height = 21
     TabOrder = 1
+    TextHint = 'Descri'#231#227'o'
   end
   object edtQtd: TEdit
     Left = 16
@@ -61,6 +62,7 @@ object frmCadastroEstoque: TfrmCadastroEstoque
     Height = 21
     NumbersOnly = True
     TabOrder = 2
+    TextHint = '0,00'
   end
   object edtprecoVenda: TEdit
     Left = 160

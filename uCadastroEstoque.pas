@@ -43,7 +43,24 @@ begin
 end;
 
 procedure TfrmCadastroEstoque.btnGravarClick(Sender: TObject);
+var i : Integer;
+
 begin
+  for I := 0 to ComponentCount -1 do
+  begin
+
+    if Components[i] is TEdit then
+    if TEdit( Components[I] ).Text = '' then
+    begin
+      ShowMessage('Existem campos em branco, verifique!'#13+ TEdit(Components[i]).TextHint);
+      TEdit(Components[i]).SetFocus;
+          exit
+    end;
+
+  end;
+
+
+
   try
     DmEstoque.cadastrarEstoque(StrToInt(edtCodigo.Text), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
   except on E: Exception do
