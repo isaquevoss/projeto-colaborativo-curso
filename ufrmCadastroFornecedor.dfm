@@ -11,15 +11,22 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lbl_CodigoFornecedr: TLabel
-    Left = 16
-    Top = 24
-    Width = 29
-    Height = 13
+    Left = 77
+    Top = 15
+    Width = 47
+    Height = 19
     Caption = 'NOVO'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
   object lbl_NomeFornecedr: TLabel
     Left = 16
@@ -55,6 +62,13 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     Width = 49
     Height = 13
     Caption = 'Endere'#231'o:'
+  end
+  object Label1: TLabel
+    Left = 16
+    Top = 19
+    Width = 37
+    Height = 13
+    Caption = 'C'#243'digo:'
   end
   object edt_NomeFornecedr: TEdit
     Left = 77

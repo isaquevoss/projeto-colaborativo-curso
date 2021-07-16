@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmCadastroFornecedor, uFrmFornecedor;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmCadastroFornecedor, uFrmFornecedor,
+  uDmConexaoFB, uDmFornecedor;
 
 type
   TfrmCadastroFornecedr = class(TForm)
@@ -21,9 +22,11 @@ type
     edt_EnderFornecedr: TEdit;
     btn_SalvaFornecedr: TButton;
     btn_limparFrmFornecedr: TButton;
+    Label1: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btn_SalvaFornecedrClick(Sender: TObject);
     procedure btn_limparFrmFornecedrClick(Sender: TObject);
+    procedure proximoCodigoForn(var proxCodigo : string);
 
   private
     { Private declarations }
@@ -61,19 +64,20 @@ begin
     end;
 
     try
-      dmCadastroFornecedr.cadastrarFornecedor(edt_NomeFornecedr.Text, edt_FantasiaFornecedr.Text, edt_CnpjFornecedr.Text, edt_IeRgFornecedr.Text, edt_EnderFornecedr.Text);
+      dmCadastroFornecedr.cadastrarFornecedor(StrToInt(lbl_CodigoFornecedr.Caption), edt_NomeFornecedr.Text, edt_FantasiaFornecedr.Text, edt_CnpjFornecedr.Text, edt_IeRgFornecedr.Text, edt_EnderFornecedr.Text);
       ShowMessage('Fornecedor cadastrado com sucesso!');
     Except on E: Exception do
       begin
         ShowMessage('Houve erros na gravação dos dados: '+E.Message);
-        dmCadastroFornecedr.qrInsertFornecedr.Free;
       end;
     end;
 end;
 
 procedure TfrmCadastroFornecedr.FormShow(Sender: TObject);
+var proxCodigo :string;
 begin
   limparFrmFornecedr();
+  proximoCodigoForn(proxCodigo);
 end;
 
 procedure TfrmCadastroFornecedr.limparFrmFornecedr;
@@ -85,6 +89,15 @@ begin
     if Components[I] is TEdit then
       TEdit( Components[I] ).Text := '';
   end;
+end;
+
+procedure TfrmCadastroFornecedr.proximoCodigoForn(var proxCodigo : string);
+begin
+  if not DmConexaoFB.Conexao.Connected then
+    DmConexaoFB.conectarBanco();
+
+  dmFornecedor.proximoCodigo(proxCodigo);
+  lbl_CodigoFornecedr.Caption := proxCodigo;
 end;
 
 end.

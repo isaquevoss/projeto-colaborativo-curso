@@ -2,8 +2,8 @@ object FrmFornecedor: TFrmFornecedor
   Left = 0
   Top = 0
   Caption = 'Fornecedor'
-  ClientHeight = 296
-  ClientWidth = 507
+  ClientHeight = 343
+  ClientWidth = 667
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,30 +11,33 @@ object FrmFornecedor: TFrmFornecedor
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lbl_Busca: TLabel
     Left = 8
-    Top = 13
+    Top = 58
     Width = 151
     Height = 13
     Caption = 'Busca por nome do fornecedor:'
   end
   object lbl_qtdRegistros: TLabel
-    Left = 8
-    Top = 85
+    Left = 593
+    Top = 80
     Width = 58
     Height = 13
     Caption = 'Registros: 0'
   end
   object Grid_Fornecedor: TDBGrid
-    Left = 8
+    Left = 0
     Top = 104
-    Width = 489
-    Height = 184
+    Width = 667
+    Height = 239
+    TabStop = False
+    Align = alBottom
     DataSource = dmFornecedor.ds_Fornecedr
-    TabOrder = 0
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -43,26 +46,26 @@ object FrmFornecedor: TFrmFornecedor
   end
   object edt_BuscaFornedr: TEdit
     Left = 8
-    Top = 32
-    Width = 201
+    Top = 77
+    Width = 217
     Height = 21
-    TabOrder = 1
+    TabOrder = 0
     OnChange = edt_BuscaFornedrChange
   end
   object btnNovoFornecedr: TButton
-    Left = 400
-    Top = 30
+    Left = 8
+    Top = 8
     Width = 97
     Height = 25
     Caption = 'Novo Fornecedor'
-    TabOrder = 2
+    TabOrder = 1
     OnClick = btnNovoFornecedrClick
   end
   object tmr_Busca_Forncedr: TTimer
     Enabled = False
-    Interval = 1700
+    Interval = 1500
     OnTimer = tmr_Busca_ForncedrTimer
-    Left = 256
-    Top = 8
+    Left = 208
+    Top = 208
   end
 end
