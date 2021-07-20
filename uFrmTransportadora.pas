@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmTransportadora, uFrmListaTransportadora;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmTransportadora, uFrmListaTransportadora,
+  ACBrBase, ACBrValidador;
 
 type
   TFrmTransportadora = class(TForm)
@@ -26,14 +27,17 @@ type
     edtRntrc: TEdit;
     btnSalvar: TButton;
     btnCancelar: TButton;
+    acbrvldr1: TACBrValidador;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure edtCnpjExit(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure LimparFormulario();
+
   end;
 
 var
@@ -87,6 +91,44 @@ begin
 
 end;
 
+procedure TFrmTransportadora.edtCnpjExit(Sender: TObject);
+begin
+ if Length(edtCnpj.Text)>=14 then
+   begin
+    acbrvldr1.Documento := edtCnpj.Text;
+    acbrvldr1.TipoDocto:= docCNPJ;
+    edtCnpj.Text := FormatarCNPJ(edtCnpj.Text);
+    if not acbrvldr1.Validar then
+      begin
+        ShowMessage('CNPJ inválido!');
+        edtCnpj.SetFocus;
+      end;
+
+  end;
+
+ if Length(edtCnpj.Text)< 12 then
+
+  begin
+
+    acbrvldr1.Documento := edtCnpj.Text;
+    acbrvldr1.TipoDocto := docCPF;
+    edtCnpj.Text := FormatarCPF(edtCnpj.Text);
+
+   if not acbrvldr1.Validar then
+    begin
+      ShowMessage('CPF inválido!');
+      edtCnpj.SetFocus;
+    end;
+
+  end;
+
+
+
+
+
+
+end;
+
 procedure TFrmTransportadora.FormShow(Sender: TObject);
 begin
  LimparFormulario();
@@ -106,5 +148,6 @@ begin
   cbxUF.ItemIndex := -1;
 
 end;
+
 
 end.
