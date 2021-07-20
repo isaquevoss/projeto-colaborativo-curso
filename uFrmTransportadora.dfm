@@ -12,7 +12,6 @@ object FrmTransportadora: TFrmTransportadora
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  ShowHint = False
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -84,7 +83,9 @@ object FrmTransportadora: TFrmTransportadora
     Top = 46
     Width = 157
     Height = 21
+    NumbersOnly = True
     TabOrder = 1
+    OnExit = edtCnpjExit
   end
   object edtEndereco: TEdit
     Left = 63
@@ -176,5 +177,10 @@ object FrmTransportadora: TFrmTransportadora
     Caption = 'Voltar'
     TabOrder = 9
     OnClick = btnCancelarClick
+  end
+  object acbrvldr1: TACBrValidador
+    IgnorarChar = './-'
+    Left = 296
+    Top = 112
   end
 end
