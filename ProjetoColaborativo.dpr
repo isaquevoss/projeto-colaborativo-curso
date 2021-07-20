@@ -27,6 +27,7 @@ uses
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
   FormatarCpfCnpj in 'FormatarCpfCnpj.pas';
+  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente};
 
 {$R *.res}
 
@@ -58,5 +59,6 @@ begin
   Application.CreateForm(TfrmCadastroFornecedr, frmCadastroFornecedr);
   Application.CreateForm(TdmCadastroFornecedr, dmCadastroFornecedr);
   Application.CreateForm(TfrmEstoque, frmEstoque);
+  Application.CreateForm(TfrmCadastroCliente, frmCadastroCliente);
   Application.Run;
 end.

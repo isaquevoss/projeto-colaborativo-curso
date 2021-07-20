@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, udmClientes, Vcl.ExtCtrls;
+  Vcl.DBGrids, udmClientes, Vcl.ExtCtrls, uCadastroCliente;
 
 type
   TForm2 = class(TForm)
@@ -15,10 +15,12 @@ type
     edtCliente: TEdit;
     lbqtdclientesencontrados: TLabel;
     TimerBusca: TTimer;
+    btn_NovoCliente: TButton;
     procedure btnClienteClick(Sender: TObject);
     procedure dbgrd1TitleClick(Column: TColumn);
     procedure TimerBuscaTimer(Sender: TObject);
     procedure edtClienteChange(Sender: TObject);
+    procedure btn_NovoClienteClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,6 +47,11 @@ begin
 buscar;
 
 end;
+procedure TForm2.btn_NovoClienteClick(Sender: TObject);
+begin
+    frmCadastroCliente.ShowModal;
+end;
+
 procedure TForm2.buscar;
 
 begin

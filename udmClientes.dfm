@@ -9,7 +9,12 @@ object Dmclientes: TDmclientes
   end
   object qrClientes: TFDQuery
     Connection = DmConexaoFB.Conexao
-    Left = 128
-    Top = 80
+    Left = 120
+    Top = 24
+  end
+  object qrInsertClientes: TFDQuery
+    Connection = DmConexaoFB.Conexao
+    Left = 40
+    Top = 88
   end
 end
