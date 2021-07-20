@@ -12,10 +12,12 @@ type
   TDmclientes = class(TDataModule)
     dsClientes: TDataSource;
     qrClientes: TFDQuery;
+    qrInsertClientes: TFDQuery;
   private
     { Private declarations }
   public
      procedure buscarclientes(_nome: string = '');
+     procedure cadastrarCliente(_nomeCliente: string; _dataCadastrCliente: string);
   end;
 
 var
@@ -46,6 +48,25 @@ begin
 
   qrclientes.ParamByName('nome').AsString := _nome;
   qrclientes.Open();
+
+end;
+
+procedure TDmclientes.cadastrarCliente(_nomeCliente,
+  _dataCadastrCliente: string);
+begin
+  if not DmConexaoFB.Conexao.Connected then
+        DmConexaoFB.conectarBanco();
+
+  //Limpando e fechando a Query
+  qrInsertClientes.Close;
+  qrInsertClientes.SQL.Clear;
+
+  //Iniciando o SQL
+  qrInsertClientes.SQL.Add('Insert into cliente (codigo, nome, cadastro)');
+  qrInsertClientes.SQL.Add('values (cast((select count(cliente.codigo) from cliente) as VARCHAR(6)), :nome, :cadastro);');
+  qrInsertClientes.ParamByName('nome').AsString := _nomeCliente;
+  qrInsertClientes.ParamByName('cadastro').AsString := _dataCadastrCliente;
+  qrInsertClientes.ExecSQL;
 
 end;
 
