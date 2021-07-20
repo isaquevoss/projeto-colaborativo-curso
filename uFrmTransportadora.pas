@@ -37,6 +37,7 @@ type
   public
     { Public declarations }
     procedure LimparFormulario();
+    procedure ValidaCpfCnpj();
 
   end;
 
@@ -62,13 +63,15 @@ begin
         if TEdit( Components[I] ).Text = '' then
         begin
           ShowMessage('Existem campos em branco, verifique!');
+           TEdit( Components[I] ).SetFocus;
           exit
         end;
 
       if Components[I] is TComboBox then
         if TComboBox( Components[I] ).Text = '' then
         begin
-          ShowMessage('O ComboBox está em branco, verifique!');
+          ShowMessage('A UF está em branco, verifique!');
+          TComboBox( Components[I] ).SetFocus;
           exit
         end;
 
@@ -93,7 +96,33 @@ end;
 
 procedure TFrmTransportadora.edtCnpjExit(Sender: TObject);
 begin
- if Length(edtCnpj.Text)>=14 then
+  ValidaCpfCnpj();
+end;
+
+procedure TFrmTransportadora.FormShow(Sender: TObject);
+begin
+ LimparFormulario();
+end;
+
+procedure TFrmTransportadora.LimparFormulario;
+var
+  i: Integer;
+begin
+  for i := 0 to ComponentCount -1 do
+    begin
+      if Components[i] is TEdit then
+      TEdit(Components[i]).Text := '';
+
+    end;
+
+  cbxUF.ItemIndex := -1;
+
+end;
+
+
+procedure TFrmTransportadora.ValidaCpfCnpj;
+begin
+   if Length(edtCnpj.Text)>=14 then
    begin
     acbrvldr1.Documento := edtCnpj.Text;
     acbrvldr1.TipoDocto:= docCNPJ;
@@ -122,32 +151,6 @@ begin
 
   end;
 
-
-
-
-
-
 end;
-
-procedure TFrmTransportadora.FormShow(Sender: TObject);
-begin
- LimparFormulario();
-end;
-
-procedure TFrmTransportadora.LimparFormulario;
-var
-  i: Integer;
-begin
-  for i := 0 to ComponentCount -1 do
-    begin
-      if Components[i] is TEdit then
-      TEdit(Components[i]).Text := '';
-
-    end;
-
-  cbxUF.ItemIndex := -1;
-
-end;
-
 
 end.

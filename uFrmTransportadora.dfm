@@ -83,6 +83,7 @@ object FrmTransportadora: TFrmTransportadora
     Top = 46
     Width = 157
     Height = 21
+    NumbersOnly = True
     TabOrder = 1
     OnExit = edtCnpjExit
   end
