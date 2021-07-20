@@ -66,7 +66,7 @@ begin
   else
     edtCpfCnpj.Enabled := True;
 
-  edtCpfCnpj.Text = '';
+  edtCpfCnpj.Text := '';
 end;
 
 procedure TfrmCadastroVendedor.edtCpfCnpjChange(Sender: TObject);
@@ -123,7 +123,6 @@ begin
       edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
     end;
   end;
-
 end;
 
 procedure TfrmCadastroVendedor.edtCpfCnpjExit(Sender: TObject);
