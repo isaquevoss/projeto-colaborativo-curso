@@ -30,6 +30,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure edtCpfCnpjExit(Sender: TObject);
     procedure edtCpfCnpjChange(Sender: TObject);
+    procedure cbbCpfCnpjSelect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +59,14 @@ begin
   ModalResult := mrCancel;
 end;
 
+procedure TfrmCadastroVendedor.cbbCpfCnpjSelect(Sender: TObject);
+begin
+    if cbbCpfCnpj.ItemIndex = -1 then
+    edtCpfCnpj.Enabled := False
+  else
+    edtCpfCnpj.Enabled := True;
+end;
+
 procedure TfrmCadastroVendedor.edtCpfCnpjChange(Sender: TObject);
 begin
 
@@ -66,22 +75,22 @@ begin
     edtCpfCnpj.MaxLength := 14;
 
     if length(edtCpfCnpj.Text) = 3 then
-      begin
-        edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
-        edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
-      end;
+    begin
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+    end;
 
     if length(edtCpfCnpj.Text) = 7 then
-      begin
-        edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
-        edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
-      end;
+    begin
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+    end;
 
-      if length(edtCpfCnpj.Text) = 11 then
-      begin
-        edtCpfCnpj.Text := edtCpfCnpj.Text + '-';
-        edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
-      end;
+    if length(edtCpfCnpj.Text) = 11 then
+    begin
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '-';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+    end;
   end;
 
   if cbbCpfCnpj.ItemIndex = 1 then
@@ -90,26 +99,26 @@ begin
 
     if length(edtCpfCnpj.Text) = 2 then
     begin
-    edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
-    edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
     end;
 
     if length(edtCpfCnpj.Text) = 6 then
     begin
-    edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
-    edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '.';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
     end;
 
     if length(edtCpfCnpj.Text) = 10 then
     begin
-    edtCpfCnpj.Text := edtCpfCnpj.Text + '/';
-    edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
-    end;
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '/';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+     end;
 
     if length(edtCpfCnpj.Text) = 15 then
     begin
-    edtCpfCnpj.Text := edtCpfCnpj.Text + '-';
-    edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
+      edtCpfCnpj.Text := edtCpfCnpj.Text + '-';
+      edtCpfCnpj.SelStart := length(edtCpfCnpj.Text);
     end;
   end;
 
@@ -147,6 +156,9 @@ end;
 procedure TfrmCadastroVendedor.FormShow(Sender: TObject);
 begin
   limparFormulario();
+
+  if cbbCpfCnpj.ItemIndex = -1 then
+  edtCpfCnpj.Enabled := False;
 end;
 
 procedure TfrmCadastroVendedor.limparFormulario;

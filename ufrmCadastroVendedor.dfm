@@ -2,7 +2,7 @@ object frmCadastroVendedor: TfrmCadastroVendedor
   Left = 0
   Top = 0
   Caption = 'frmCadastroVendedor'
-  ClientHeight = 392
+  ClientHeight = 350
   ClientWidth = 506
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -119,6 +119,7 @@ object frmCadastroVendedor: TfrmCadastroVendedor
     Width = 121
     Height = 21
     MaxLength = 18
+    NumbersOnly = True
     TabOrder = 6
     OnChange = edtCpfCnpjChange
     OnExit = edtCpfCnpjExit
@@ -130,6 +131,7 @@ object frmCadastroVendedor: TfrmCadastroVendedor
     Height = 21
     Style = csDropDownList
     TabOrder = 7
+    OnSelect = cbbCpfCnpjSelect
     Items.Strings = (
       'CPF'
       'CNPJ')
