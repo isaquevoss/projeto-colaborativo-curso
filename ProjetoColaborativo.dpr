@@ -25,7 +25,8 @@ uses
   uEstoque in 'uEstoque.pas' {frmEstoque},
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
-  uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule};
+  uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
+  FormatarCpfCnpj in 'FormatarCpfCnpj.pas';
 
 {$R *.res}
 
