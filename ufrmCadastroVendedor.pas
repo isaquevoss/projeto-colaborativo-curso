@@ -149,8 +149,6 @@ begin
       edtCpfCnpj.SetFocus;
     end;
   end;
-
-
 end;
 
 procedure TfrmCadastroVendedor.FormShow(Sender: TObject);
