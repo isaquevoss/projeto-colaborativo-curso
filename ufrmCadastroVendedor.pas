@@ -65,6 +65,8 @@ begin
     edtCpfCnpj.Enabled := False
   else
     edtCpfCnpj.Enabled := True;
+
+  edtCpfCnpj.Text = '';
 end;
 
 procedure TfrmCadastroVendedor.edtCpfCnpjChange(Sender: TObject);
