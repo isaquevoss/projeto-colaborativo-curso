@@ -26,7 +26,15 @@ uses
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
-  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente};
+  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
+  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
+  uFuncoesApplication in 'helpers\GDOOR\uFuncoesApplication.pas',
+  uFuncoesArqs in 'helpers\GDOOR\uFuncoesArqs.pas',
+  uFuncoesJSON in 'helpers\GDOOR\uFuncoesJSON.pas',
+  uFuncoesStr in 'helpers\GDOOR\uFuncoesStr.pas',
+  uFuncoesTime in 'helpers\GDOOR\uFuncoesTime.pas',
+  uFuncoesValida in 'helpers\GDOOR\uFuncoesValida.pas',
+  uFuncoesLog in 'helpers\GDOOR\uFuncoesLog.pas';
 
 {$R *.res}
 
@@ -59,5 +67,6 @@ begin
   Application.CreateForm(TdmCadastroFornecedr, dmCadastroFornecedr);
   Application.CreateForm(TfrmEstoque, frmEstoque);
   Application.CreateForm(TfrmCadastroCliente, frmCadastroCliente);
+  Application.CreateForm(TFrmValidarFormatarDados, FrmValidarFormatarDados);
   Application.Run;
 end.
