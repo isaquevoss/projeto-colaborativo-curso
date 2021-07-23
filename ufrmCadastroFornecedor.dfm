@@ -85,11 +85,13 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     TabOrder = 1
   end
   object edt_CnpjFornecedr: TEdit
-    Left = 77
-    Top = 117
+    Left = 74
+    Top = 122
     Width = 124
     Height = 21
     TabOrder = 2
+    OnChange = edt_CnpjFornecedrChange
+    OnExit = edCnpjCpfExit
   end
   object edt_IeRgFornecedr: TEdit
     Left = 77
@@ -122,5 +124,21 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     Caption = 'Limpar o formulario'
     TabOrder = 6
     OnClick = btn_limparFrmFornecedrClick
+  end
+  object ComboBox1: TComboBox
+    Left = 232
+    Top = 122
+    Width = 57
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 7
+    Items.Strings = (
+      'Cpf'
+      'Cnpj')
+  end
+  object ACBrValidador1: TACBrValidador
+    IgnorarChar = './-'
+    Left = 320
+    Top = 112
   end
 end
