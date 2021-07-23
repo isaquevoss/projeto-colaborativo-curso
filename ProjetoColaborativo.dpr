@@ -1,5 +1,7 @@
 program ProjetoColaborativo;
 
+
+
 uses
   Vcl.Forms,
   uPrincipal in 'uPrincipal.pas' {Form1},
@@ -27,7 +29,8 @@ uses
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
   uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
-  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados};
+  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
+  uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario};
 
 {$R *.res}
 
@@ -61,5 +64,6 @@ begin
   Application.CreateForm(TfrmEstoque, frmEstoque);
   Application.CreateForm(TfrmCadastroCliente, frmCadastroCliente);
   Application.CreateForm(TFrmValidarFormatarDados, FrmValidarFormatarDados);
+  Application.CreateForm(TfrmValidarFormulario, frmValidarFormulario);
   Application.Run;
 end.
