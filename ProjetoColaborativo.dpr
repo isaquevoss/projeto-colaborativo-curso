@@ -26,7 +26,8 @@ uses
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
-  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
+  FormatarCpfCnpj in 'FormatarCpfCnpj.pas';
+  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente};
   uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados};
 
 {$R *.res}

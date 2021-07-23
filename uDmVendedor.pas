@@ -17,7 +17,7 @@ type
      vendedor: string;
   public
     procedure carregarVendedores();
-    procedure cadastrar(nome: string; pComissaoAVista: Double; pComissaoAPrazo: Double; pMaxDesconto: double);
+    procedure cadastrar(_nome: string; _pComissaoAVista: Double; _pComissaoAPrazo: Double; _pMaxDesconto: double ; _cpfcnpj : string);
   end;
 
 var
@@ -31,19 +31,20 @@ implementation
 
 { TDmVendedor }
 
-procedure TDmVendedor.cadastrar(nome: string; pComissaoAVista, pComissaoAPrazo, pMaxDesconto: double);
+procedure TDmVendedor.cadastrar(_nome: string; _pComissaoAVista, _pComissaoAPrazo, _pMaxDesconto: double; _cpfcnpj : string);
 begin
 
   qrInsertVendedor.Close();
   qrInsertVendedor.SQL.Clear();
-  qrInsertVendedor.SQL.Add('insert into vendedor (nome, comissaov, comissaop, desconto_max) ');
-  qrInsertVendedor.SQL.Add('values(:nome, :pcomissao_a_vista, :pcomissao_a_prazo, :pdesconto_max);');
+  qrInsertVendedor.SQL.Add('insert into vendedor (nome, comissaov, comissaop, desconto_max, cpf_cnpj) ');
+  qrInsertVendedor.SQL.Add('values(:nome, :pcomissao_a_vista, :pcomissao_a_prazo, :pdesconto_max, :cpf_cnpj);');
 
-  qrInsertVendedor.ParamByName('nome').AsString := nome;
+  qrInsertVendedor.ParamByName('nome').AsString := _nome;
 
-  qrInsertVendedor.ParamByName('pcomissao_a_vista').AsFloat := pComissaoAVista;
-  qrInsertVendedor.ParamByName('pcomissao_a_prazo').AsFloat := pComissaoAPrazo;
-  qrInsertVendedor.ParamByName('pdesconto_max').AsFloat := pMaxDesconto;
+  qrInsertVendedor.ParamByName('pcomissao_a_vista').AsFloat := _pComissaoAVista;
+  qrInsertVendedor.ParamByName('pcomissao_a_prazo').AsFloat := _pComissaoAPrazo;
+  qrInsertVendedor.ParamByName('pdesconto_max').AsFloat := _pMaxDesconto;
+  qrInsertVendedor.ParamByName('cpf_cnpj').AsString := _cpfcnpj;
 
   qrInsertVendedor.ExecSQL();
 end;
