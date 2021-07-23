@@ -28,6 +28,7 @@ uses
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
   FormatarCpfCnpj in 'FormatarCpfCnpj.pas';
   uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente};
+  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados};
 
 {$R *.res}
 
@@ -60,5 +61,6 @@ begin
   Application.CreateForm(TdmCadastroFornecedr, dmCadastroFornecedr);
   Application.CreateForm(TfrmEstoque, frmEstoque);
   Application.CreateForm(TfrmCadastroCliente, frmCadastroCliente);
+  Application.CreateForm(TFrmValidarFormatarDados, FrmValidarFormatarDados);
   Application.Run;
 end.

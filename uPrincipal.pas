@@ -17,6 +17,7 @@ type
     Button3: TButton;
     Button6: TButton;
     Button7: TButton;
+    Button8: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -25,6 +26,7 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -39,7 +41,7 @@ implementation
   uses
     uItensVendidosPorDia, uClientes,
     uVendasPorCliente, uFrmFornecedor, uFrmListaTransportadora,
-  ufrmCadastroVendedor, ufrmVendedores;
+  ufrmCadastroVendedor, ufrmVendedores, uTesteValidarFormatarDados;
 
 
 {$R *.dfm}
@@ -82,6 +84,11 @@ end;
 procedure TForm1.Button7Click(Sender: TObject);
 begin
   frmVendedores.Show();
+end;
+
+procedure TForm1.Button8Click(Sender: TObject);
+begin
+  FrmValidarFormatarDados.Show();
 end;
 
 end.
