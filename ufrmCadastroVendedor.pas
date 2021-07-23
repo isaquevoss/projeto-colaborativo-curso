@@ -3,8 +3,8 @@ unit ufrmCadastroVendedor;
 interface
 
 uses
-  Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmVendedor, ACBrBase, FormatarTexto,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmVendedor, ACBrBase,
   ACBrValidador;
 
 type
@@ -19,18 +19,14 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
-    edtCpfCnpj: TEdit;
-    lblCpfCnpj: TLabel;
-    acbrvldrcpf: TACBrValidador;
-    cbbCpfCnpj: TComboBox;
-    lblNumCpfCnpj: TLabel;
+
+    edtcpfcnpj: TEdit;
+    lblcpfcnpj: TLabel;
+    acbrvldr1: TACBrValidador;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure edtCpfCnpjExit(Sender: TObject);
-    procedure edtCpfCnpjChange(Sender: TObject);
-    procedure cbbCpfCnpjSelect(Sender: TObject);
+    procedure edtcpfcnpjExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -134,7 +130,7 @@ begin
 
     if not acbrvldrcpf.Validar then
     begin
-      ShowMessage('CNPJ inválido!');
+      ShowMessage('CNPJ invÃ¡lido!');
       edtCpfCnpj.SetFocus;
     end;
   end;
@@ -146,7 +142,7 @@ begin
 
     if not acbrvldrcpf.Validar then
     begin
-      ShowMessage('CPF inválido!');
+      ShowMessage('CPF invÃ¡lido!');
       edtCpfCnpj.SetFocus;
     end;
   end;
@@ -170,5 +166,55 @@ begin
       TEdit( Components[I] ).Text := '';
   end;
 end;
+
+function soNumeros(_texto: string): string;
+var
+  i: Integer;
+  letra: string;
+begin
+  for i := 1 to _texto.Length do
+  begin
+    letra := Copy(_texto, i, 1);
+    if Pos(letra, '1234567890') > 0 then
+      Result := Result + Copy(_texto, i, 1);
+  end;
+end;
+
+procedure TfrmCadastroVendedor.edtcpfcnpjExit(Sender: TObject);
+var
+  cnpjCpf: string;
+begin
+
+//  cnpjCpf := edCnpjCpf.Text;
+
+  cnpjCpf := soNumeros(edtcpfcnpj.Text);
+
+  if Length(cnpjCpf) > 11 then
+  begin
+
+    acbrvldr1.TipoDocto := docCNPJ;
+    acbrvldr1.Documento := cnpjCpf;
+    if not acbrvldr1.Validar then
+    begin
+      ShowMessage(acbrvldr1.MsgErro);
+    end;
+    if cnpjCpf.Length = 14 then
+      edtcpfcnpj.Text := acbrvldr1.Formatar;
+  end
+  else
+  begin
+    acbrvldr1.TipoDocto := docCPF;
+    acbrvldr1.Documento := cnpjCpf;
+    if not acbrvldr1.Validar then
+    begin
+      ShowMessage(acbrvldr1.MsgErro);
+    end;
+    if cnpjCpf.Length = 11 then
+      edtcpfcnpj.Text := acbrvldr1.Formatar;
+  end;
+
+end;
+
+
 
 end.
