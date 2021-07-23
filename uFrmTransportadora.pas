@@ -121,33 +121,36 @@ end;
 
 
 procedure TFrmTransportadora.ValidaCpfCnpj;
+var cnpjCpf : string;
 begin
-   if Length(edtCnpj.Text)>=14 then
+cnpjCpf := edtCnpj.Text;
+   if Length(cnpjCpf)>11 then
    begin
     acbrvldr1.Documento := edtCnpj.Text;
     acbrvldr1.TipoDocto:= docCNPJ;
-    edtCnpj.Text := FormatarCNPJ(edtCnpj.Text);
-    if not acbrvldr1.Validar then
+      if not acbrvldr1.Validar then
       begin
         ShowMessage('CNPJ inválido!');
         edtCnpj.SetFocus;
       end;
+      if cnpjCpf.Length = 14 then
+      edtCnpj.Text := acbrvldr1.Formatar;
 
-  end;
+  end
+  else
+   begin
 
- if Length(edtCnpj.Text)< 12 then
-
-  begin
-
-    acbrvldr1.Documento := edtCnpj.Text;
     acbrvldr1.TipoDocto := docCPF;
-    edtCnpj.Text := FormatarCPF(edtCnpj.Text);
+    acbrvldr1.Documento := cnpjCpf;
+
 
    if not acbrvldr1.Validar then
     begin
       ShowMessage('CPF inválido!');
       edtCnpj.SetFocus;
     end;
+    if cnpjCpf.Length = 11 then
+    edtCnpj.Text := acbrvldr1.Formatar;
 
   end;
 
