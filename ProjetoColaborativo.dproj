@@ -174,9 +174,7 @@
         <DCCReference Include="uDmCadastroFornecedor.pas">
             <Form>dmCadastroFornecedr</Form>
             <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="FormatarCpfCnpj.pas"/>
-         </DCCReference>
+        </DCCReference>        
         <DCCReference Include="uCadastroCliente.pas">
             <Form>frmCadastroCliente</Form>
             <FormType>dfm</FormType>
