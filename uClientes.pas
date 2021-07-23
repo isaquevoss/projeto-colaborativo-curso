@@ -26,7 +26,6 @@ type
   public
 
    procedure mostrarResultadosBusca();
-
    procedure buscar();
 
   end;

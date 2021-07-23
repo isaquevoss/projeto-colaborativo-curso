@@ -17,19 +17,18 @@ type
     btn_CadastrarCliente: TButton;
     btn_VoltarCliente: TButton;
     Edit_DataCadastro: TEdit;
-    cbxCpfCnpj: TComboBox;
     ACBrValidador: TACBrValidador;
-    Label1: TLabel;
     Label2: TLabel;
     procedure btn_CadastrarClienteClick(Sender: TObject);
     procedure btn_VoltarClienteClick(Sender: TObject);
-    procedure cbxCpfCnpjSelect(Sender: TObject);
-    procedure Edit_CpfCnpjChange(Sender: TObject);
     procedure Edit_CpfCnpjExit(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    function soNumeros(_texto: string): string;
+    procedure limparClientes();
   end;
 
 var
@@ -40,8 +39,28 @@ implementation
 {$R *.dfm}
 
 procedure TfrmCadastroCliente.btn_CadastrarClienteClick(Sender: TObject);
+var
+  i: Integer;
 begin
-  Dmclientes.cadastrarCliente(Edit_nomeCliente.Text, Edit_DataCadastro.Text);
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if Components[i] is TEdit then
+      if TEdit(Components[i]).Text = '' then
+      begin
+        ShowMessage('Existem campos em branco, verifique!');
+        exit
+      end;
+  end;
+
+  try
+    Dmclientes.cadastrarCliente(Edit_nomeCliente.Text, Edit_DataCadastro.Text);
+    ShowMessage('Cadastro efetuado com sucesso!');
+    limparClientes();
+  except
+    on E: Exception do
+      ShowMessage('Houve erros na gravação dos dados: ' + E.Message);
+  end;
+
 end;
 
 procedure TfrmCadastroCliente.btn_VoltarClienteClick(Sender: TObject);
@@ -49,95 +68,64 @@ begin
   close();
 end;
 
-procedure TfrmCadastroCliente.cbxCpfCnpjSelect(Sender: TObject);
-begin
-  if cbxCpfCnpj.ItemIndex = -1 then
-    Edit_CpfCnpj.Enabled := False
-  else
-    Edit_CpfCnpj.Enabled := true;
-
-  Edit_CpfCnpj.Text := '';
-end;
-
-procedure TfrmCadastroCliente.Edit_CpfCnpjChange(Sender: TObject);
-begin
-  if cbxCpfCnpj.ItemIndex = 0 then
-  begin
-    Edit_CpfCnpj.MaxLength := 14;
-
-    if length(Edit_CpfCnpj.Text) = 3 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '.';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-
-    if length(Edit_CpfCnpj.Text) = 7 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '.';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-
-    if length(Edit_CpfCnpj.Text) = 11 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '-';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-  end;
-
-  if cbxCpfCnpj.ItemIndex = 1 then
-  begin
-    Edit_CpfCnpj.MaxLength := 18;
-
-    if length(Edit_CpfCnpj.Text) = 2 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '.';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-
-    if length(Edit_CpfCnpj.Text) = 6 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '.';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-
-    if length(Edit_CpfCnpj.Text) = 10 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '/';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-
-    if length(Edit_CpfCnpj.Text) = 15 then
-    begin
-      Edit_CpfCnpj.Text := Edit_CpfCnpj.Text + '-';
-      Edit_CpfCnpj.SelStart := length(Edit_CpfCnpj.Text);
-    end;
-  end;
-end;
-
 procedure TfrmCadastroCliente.Edit_CpfCnpjExit(Sender: TObject);
+var
+  cnpj_Cpf: string;
 begin
-  if length(Edit_CpfCnpj.Text) = 18 then
-  begin
-    ACBrValidador.Documento := Edit_CpfCnpj.Text;
-    ACBrValidador.TipoDocto := docCNPJ;
+  cnpj_Cpf := soNumeros(Edit_CpfCnpj.Text);
 
+  if Length(cnpj_Cpf) > 11 then
+  begin
+
+    ACBrValidador.TipoDocto := docCNPJ;
+    ACBrValidador.Documento := cnpj_Cpf;
     if not ACBrValidador.Validar then
     begin
-      ShowMessage('CNPJ inválido!');
-      Edit_CpfCnpj.SetFocus;
+      ShowMessage(ACBrValidador.MsgErro);
     end;
+    if cnpj_Cpf.Length = 14 then
+      Edit_CpfCnpj.Text := ACBrValidador.Formatar;
+  end
+  else
+  begin
+    ACBrValidador.TipoDocto := docCPF;
+    ACBrValidador.Documento := cnpj_Cpf;
+    if not ACBrValidador.Validar then
+    begin
+      ShowMessage(ACBrValidador.MsgErro);
+    end;
+    if cnpj_Cpf.Length = 11 then
+      Edit_CpfCnpj.Text := ACBrValidador.Formatar;
   end;
 
-  if length(Edit_CpfCnpj.Text) = 14 then
-  begin
-    ACBrValidador.Documento := Edit_CpfCnpj.Text;
-    ACBrValidador.TipoDocto := docCPF;
+end;
 
-    if not ACBrValidador.Validar then
-    begin
-      ShowMessage('CPF inválido!');
-      Edit_CpfCnpj.SetFocus;
-    end;
+procedure TfrmCadastroCliente.FormShow(Sender: TObject);
+begin
+  limparClientes();
+end;
+
+procedure TfrmCadastroCliente.limparClientes;
+var
+  i: Integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if Components[I] is TEdit then
+      TEdit( Components[I] ).Text := '';
+  end;
+end;
+
+function TfrmCadastroCliente.soNumeros(_texto: string): string;
+var
+  i: Integer;
+  letra: string;
+begin
+  for i := 1 to _texto.Length do
+  begin
+    letra := Copy(_texto, i, 1);
+    if Pos(letra, '1234567890') > 0 then
+      Result := Result + Copy(_texto, i, 1);
   end;
 end;
 

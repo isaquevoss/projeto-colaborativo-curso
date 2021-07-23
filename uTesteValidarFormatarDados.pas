@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, ACBrBase, ACBrValidador,
-  Vcl.ExtCtrls, dxGDIPlusClasses;
+  Vcl.ExtCtrls;
 
 type
   TFrmValidarFormatarDados = class(TForm)
