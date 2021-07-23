@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmCadastroFornecedor, uFrmFornecedor,
-  uDmConexaoFB, uDmFornecedor;
+  uDmConexaoFB, uDmFornecedor, ACBrBase, ACBrValidador;
 
 type
   TfrmCadastroFornecedr = class(TForm)
@@ -23,12 +23,15 @@ type
     btn_SalvaFornecedr: TButton;
     btn_limparFrmFornecedr: TButton;
     Label1: TLabel;
+    ACBrValidador1: TACBrValidador;
+    ComboBox1: TComboBox;
     procedure FormShow(Sender: TObject);
     procedure btn_SalvaFornecedrClick(Sender: TObject);
     procedure btn_limparFrmFornecedrClick(Sender: TObject);
     procedure proximoCodigoForn(var proxCodigo : string);
-
-  private
+    procedure edt_CnpjFornecedrChange(Sender: TObject);
+    procedure edCnpjCpfExit(Sender: TObject);
+     private
     { Private declarations }
   public
     { Public declarations }
@@ -71,6 +74,65 @@ begin
         ShowMessage('Houve erros na gravação dos dados: '+E.Message);
       end;
     end;
+end;
+
+
+function soNumeros(_texto: string): string;
+var
+  i: Integer;
+  letra: string;
+begin
+  for i := 1 to _texto.Length do
+  begin
+    letra := Copy(_texto, i, 1);
+    if Pos(letra, '1234567890') > 0 then
+      Result := Result + Copy(_texto, i, 1);
+  end;
+end;
+
+procedure TfrmCadastroFornecedr.edt_CnpjFornecedrChange(Sender: TObject);
+
+begin
+  if soNumeros(edt_CnpjFornecedr.Text).Length > 11 then
+    ComboBox1.ItemIndex := 1
+  else
+    ComboBox1.ItemIndex := 0;
+
+end;
+
+procedure TfrmCadastroFornecedr.edCnpjCpfExit(Sender: TObject);
+
+var
+  cnpjCpf: string;
+begin
+
+//  cnpjCpf := edCnpjCpf.Text;
+
+  cnpjCpf := soNumeros(edt_CnpjFornecedr.Text);
+
+  if Length(cnpjCpf) > 11 then
+  begin
+
+    ACBrValidador1.TipoDocto := docCNPJ;
+    ACBrValidador1.Documento := cnpjCpf;
+    if not ACBrValidador1.Validar then
+    begin
+      ShowMessage(ACBrValidador1.MsgErro);
+    end;
+    if cnpjCpf.Length = 14 then
+      edt_CnpjFornecedr.Text := ACBrValidador1.Formatar;
+  end
+  else
+  begin
+    ACBrValidador1.TipoDocto := docCPF;
+    ACBrValidador1.Documento := cnpjCpf;
+    if not ACBrValidador1.Validar then
+    begin
+      ShowMessage(ACBrValidador1.MsgErro);
+    end;
+    if cnpjCpf.Length = 11 then
+      edt_CnpjFornecedr.Text := ACBrValidador1.Formatar;
+  end;
 end;
 
 procedure TfrmCadastroFornecedr.FormShow(Sender: TObject);

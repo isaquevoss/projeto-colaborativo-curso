@@ -27,10 +27,11 @@ uses
   uEstoque in 'uEstoque.pas' {frmEstoque},
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
-  uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
-  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
-  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
-  uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario};
+  uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},  
+  uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario},
+  FormatarCpfCnpj in 'FormatarCpfCnpj.pas',
+  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente};
+  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados};
 
 {$R *.res}
 

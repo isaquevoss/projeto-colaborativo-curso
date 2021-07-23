@@ -44,7 +44,6 @@ object frmCadastroVendedor: TfrmCadastroVendedor
   end
   object Label5: TLabel
     Left = 177
-    Top = 160
     Width = 116
     Height = 13
     Caption = '% M'#225'ximo de desconto:'
@@ -114,5 +113,33 @@ object frmCadastroVendedor: TfrmCadastroVendedor
     IgnorarChar = './-'
     Left = 104
     Top = 16
+  end
+  object edtCpfCnpj: TEdit
+    Left = 26
+    Top = 241
+    Width = 121
+    Height = 21
+    MaxLength = 18
+    NumbersOnly = True
+    TabOrder = 6
+    OnChange = edtCpfCnpjChange
+    OnExit = edtCpfCnpjExit
+  end
+  object cbbCpfCnpj: TComboBox
+    Left = 26
+    Top = 187
+    Width = 121
+    Height = 21
+    Style = csDropDownList
+    TabOrder = 7
+    OnSelect = cbbCpfCnpjSelect
+    Items.Strings = (
+      'CPF'
+      'CNPJ')
+  end
+  object acbrvldrcpf: TACBrValidador
+    IgnorarChar = './-'
+    Left = 432
+    Top = 8
   end
 end

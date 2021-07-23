@@ -2,7 +2,7 @@ object frmCadastroCliente: TfrmCadastroCliente
   Left = 0
   Top = 0
   Caption = 'Cadastro de Cliente'
-  ClientHeight = 335
+  ClientHeight = 283
   ClientWidth = 297
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,90 +11,70 @@ object frmCadastroCliente: TfrmCadastroCliente
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Lbl_nomeCliente: TLabel
-    Left = 16
+    Left = 18
     Top = 27
     Width = 31
     Height = 13
     Caption = 'Nome:'
   end
   object lbl_dataCadastro: TLabel
-    Left = 18
-    Top = 176
+    Left = 20
+    Top = 128
     Width = 89
     Height = 13
     Caption = 'Data de Cadastro:'
   end
-  object Label1: TLabel
-    Left = 16
-    Top = 77
-    Width = 104
-    Height = 13
-    Caption = 'Selecione uma op'#231#227'o:'
-  end
   object Label2: TLabel
-    Left = 16
-    Top = 123
+    Left = 18
+    Top = 75
     Width = 91
     Height = 13
     Caption = 'Digite o CPF/CNPJ:'
   end
   object Edit_nomeCliente: TEdit
-    Left = 16
+    Left = 18
     Top = 46
     Width = 156
     Height = 21
     TabOrder = 0
   end
   object Edit_CpfCnpj: TEdit
-    Left = 16
-    Top = 142
+    Left = 18
+    Top = 94
     Width = 156
     Height = 21
     NumbersOnly = True
-    TabOrder = 2
-    OnChange = Edit_CpfCnpjChange
+    TabOrder = 1
     OnExit = Edit_CpfCnpjExit
   end
   object btn_CadastrarCliente: TButton
     Left = 18
-    Top = 240
+    Top = 192
     Width = 263
     Height = 25
     Caption = 'Cadastrar'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = btn_CadastrarClienteClick
   end
   object btn_VoltarCliente: TButton
     Left = 18
-    Top = 280
+    Top = 232
     Width = 263
     Height = 25
     Caption = 'Voltar'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = btn_VoltarClienteClick
   end
   object Edit_DataCadastro: TEdit
     Left = 18
-    Top = 195
+    Top = 147
     Width = 156
     Height = 21
-    TabOrder = 3
-  end
-  object cbxCpfCnpj: TComboBox
-    Left = 16
-    Top = 96
-    Width = 104
-    Height = 21
-    AutoComplete = False
-    Style = csDropDownList
-    TabOrder = 1
-    OnSelect = cbxCpfCnpjSelect
-    Items.Strings = (
-      'CPF'
-      'CNPJ')
+    TabOrder = 2
   end
   object ACBrValidador: TACBrValidador
     IgnorarChar = './-'
