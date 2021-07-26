@@ -42,7 +42,7 @@ object frmLogin: TfrmLogin
     Top = 104
     Width = 145
     Height = 21
-    PasswordChar = '#'
+    PasswordChar = '*'
     TabOrder = 1
     OnKeyPress = edtSenhaKeyPress
   end
