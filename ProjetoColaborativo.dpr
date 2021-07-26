@@ -30,7 +30,7 @@ uses
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},  
   uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario},
   FormatarCpfCnpj in 'FormatarCpfCnpj.pas',
-  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente};
+  uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
   uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados};
 
 {$R *.res}
