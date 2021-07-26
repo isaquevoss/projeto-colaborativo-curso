@@ -38,7 +38,6 @@ implementation
 
 procedure TfrmCadastroEstoque.btnCancelarClick(Sender: TObject);
 begin
-  //
   Close();
 end;
 
@@ -54,12 +53,10 @@ begin
     begin
       ShowMessage('Existem campos em branco, verifique!'#13+ TEdit(Components[i]).TextHint);
       TEdit(Components[i]).SetFocus;
-          exit
+      exit;
     end;
 
   end;
-
-
 
   try
     DmEstoque.cadastrarEstoque(StrToInt(edtCodigo.Text), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));

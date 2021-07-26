@@ -83,36 +83,36 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="uLogin.pas">
+            <Form>frmLogin</Form>
+        </DCCReference>
+        <DCCReference Include="uDmUsuario.pas">
+            <Form>dmUsuario</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <DCCReference Include="uPrincipal.pas">
             <Form>Form1</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDmConexaoFB.pas">
             <Form>DmConexaoFB</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uItensVendidosPorDia.pas">
             <Form>frmItensVendidosPorDia</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDmItensVendidosPorDia.pas">
             <Form>DmItensVendidosPorDia</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uVersoesExe.pas">
             <Form>frmVersoesExe</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDmVersoesExe.pas">
             <Form>dmVersoes</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uDmEstoque.pas">
             <Form>DmEstoque</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uListagemEstoque.pas">
@@ -154,16 +154,13 @@
         </DCCReference>
         <DCCReference Include="uFrmListaTransportadora.pas">
             <Form>frmListaTransportadora</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uDmTransportadora.pas">
             <Form>DmTransportadora</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uEstoque.pas">
             <Form>frmEstoque</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uCadastroEstoque.pas">
             <Form>frmCadastroEstoque</Form>
@@ -177,12 +174,10 @@
         </DCCReference>
         <DCCReference Include="uFrmValidarFormulario.pas">
             <Form>frmValidarFormulario</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormatarCpfCnpj.pas"/>
         <DCCReference Include="uCadastroCliente.pas">
             <Form>frmCadastroCliente</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="uTesteValidarFormatarDados.pas">
             <Form>FrmValidarFormatarDados</Form>
@@ -591,12 +586,12 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
             </Deployment>
             <Platforms>
