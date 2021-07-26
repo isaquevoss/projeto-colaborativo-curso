@@ -23,7 +23,6 @@ type
     function formValido(): Boolean;
     function validarNome(): Boolean;
   public
-    procedure limparFormulario();
     procedure gravar();
   end;
 
@@ -72,15 +71,6 @@ begin
   end;
 
   ShowMessage('formulário válido');
-end;
-
-procedure TfrmValidarFormulario.limparFormulario;
-var
-  i: integer;
-begin
-  for i := 0 to Components.ComponentCount - 1 do
-
-
 end;
 
 function TfrmValidarFormulario.validarNome: Boolean;
