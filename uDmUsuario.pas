@@ -18,7 +18,7 @@ type
   public
     procedure carregarUsuarios();
     procedure carregarNomeUsuario(var _nomeUsuario : TStringList);
-    procedure validarLogin(_nome : string; _senha : string);
+    procedure validarLogin(_nome, _senha : string);
   end;
 
 var

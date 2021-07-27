@@ -46,7 +46,14 @@ end;
 
 procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 begin
-  validarLogin();
+  if edtSenha.Text = '' then
+  begin
+    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.');
+    edtSenha.SetFocus;
+    Exit;
+  end
+  else
+    validarLogin();
 end;
 
 procedure TfrmLogin.edtSenhaKeyPress(Sender: TObject; var Key: Char);
@@ -81,6 +88,7 @@ begin
     begin
       ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!');
       edtSenha.Text := '';
+      edtSenha.SetFocus;
     end
   else
     begin
