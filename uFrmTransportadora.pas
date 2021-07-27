@@ -34,11 +34,13 @@ type
     btnLimpar: TButton;
     lblValidaNome: TLabel;
     lblValidaCpfCnpj: TLabel;
+    lblValidaUf: TLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure edtCnpjExit(Sender: TObject);
     procedure btnLimparClick(Sender: TObject);
+    procedure edtNomeExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,14 +87,16 @@ begin
       if Components[I] is TComboBox then
         if TComboBox( Components[I] ).Text = '' then
         begin
-          ShowMessage('A UF está em branco, verifique!');
-          TComboBox( Components[I] ).SetFocus;
+          lblValidaUf.Caption :='Informe a UF';
+          lblValidaUf.Font.Color := clRed;
+          lblValidaUf.Visible:=True;
           exit
         end;
 
 
 
     end;
+
 
 
     try
@@ -128,6 +132,11 @@ begin
   ValidaCpfCnpj();
 end;
 
+procedure TFrmTransportadora.edtNomeExit(Sender: TObject);
+begin
+  validarNome();
+end;
+
 procedure TFrmTransportadora.FormShow(Sender: TObject);
 begin
  LimparFormulario();
@@ -145,6 +154,11 @@ begin
     end;
 
   cbxUF.ItemIndex := -1;
+   lblValidaNome.Caption:='';
+   lblValidaNome.Visible:= False;
+   lblValidaCpfCnpj.Caption:='';
+   lblValidaCpfCnpj.Visible:= False;
+
 
 
 end;
@@ -217,17 +231,17 @@ begin
   if not (Length(edtNome.Text) > 3 )then
   begin
     result:= False;
-    edtNome.Hint :='O nome deve conter mais de 3 caracteres';
+    edtNome.Hint :='O nome deve conter mais de 3 caracteres ';
   end;
   if not (Pos(' ', edtNome.Text)>0 ) then
   begin
     Result := False;
-    edtNome.Hint:= edtNome.Hint + 'Deve informar nome completo';
+    edtNome.Hint:= edtNome.Hint + 'deve informar nome completo';
   end;
   if not (Pos(' ', edtNome.Text) < Length(edtNome.Text)) then
   begin
     Result := False;
-    edtNome.Hint := edtNome.Hint + 'Deve informar nome completo!'
+    edtNome.Hint := edtNome.Hint + ' Deve informar nome completo!'
   end;
 
 

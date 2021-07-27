@@ -1225,12 +1225,19 @@ object FrmTransportadora: TFrmTransportadora
     Height = 13
     Visible = False
   end
+  object lblValidaUf: TLabel
+    Left = 63
+    Top = 205
+    Width = 3
+    Height = 13
+  end
   object edtNome: TEdit
     Left = 63
     Top = 16
     Width = 305
     Height = 21
     TabOrder = 0
+    OnExit = edtNomeExit
   end
   object edtCnpj: TEdit
     Left = 63
