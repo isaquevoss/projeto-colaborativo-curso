@@ -32,6 +32,8 @@ type
     imgWrongCNPJ: TImage;
     imgValidacao: TImage;
     btnLimpar: TButton;
+    lblValidaNome: TLabel;
+    lblValidaCpfCnpj: TLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
@@ -43,6 +45,8 @@ type
     { Public declarations }
     procedure LimparFormulario();
     procedure ValidaCpfCnpj();
+    function validarNome(): Boolean;
+    function validaFormulario() : Boolean;
 
   end;
 
@@ -67,6 +71,7 @@ procedure TFrmTransportadora.btnSalvarClick(Sender: TObject);
 var
   i: Integer;
 begin
+
     for i := 0 to ComponentCount - 1 do
     begin
       if Components[I] is TEdit then
@@ -84,6 +89,8 @@ begin
           TComboBox( Components[I] ).SetFocus;
           exit
         end;
+
+
 
     end;
 
@@ -139,6 +146,7 @@ begin
 
   cbxUF.ItemIndex := -1;
 
+
 end;
 
 
@@ -153,7 +161,9 @@ begin
       if not acbrvldr1.Validar then
       begin
         imgValidacao.Picture:= imgWrongCNPJ.Picture;
-        ShowMessage(acbrvldr1.MsgErro);
+        lblValidaCpfCnpj.Caption :=acbrvldr1.MsgErro;
+        lblValidaCpfCnpj.Font.Color := clRed;
+        lblValidaCpfCnpj.Visible:=True;
 
       end
       else
@@ -172,7 +182,9 @@ begin
 
    if not acbrvldr1.Validar then
     begin
-      ShowMessage(acbrvldr1.MsgErro);
+        lblValidaCpfCnpj.Caption :=acbrvldr1.MsgErro;
+        lblValidaCpfCnpj.Font.Color := clRed;
+        lblValidaCpfCnpj.Visible:=True;
       imgValidacao.Picture := imgWrongCNPJ.Picture;
     end
     else
@@ -184,5 +196,48 @@ begin
 
 end;
 
+
+function TFrmTransportadora.validaFormulario: Boolean;
+begin
+  Result := True;
+  if not validarNome then
+    Result := False;
+  if Length(edtCidade.Text) < 3 then
+     Result := False;
+
+
+end;
+
+function TFrmTransportadora.validarNome: Boolean;
+
+begin
+  Result := True;
+  edtNome.Hint := '';
+
+  if not (Length(edtNome.Text) > 3 )then
+  begin
+    result:= False;
+    edtNome.Hint :='O nome deve conter mais de 3 caracteres';
+  end;
+  if not (Pos(' ', edtNome.Text)>0 ) then
+  begin
+    Result := False;
+    edtNome.Hint:= edtNome.Hint + 'Deve informar nome completo';
+  end;
+  if not (Pos(' ', edtNome.Text) < Length(edtNome.Text)) then
+  begin
+    Result := False;
+    edtNome.Hint := edtNome.Hint + 'Deve informar nome completo!'
+  end;
+
+
+  if edtNome.Hint <> '' then
+  begin
+    lblValidaNome.Caption := edtNome.Hint;
+    lblValidaNome.Font.Color := clRed;
+    lblValidaNome.Visible := True;
+  end;
+
+end;
 
 end.

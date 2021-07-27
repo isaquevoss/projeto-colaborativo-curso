@@ -3,8 +3,8 @@ object FrmTransportadora: TFrmTransportadora
   Top = 0
   Anchors = [akLeft, akTop, akRight, akBottom]
   Caption = 'Cadastro da Transportadora'
-  ClientHeight = 299
-  ClientWidth = 391
+  ClientHeight = 398
+  ClientWidth = 444
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,56 +24,56 @@ object FrmTransportadora: TFrmTransportadora
   end
   object lblEndereco: TLabel
     Left = 10
-    Top = 73
+    Top = 98
     Width = 45
     Height = 13
     Caption = 'Endereco'
   end
   object lblCidade: TLabel
     Left = 10
-    Top = 100
+    Top = 137
     Width = 33
     Height = 13
     Caption = 'Cidade'
   end
   object lblUF: TLabel
     Left = 10
-    Top = 128
+    Top = 179
     Width = 13
     Height = 13
     Caption = 'UF'
   end
   object lblTelefone: TLabel
     Left = 10
-    Top = 154
+    Top = 220
     Width = 42
     Height = 13
     Caption = 'Telefone'
   end
   object lblEmail: TLabel
     Left = 10
-    Top = 182
+    Top = 265
     Width = 24
     Height = 13
     Caption = 'Email'
   end
   object lblRntrc: TLabel
     Left = 10
-    Top = 213
+    Top = 306
     Width = 34
     Height = 13
     Caption = 'RNTRC'
   end
   object lblCnpj: TLabel
     Left = 10
-    Top = 46
+    Top = 57
     Width = 22
     Height = 13
     Caption = 'Cnpj'
   end
   object imgCheckCNPJ: TImage
     Left = 263
-    Top = 43
+    Top = 54
     Width = 31
     Height = 27
     Picture.Data = {
@@ -848,7 +848,7 @@ object FrmTransportadora: TFrmTransportadora
   end
   object imgWrongCNPJ: TImage
     Left = 300
-    Top = 43
+    Top = 54
     Width = 29
     Height = 26
     Picture.Data = {
@@ -1205,11 +1205,25 @@ object FrmTransportadora: TFrmTransportadora
   end
   object imgValidacao: TImage
     Left = 226
-    Top = 45
+    Top = 56
     Width = 23
     Height = 24
     Proportional = True
     Stretch = True
+  end
+  object lblValidaNome: TLabel
+    Left = 63
+    Top = 38
+    Width = 3
+    Height = 13
+    Visible = False
+  end
+  object lblValidaCpfCnpj: TLabel
+    Left = 63
+    Top = 80
+    Width = 3
+    Height = 13
+    Visible = False
   end
   object edtNome: TEdit
     Left = 63
@@ -1220,7 +1234,7 @@ object FrmTransportadora: TFrmTransportadora
   end
   object edtCnpj: TEdit
     Left = 63
-    Top = 46
+    Top = 57
     Width = 157
     Height = 21
     NumbersOnly = True
@@ -1229,21 +1243,21 @@ object FrmTransportadora: TFrmTransportadora
   end
   object edtEndereco: TEdit
     Left = 63
-    Top = 73
+    Top = 98
     Width = 305
     Height = 21
     TabOrder = 2
   end
   object edtCidade: TEdit
     Left = 63
-    Top = 100
+    Top = 137
     Width = 121
     Height = 21
     TabOrder = 3
   end
   object cbxUF: TComboBox
     Left = 63
-    Top = 128
+    Top = 179
     Width = 53
     Height = 21
     AutoComplete = False
@@ -1281,28 +1295,28 @@ object FrmTransportadora: TFrmTransportadora
   end
   object edtTelefone: TEdit
     Left = 63
-    Top = 155
+    Top = 221
     Width = 121
     Height = 21
     TabOrder = 5
   end
   object edtEmail: TEdit
     Left = 63
-    Top = 182
+    Top = 265
     Width = 305
     Height = 21
     TabOrder = 6
   end
   object edtRntrc: TEdit
     Left = 63
-    Top = 213
+    Top = 306
     Width = 121
     Height = 21
     TabOrder = 7
   end
   object btnSalvar: TButton
     Left = 263
-    Top = 248
+    Top = 347
     Width = 105
     Height = 25
     Caption = 'Salvar'
@@ -1311,7 +1325,7 @@ object FrmTransportadora: TFrmTransportadora
   end
   object btnCancelar: TButton
     Left = 23
-    Top = 248
+    Top = 347
     Width = 105
     Height = 25
     Caption = 'Voltar'
@@ -1320,7 +1334,7 @@ object FrmTransportadora: TFrmTransportadora
   end
   object btnLimpar: TButton
     Left = 144
-    Top = 248
+    Top = 347
     Width = 105
     Height = 25
     Caption = 'Limpar'
