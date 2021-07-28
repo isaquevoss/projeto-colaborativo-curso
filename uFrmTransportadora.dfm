@@ -1231,6 +1231,20 @@ object FrmTransportadora: TFrmTransportadora
     Width = 3
     Height = 13
   end
+  object lblValidaCidade: TLabel
+    Left = 63
+    Top = 160
+    Width = 3
+    Height = 13
+    Visible = False
+  end
+  object lblValidaEndereco: TLabel
+    Left = 63
+    Top = 120
+    Width = 3
+    Height = 13
+    Visible = False
+  end
   object edtNome: TEdit
     Left = 63
     Top = 16
