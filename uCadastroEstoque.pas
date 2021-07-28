@@ -11,7 +11,6 @@ type
     edtDescricao: TEdit;
     edtQtd: TEdit;
     edtprecoVenda: TEdit;
-    edtCodigo: TEdit;
     lblCodigo: TLabel;
     lblDescricao: TLabel;
     lblQtd: TLabel;
@@ -20,6 +19,7 @@ type
     btnCancelar: TButton;
     btnLimpar: TButton;
     lblDescricaoIncompleto: TLabel;
+    lblCodEstoque: TLabel;
     procedure btnGravarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -71,7 +71,7 @@ begin
     end;
 
   try
-    DmEstoque.cadastrarEstoque(StrToInt(edtCodigo.Text), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
+    DmEstoque.cadastrarEstoque(StrToInt(lblCodEstoque.Caption), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
   except on E: Exception do
   begin
     ShowMessage('Não foi possível cadastrar o produto!'+#13+e.Message);
@@ -115,7 +115,7 @@ begin
     DmConexaoFB.conectarBanco();
 
   DmEstoque.proximoCodigo(proxCodigo);
-  edtCodigo.Text := proxCodigo;
+  lblCodEstoque.Caption := proxCodigo;
 end;
 
 procedure TfrmCadastroEstoque.limparFormulario;
@@ -127,6 +127,8 @@ begin
     if Components[i] is TEdit then
       TEdit( Components[i] ).Text := '';
   end;
+
+  lblDescricaoIncompleto.Visible := False;
 end;
 
 function TfrmCadastroEstoque.validarFormulario : Boolean;
