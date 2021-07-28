@@ -3,7 +3,7 @@ unit uCadastroEstoque;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmEstoque, uDmConexaoFB;
 
 type
@@ -36,6 +36,9 @@ var
   frmCadastroEstoque: TfrmCadastroEstoque;
 
 implementation
+
+uses
+  System.SysUtils;
 
 {$R *.dfm}
 
@@ -116,6 +119,8 @@ begin
 
   DmEstoque.proximoCodigo(proxCodigo);
   lblCodEstoque.Caption := proxCodigo;
+
+  lblCodEstoque.Caption := FormatFloat('000000',StrToFloat(lblCodEstoque.Caption));
 end;
 
 procedure TfrmCadastroEstoque.limparFormulario;
