@@ -18,15 +18,18 @@ type
     lblPrecoVenda: TLabel;
     btnGravar: TButton;
     btnCancelar: TButton;
+    btnLimpar: TButton;
+    lblDescricaoIncompleto: TLabel;
     procedure btnGravarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure limparFormulario();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnLimparClick(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    function validarFormulario : Boolean;
   end;
 
 var
@@ -38,7 +41,6 @@ implementation
 
 procedure TfrmCadastroEstoque.btnCancelarClick(Sender: TObject);
 begin
-  //
   Close();
 end;
 
@@ -59,7 +61,14 @@ begin
 
   end;
 
-
+  if not validarFormulario then
+    begin
+      Exit;
+    end
+  else
+    begin
+      lblDescricaoIncompleto.Visible := false;
+    end;
 
   try
     DmEstoque.cadastrarEstoque(StrToInt(edtCodigo.Text), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
@@ -72,6 +81,11 @@ begin
 
   ModalResult := mrOk;
   ShowMessage('Produto cadastrado com sucesso!');
+  limparFormulario();
+end;
+
+procedure TfrmCadastroEstoque.btnLimparClick(Sender: TObject);
+begin
   limparFormulario();
 end;
 
@@ -110,8 +124,21 @@ var
 begin
   for i := 0 to ComponentCount - 1 do
   begin
-    if Components[I] is TEdit then
-      TEdit( Components[I] ).Text := '';
+    if Components[i] is TEdit then
+      TEdit( Components[i] ).Text := '';
+  end;
+end;
+
+function TfrmCadastroEstoque.validarFormulario : Boolean;
+begin
+  Result := True;
+
+  if not (Length(edtDescricao.Text) > 3) then
+  begin
+    lblDescricaoIncompleto.Caption := 'DESCRIÇÃO DEVE CONTER MAIS QUE 3 CARACTERES';
+    lblDescricaoIncompleto.Visible := True;
+    edtDescricao.SetFocus;
+    Result := False
   end;
 end;
 

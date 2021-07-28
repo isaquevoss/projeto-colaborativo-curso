@@ -5,8 +5,8 @@ object frmCadastroEstoque: TfrmCadastroEstoque
   BorderIcons = []
   BorderStyle = bsNone
   Caption = 'frmCadastroEstoque'
-  ClientHeight = 236
-  ClientWidth = 413
+  ClientHeight = 260
+  ClientWidth = 676
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -47,6 +47,20 @@ object frmCadastroEstoque: TfrmCadastroEstoque
     Height = 13
     Caption = 'Pre'#231'o de Venda'
   end
+  object lblDescricaoIncompleto: TLabel
+    Left = 68
+    Top = 61
+    Width = 82
+    Height = 13
+    Caption = 'lblCodIncompleto'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
   object edtDescricao: TEdit
     Left = 16
     Top = 80
@@ -71,6 +85,7 @@ object frmCadastroEstoque: TfrmCadastroEstoque
     Height = 21
     NumbersOnly = True
     TabOrder = 3
+    TextHint = '0,00'
   end
   object edtCodigo: TEdit
     Left = 16
@@ -97,5 +112,14 @@ object frmCadastroEstoque: TfrmCadastroEstoque
     Caption = 'Cancelar'
     TabOrder = 5
     OnClick = btnCancelarClick
+  end
+  object btnLimpar: TButton
+    Left = 112
+    Top = 216
+    Width = 75
+    Height = 25
+    Caption = 'Limpar'
+    TabOrder = 6
+    OnClick = btnLimparClick
   end
 end

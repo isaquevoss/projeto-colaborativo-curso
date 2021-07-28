@@ -9,8 +9,8 @@ uses
 
 type
   TfrmCadastroVendedor = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
+    btnGravar: TButton;
+    btnCancelar: TButton;
     edNome: TEdit;
     EdComissaoAPrazo: TEdit;
     edComissaoAVista: TEdit;
@@ -23,8 +23,8 @@ type
     edtcpfcnpj: TEdit;
     lblcpfcnpj: TLabel;
     acbrvldr1: TACBrValidador;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edtcpfcnpjExit(Sender: TObject);
   private
@@ -40,14 +40,14 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmCadastroVendedor.Button1Click(Sender: TObject);
+procedure TfrmCadastroVendedor.btnGravarClick(Sender: TObject);
 begin
   DmVendedor.cadastrar(edNome.Text,StrToFloat(edComissaoAVista.Text),StrToFloat(EdComissaoAPrazo.Text),StrToFloat(EdMaxDesconto.Text), edtCpfCnpj.Text);
 
   ModalResult := mrOk;
 end;
 
-procedure TfrmCadastroVendedor.Button2Click(Sender: TObject);
+procedure TfrmCadastroVendedor.btnCancelarClick(Sender: TObject);
 begin
   ModalResult := mrCancel;
 end;
