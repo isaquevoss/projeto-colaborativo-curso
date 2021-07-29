@@ -35,6 +35,8 @@ type
     lblValidaNome: TLabel;
     lblValidaCpfCnpj: TLabel;
     lblValidaUf: TLabel;
+    lblValidaCidade: TLabel;
+    lblValidaEndereco: TLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
@@ -93,7 +95,7 @@ begin
           exit
         end;
 
-
+         validaFormulario();
 
     end;
 
@@ -152,12 +154,15 @@ begin
       TEdit(Components[i]).Text := '';
       imgValidacao.Picture := nil;
     end;
+  for I := 0 to ComponentCount -1 do
+    begin
+    if Components[i] is TLabel then
+    if Pos('lblValida',Components[i].Name) >0 then
+      TLabel(Components[i]).Visible:=False;
+
+    end;
 
   cbxUF.ItemIndex := -1;
-   lblValidaNome.Caption:='';
-   lblValidaNome.Visible:= False;
-   lblValidaCpfCnpj.Caption:='';
-   lblValidaCpfCnpj.Visible:= False;
 
 
 
@@ -215,10 +220,35 @@ function TFrmTransportadora.validaFormulario: Boolean;
 begin
   Result := True;
   if not validarNome then
+  begin
     Result := False;
-  if Length(edtCidade.Text) < 3 then
+  end;
+  if not Length(edtCidade.Text) < 3 then
+  begin
      Result := False;
+     edtCidade.Hint:= 'Informe uma cidade valida';
 
+  end;
+  if not Length(edtEndereco.Text)< 3 then
+  begin
+    Result := False;
+    edtEndereco.Hint := 'Informe um endereco valido';
+
+  end;
+  if edtCidade.Hint <> '' then
+  begin
+    lblValidaCidade.Caption := edtCidade.Hint;
+    lblValidaCidade.Font.Color:= clRed;
+    lblValidaCidade.Visible:= True;
+  end;
+
+
+  if edtEndereco.Hint <>'' then
+  begin
+    lblValidaEndereco.Caption := edtEndereco.Hint;
+    lblValidaEndereco.Font.Color := clRed;
+    lblValidaEndereco.Visible := True;
+  end;
 
 end;
 
@@ -236,12 +266,12 @@ begin
   if not (Pos(' ', edtNome.Text)>0 ) then
   begin
     Result := False;
-    edtNome.Hint:= edtNome.Hint + 'deve informar nome completo';
+    edtNome.Hint:= edtNome.Hint + 'deve informar nome completo'#13;
   end;
   if not (Pos(' ', edtNome.Text) < Length(edtNome.Text)) then
   begin
     Result := False;
-    edtNome.Hint := edtNome.Hint + ' Deve informar nome completo!'
+    edtNome.Hint := edtNome.Hint + ' Deve informar nome e sobrenome!'
   end;
 
 
