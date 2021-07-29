@@ -4,6 +4,8 @@ program ProjetoColaborativo;
 
 uses
   Vcl.Forms,
+  uLogin in 'uLogin.pas' {frmLogin},
+  uDmUsuario in 'uDmUsuario.pas' {dmUsuario: TDataModule},
   uPrincipal in 'uPrincipal.pas' {Form1},
   uDmConexaoFB in 'uDmConexaoFB.pas' {DmConexaoFB: TDataModule},
   uItensVendidosPorDia in 'uItensVendidosPorDia.pas' {frmItensVendidosPorDia},
@@ -27,11 +29,12 @@ uses
   uEstoque in 'uEstoque.pas' {frmEstoque},
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
-  uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},  
+  uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
   uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario},
   FormatarCpfCnpj in 'FormatarCpfCnpj.pas',
   uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
-  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados};
+  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas',
+  System.UITypes {FrmValidarFormatarDados};
 
 {$R *.res}
 
@@ -66,5 +69,10 @@ begin
   Application.CreateForm(TfrmCadastroCliente, frmCadastroCliente);
   Application.CreateForm(TFrmValidarFormatarDados, FrmValidarFormatarDados);
   Application.CreateForm(TfrmValidarFormulario, frmValidarFormulario);
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TdmUsuario, dmUsuario);
+  if frmLogin.ShowModal <> mrOk then
+    Application.Terminate;
+
   Application.Run;
 end.

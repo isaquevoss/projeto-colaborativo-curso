@@ -60,10 +60,11 @@ begin
     begin
       ShowMessage('Existem campos em branco, verifique!'#13+ TEdit(Components[i]).TextHint);
       TEdit(Components[i]).SetFocus;
-          exit
+      exit;
     end;
 
   end;
+
 
   if not validarFormulario then
     begin
@@ -74,11 +75,12 @@ begin
       lblDescricaoIncompleto.Visible := false;
     end;
 
+
   try
     DmEstoque.cadastrarEstoque(StrToInt(lblCodEstoque.Caption), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
   except on E: Exception do
   begin
-    ShowMessage('N„o foi possÌvel cadastrar o produto!'+#13+e.Message);
+    ShowMessage('N√£o foi poss√≠vel cadastrar o produto!'+#13+e.Message);
     Exit;
   end;
   end;
@@ -100,7 +102,7 @@ begin
   if (frmCadastroEstoque.edtDescricao.Text <> '') or (frmCadastroEstoque.edtprecoVenda.Text <> '')
   or (frmCadastroEstoque.edtQtd.Text <> '') then
   begin
-    if MessageDlg('Deseja cancelar a operaÁ„o?', mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrNo then
+    if MessageDlg('Deseja cancelar a opera√ß√£o?', mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrNo then
       begin
         Action := caNone;
         Abort;
@@ -142,7 +144,7 @@ begin
 
   if not (Length(edtDescricao.Text) > 3) then
   begin
-    lblDescricaoIncompleto.Caption := 'DESCRI«√O DEVE CONTER MAIS QUE 3 CARACTERES';
+    lblDescricaoIncompleto.Caption := 'DESCRI√á√ÉO DEVE CONTER MAIS QUE 3 CARACTERES';
     lblDescricaoIncompleto.Visible := True;
     edtDescricao.SetFocus;
     Result := False
