@@ -120,9 +120,7 @@ begin
     DmConexaoFB.conectarBanco();
 
   DmEstoque.proximoCodigo(proxCodigo);
-  lblCodEstoque.Caption := proxCodigo;
-
-  lblCodEstoque.Caption := FormatFloat('000000',StrToFloat(lblCodEstoque.Caption));
+  lblCodEstoque.Caption := proxCodigo.PadLeft(6,'0');
 end;
 
 procedure TfrmCadastroEstoque.limparFormulario;
