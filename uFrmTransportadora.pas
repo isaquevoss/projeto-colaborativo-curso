@@ -241,6 +241,8 @@ begin
     lblValidaCidade.Font.Color:= clRed;
     lblValidaCidade.Visible:= True;
   end;
+
+
   if edtEndereco.Hint <>'' then
   begin
     lblValidaEndereco.Caption := edtEndereco.Hint;
@@ -264,12 +266,12 @@ begin
   if not (Pos(' ', edtNome.Text)>0 ) then
   begin
     Result := False;
-    edtNome.Hint:= edtNome.Hint + 'deve informar nome completo';
+    edtNome.Hint:= edtNome.Hint + 'deve informar nome completo'#13;
   end;
   if not (Pos(' ', edtNome.Text) < Length(edtNome.Text)) then
   begin
     Result := False;
-    edtNome.Hint := edtNome.Hint + ' Deve informar nome completo!'
+    edtNome.Hint := edtNome.Hint + ' Deve informar nome e sobrenome!'
   end;
 
 

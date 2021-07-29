@@ -17,7 +17,7 @@ object FrmTransportadora: TFrmTransportadora
   TextHeight = 13
   object lblNome: TLabel
     Left = 10
-    Top = 16
+    Top = 13
     Width = 27
     Height = 13
     Caption = 'Nome'
@@ -1213,7 +1213,7 @@ object FrmTransportadora: TFrmTransportadora
   end
   object lblValidaNome: TLabel
     Left = 63
-    Top = 38
+    Top = 33
     Width = 3
     Height = 13
     Visible = False
@@ -1247,7 +1247,7 @@ object FrmTransportadora: TFrmTransportadora
   end
   object edtNome: TEdit
     Left = 63
-    Top = 16
+    Top = 13
     Width = 305
     Height = 21
     TabOrder = 0
