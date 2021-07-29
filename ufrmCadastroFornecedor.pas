@@ -25,6 +25,7 @@ type
     Label1: TLabel;
     ACBrValidador1: TACBrValidador;
     ComboBox1: TComboBox;
+    lbnome: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btn_SalvaFornecedrClick(Sender: TObject);
     procedure btn_limparFrmFornecedrClick(Sender: TObject);
@@ -32,7 +33,8 @@ type
     procedure edt_CnpjFornecedrChange(Sender: TObject);
     procedure edCnpjCpfExit(Sender: TObject);
      private
-    { Private declarations }
+    function formValido(): Boolean;
+    function validarNome(): Boolean;
   public
     { Public declarations }
     procedure limparFrmFornecedr();
@@ -65,7 +67,11 @@ begin
           exit
         end;
     end;
-
+    if not formValido then
+begin
+  ShowMessage('Formulario com dados inconsistentes');
+  Exit
+end;
     try
       dmCadastroFornecedr.cadastrarFornecedor(StrToInt(lbl_CodigoFornecedr.Caption), edt_NomeFornecedr.Text, edt_FantasiaFornecedr.Text, edt_CnpjFornecedr.Text, edt_IeRgFornecedr.Text, edt_EnderFornecedr.Text);
       ShowMessage('Fornecedor cadastrado com sucesso!');
@@ -140,7 +146,23 @@ var proxCodigo :string;
 begin
   limparFrmFornecedr();
   proximoCodigoForn(proxCodigo);
+  lbnome.Visible :=False;
 end;
+
+function TfrmCadastroFornecedr.formValido: Boolean;
+var
+  teste: Boolean;
+begin
+Result := True;
+
+  if not validarNome then
+    Result := false;
+
+  if edt_NomeFornecedr.Text = '' then
+    Result := False;
+
+end;
+
 
 procedure TfrmCadastroFornecedr.limparFrmFornecedr;
 var
@@ -150,6 +172,7 @@ begin
   begin
     if Components[I] is TEdit then
       TEdit( Components[I] ).Text := '';
+      lbnome.Visible:= False
   end;
 end;
 
@@ -161,5 +184,39 @@ begin
   dmFornecedor.proximoCodigo(proxCodigo);
   lbl_CodigoFornecedr.Caption := proxCodigo;
 end;
+
+function TfrmCadastroFornecedr.validarNome: Boolean;
+begin
+ Result := true;
+ lbnome.Visible := True;
+
+  if not (Length(edt_NomeFornecedr.Text) > 3) then
+  begin
+    Result := false;
+    lbnome.Caption := 'NOME DEVE CONTER MAIS QUE 3 CARACTERES';
+    lbnome.Font.Color :=clRed;
+    Exit;
+
+  end;
+
+  if not (Pos(' ', edt_NomeFornecedr.Text) > 0) then
+  begin
+   Result := false;
+    lbnome.caption := 'INFORME O NOME COMPLETO';
+    lbnome.Font.Color :=clRed;
+    Exit;
+
+  end;
+  if edt_NomeFornecedr.hint <> '' then
+  begin
+    edt_NomeFornecedr.ShowHint := true;
+    lbnome.Caption := edt_NomeFornecedr.hint;
+    lbnome.Font.Color := clRed;
+    lbnome.Visible := true;
+
+
+    end;
+
+  end;
 
 end.
