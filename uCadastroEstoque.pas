@@ -3,7 +3,7 @@ unit uCadastroEstoque;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmEstoque, uDmConexaoFB;
 
 type
@@ -11,22 +11,25 @@ type
     edtDescricao: TEdit;
     edtQtd: TEdit;
     edtprecoVenda: TEdit;
-    edtCodigo: TEdit;
     lblCodigo: TLabel;
     lblDescricao: TLabel;
     lblQtd: TLabel;
     lblPrecoVenda: TLabel;
     btnGravar: TButton;
     btnCancelar: TButton;
+    btnLimpar: TButton;
+    lblDescricaoIncompleto: TLabel;
+    lblCodEstoque: TLabel;
     procedure btnGravarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure limparFormulario();
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnLimparClick(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    function validarFormulario : Boolean;
   end;
 
 var
@@ -34,11 +37,15 @@ var
 
 implementation
 
+uses
+  System.SysUtils;
+
 {$R *.dfm}
 
 procedure TfrmCadastroEstoque.btnCancelarClick(Sender: TObject);
 begin
   Close();
+  DmEstoque.qrEstoque.Close();
 end;
 
 procedure TfrmCadastroEstoque.btnGravarClick(Sender: TObject);
@@ -58,17 +65,34 @@ begin
 
   end;
 
+
+  if not validarFormulario then
+    begin
+      Exit;
+    end
+  else
+    begin
+      lblDescricaoIncompleto.Visible := false;
+    end;
+
+
   try
-    DmEstoque.cadastrarEstoque(StrToInt(edtCodigo.Text), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
+    DmEstoque.cadastrarEstoque(StrToInt(lblCodEstoque.Caption), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
   except on E: Exception do
   begin
-    ShowMessage('N„o foi possÌvel cadastrar o produto!'+#13+e.Message);
+    ShowMessage('N√£o foi poss√≠vel cadastrar o produto!'+#13+e.Message);
     Exit;
   end;
   end;
 
   ModalResult := mrOk;
   ShowMessage('Produto cadastrado com sucesso!');
+  limparFormulario();
+  Close();
+end;
+
+procedure TfrmCadastroEstoque.btnLimparClick(Sender: TObject);
+begin
   limparFormulario();
 end;
 
@@ -78,7 +102,7 @@ begin
   if (frmCadastroEstoque.edtDescricao.Text <> '') or (frmCadastroEstoque.edtprecoVenda.Text <> '')
   or (frmCadastroEstoque.edtQtd.Text <> '') then
   begin
-    if MessageDlg('Deseja cancelar a operaÁ„o?', mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrNo then
+    if MessageDlg('Deseja cancelar a opera√ß√£o?', mtConfirmation, [mbYes, mbNo], 0, mbNo) = mrNo then
       begin
         Action := caNone;
         Abort;
@@ -98,7 +122,7 @@ begin
     DmConexaoFB.conectarBanco();
 
   DmEstoque.proximoCodigo(proxCodigo);
-  edtCodigo.Text := proxCodigo;
+  lblCodEstoque.Caption := proxCodigo.PadLeft(6,'0');
 end;
 
 procedure TfrmCadastroEstoque.limparFormulario;
@@ -107,8 +131,23 @@ var
 begin
   for i := 0 to ComponentCount - 1 do
   begin
-    if Components[I] is TEdit then
-      TEdit( Components[I] ).Text := '';
+    if Components[i] is TEdit then
+      TEdit( Components[i] ).Text := '';
+  end;
+
+  lblDescricaoIncompleto.Visible := False;
+end;
+
+function TfrmCadastroEstoque.validarFormulario : Boolean;
+begin
+  Result := True;
+
+  if not (Length(edtDescricao.Text) > 3) then
+  begin
+    lblDescricaoIncompleto.Caption := 'DESCRI√á√ÉO DEVE CONTER MAIS QUE 3 CARACTERES';
+    lblDescricaoIncompleto.Visible := True;
+    edtDescricao.SetFocus;
+    Result := False
   end;
 end;
 

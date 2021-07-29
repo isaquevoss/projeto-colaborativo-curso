@@ -56,23 +56,23 @@ object frmCadastroVendedor: TfrmCadastroVendedor
     Height = 13
     Caption = 'CPF / CNPJ:'
   end
-  object Button1: TButton
+  object btnGravar: TButton
     Left = 223
     Top = 258
     Width = 75
     Height = 25
     Caption = 'Gravar'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = btnGravarClick
   end
-  object Button2: TButton
+  object btnCancelar: TButton
     Left = 18
     Top = 258
     Width = 75
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 1
-    OnClick = Button2Click
+    OnClick = btnCancelarClick
   end
   object edNome: TEdit
     Left = 18
