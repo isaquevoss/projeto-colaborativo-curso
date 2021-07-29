@@ -45,6 +45,7 @@ uses
 procedure TfrmCadastroEstoque.btnCancelarClick(Sender: TObject);
 begin
   Close();
+  DmEstoque.qrEstoque.Close();
 end;
 
 procedure TfrmCadastroEstoque.btnGravarClick(Sender: TObject);
@@ -85,6 +86,7 @@ begin
   ModalResult := mrOk;
   ShowMessage('Produto cadastrado com sucesso!');
   limparFormulario();
+  Close();
 end;
 
 procedure TfrmCadastroEstoque.btnLimparClick(Sender: TObject);
