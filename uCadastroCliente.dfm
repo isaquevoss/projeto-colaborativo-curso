@@ -3,7 +3,7 @@ object frmCadastroCliente: TfrmCadastroCliente
   Top = 0
   Caption = 'Cadastro de Cliente'
   ClientHeight = 331
-  ClientWidth = 312
+  ClientWidth = 304
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -73,7 +73,7 @@ object frmCadastroCliente: TfrmCadastroCliente
     Width = 263
     Height = 25
     Caption = 'Voltar'
-    TabOrder = 4
+    TabOrder = 5
     OnClick = btn_VoltarClienteClick
   end
   object Edit_DataCadastro: TEdit
@@ -89,7 +89,7 @@ object frmCadastroCliente: TfrmCadastroCliente
     Width = 263
     Height = 25
     Caption = 'Limpar Formulario'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = btn_LimparFormClick
   end
   object ACBrValidador: TACBrValidador
