@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uDmConexaoFB;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uDmConexaoFB, uVendedorClasse;
 
 type
   TDmVendedor = class(TDataModule)
@@ -14,10 +14,10 @@ type
     qrVendedores: TFDQuery;
     dsVendedores: TDataSource;
   private
-     vendedor: string;
+    vendedor: string;
   public
     procedure carregarVendedores();
-    procedure cadastrar(_nome: string; _pComissaoAVista: Double; _pComissaoAPrazo: Double; _pMaxDesconto: double ; _cpfcnpj : string);
+    procedure cadastrar(_vendedor: TVendedor);
   end;
 
 var
@@ -25,26 +25,28 @@ var
 
 implementation
 
+uses
+  Vcl.Dialogs;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
 
 { TDmVendedor }
 
-procedure TDmVendedor.cadastrar(_nome: string; _pComissaoAVista, _pComissaoAPrazo, _pMaxDesconto: double; _cpfcnpj : string);
+procedure TDmVendedor.cadastrar(_vendedor: TVendedor);
 begin
 
   qrInsertVendedor.Close();
   qrInsertVendedor.SQL.Clear();
-  qrInsertVendedor.SQL.Add('insert into vendedor (nome, comissaov, comissaop, desconto_max, cpf_cnpj) ');
-  qrInsertVendedor.SQL.Add('values(:nome, :pcomissao_a_vista, :pcomissao_a_prazo, :pdesconto_max, :cpf_cnpj);');
+  qrInsertVendedor.SQL.Add('insert into vendedor (nome, comissaov, comissaop, desconto_max) ');
+  qrInsertVendedor.SQL.Add('values(:nome, :pcomissao_a_vista, :pcomissao_a_prazo, :pdesconto_max);');
 
-  qrInsertVendedor.ParamByName('nome').AsString := _nome;
+  qrInsertVendedor.ParamByName('nome').AsString := _vendedor.nome;
 
-  qrInsertVendedor.ParamByName('pcomissao_a_vista').AsFloat := _pComissaoAVista;
-  qrInsertVendedor.ParamByName('pcomissao_a_prazo').AsFloat := _pComissaoAPrazo;
-  qrInsertVendedor.ParamByName('pdesconto_max').AsFloat := _pMaxDesconto;
-  qrInsertVendedor.ParamByName('cpf_cnpj').AsString := _cpfcnpj;
+  qrInsertVendedor.ParamByName('pcomissao_a_vista').AsFloat := _vendedor.pComissaoAVista;
+  qrInsertVendedor.ParamByName('pcomissao_a_prazo').AsFloat := _vendedor.pComissaoAPrazo;
+  qrInsertVendedor.ParamByName('pdesconto_max').AsFloat := _vendedor.pDescontoMaximo;
 
   qrInsertVendedor.ExecSQL();
 end;

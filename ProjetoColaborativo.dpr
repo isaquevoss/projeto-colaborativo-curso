@@ -33,8 +33,9 @@ uses
   uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario},
   FormatarCpfCnpj in 'FormatarCpfCnpj.pas',
   uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
-  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas',
-  System.UITypes {FrmValidarFormatarDados};
+  uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
+  System.UITypes {FrmValidarFormatarDados},
+  uVendedorClasse in 'classes\uVendedorClasse.pas';
 
 {$R *.res}
 

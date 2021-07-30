@@ -3,9 +3,9 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmVendedor, ACBrBase,
-  ACBrValidador;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, uDmVendedor, ACBrBase, ACBrValidador;
 
 type
   TfrmCadastroVendedor = class(TForm)
@@ -19,7 +19,6 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-
     edtcpfcnpj: TEdit;
     lblcpfcnpj: TLabel;
     acbrvldr1: TACBrValidador;
@@ -38,11 +37,25 @@ var
 
 implementation
 
+uses
+  uVendedorClasse;
+
 {$R *.dfm}
 
 procedure TfrmCadastroVendedor.btnGravarClick(Sender: TObject);
+var
+  vendedor: TVendedor;
 begin
-  DmVendedor.cadastrar(edNome.Text,StrToFloat(edComissaoAVista.Text),StrToFloat(EdComissaoAPrazo.Text),StrToFloat(EdMaxDesconto.Text), edtCpfCnpj.Text);
+  vendedor := TVendedor.Create();
+  try
+    vendedor.nome := edNome.Text;
+    vendedor.pComissaoAVista := StrToFloat(edComissaoAVista.Text);
+    vendedor.pComissaoAPrazo := StrToFloat(EdComissaoAPrazo.Text);
+    vendedor.pDescontoMaximo := StrToFloat(EdMaxDesconto.Text);
+    DmVendedor.cadastrar(vendedor);
+  finally
+    vendedor.Free();
+  end;
 
   ModalResult := mrOk;
 end;
@@ -109,9 +122,10 @@ var
 begin
   for i := 0 to ComponentCount - 1 do
   begin
-    if Components[I] is TEdit then
-      TEdit( Components[I] ).Text := '';
+    if Components[i] is TEdit then
+      TEdit(Components[i]).Text := '';
   end;
 end;
 
 end.
+
