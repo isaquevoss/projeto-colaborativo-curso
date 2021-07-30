@@ -183,6 +183,7 @@
             <Form>FrmValidarFormatarDados</Form>
         </DCCReference>
         <DCCReference Include="classes\uVendedorClasse.pas"/>
+        <DCCReference Include="classes\uClienteClasse.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

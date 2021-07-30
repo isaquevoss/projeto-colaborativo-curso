@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, udmClientes,
-  ACBrBase, ACBrValidador;
+  ACBrBase, ACBrValidador, uClienteClasse;
 
 type
   TfrmCadastroCliente = class(TForm)
@@ -47,6 +47,7 @@ implementation
 procedure TfrmCadastroCliente.btn_CadastrarClienteClick(Sender: TObject);
 var
   i: Integer;
+  cliente: TCliente;
 begin
 
   for i := 0 to ComponentCount - 1 do
@@ -65,14 +66,21 @@ begin
     exit;
   end;
 
-
+  cliente := TCliente.Create();
   try
-    Dmclientes.cadastrarCliente(Edit_nomeCliente.Text, Edit_DataCadastro.Text);
-    ShowMessage('Cadastro efetuado com sucesso!');
-    limparClientes();
-  except
-    on E: Exception do
-      ShowMessage('Houve erros na gravação dos dados: ' + E.Message);
+    try
+      cliente.nome := Edit_nomeCliente.Text;
+      cliente.cpf := Edit_CpfCnpj.Text;
+      cliente.dataCadastro := Edit_DataCadastro.Text;
+      Dmclientes.cadastrarCliente(cliente);
+      ShowMessage('Cadastro efetuado com sucesso!');
+      limparClientes();
+    except
+      on E: Exception do
+        ShowMessage('Houve erros na gravação dos dados: ' + E.Message);
+    end;
+  finally
+    cliente.Free;
   end;
 
 end;
@@ -119,9 +127,6 @@ begin
 
 end;
 
-
-
-
 procedure TfrmCadastroCliente.FormShow(Sender: TObject);
 begin
   limparClientes();
@@ -136,10 +141,10 @@ begin
     Result := false;
 
   if Edit_CpfCnpj.Text = '' then
-    Result := False;
+    Result := false;
 
   if Edit_DataCadastro.Text = '' then
-    Result := False;
+    Result := false;
 end;
 
 procedure TfrmCadastroCliente.limparClientes;
@@ -148,9 +153,10 @@ var
 begin
   for i := 0 to ComponentCount - 1 do
   begin
-    if Components[I] is TEdit then
-      TEdit( Components[I] ).Text := '';
+    if Components[i] is TEdit then
+      TEdit(Components[i]).Text := '';
   end;
+  lbValidaNome.Visible := false;
 end;
 
 function TfrmCadastroCliente.soNumeros(_texto: string): string;
@@ -168,26 +174,25 @@ end;
 
 function TfrmCadastroCliente.validaNome: Boolean;
 begin
-  result := true;
+  Result := True;
   Edit_nomeCliente.Hint := '';
-  lbValidaNome.Visible := true;
+  lbValidaNome.Visible := True;
 
-  if not (Length(Edit_nomeCliente.Text) > 3) then
+  if not(Length(Edit_nomeCliente.Text) > 3) then
   begin
     Result := false;
-    lbValidaNome.Caption := 'NOME DEVE CONTER MAIS QUE 3 CARACTERES';
+    lbValidaNome.Caption := 'Nome deve conter mais de 3 caracteres';
     lbValidaNome.Font.Color := clRed;
     exit;
   end;
 
-  if not (Pos(' ', Edit_nomeCliente.Text) > 0) then
+  if not(Pos(' ', Edit_nomeCliente.Text) > 0) then
   begin
     Result := false;
-    lbValidaNome.Caption := 'DEVE INFORMAR NOME COMPLETO';
+    lbValidaNome.Caption := 'Deve informar o nome completo';
     lbValidaNome.Font.Color := clRed;
     exit;
   end;
-
 
 end;
 
