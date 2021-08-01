@@ -35,7 +35,8 @@ uses
   uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
   uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
   System.UITypes {FrmValidarFormatarDados},
-  uVendedorClasse in 'classes\uVendedorClasse.pas';
+  uVendedorClasse in 'classes\uVendedorClasse.pas',
+  uTransportadoraClasse in 'classes\uTransportadoraClasse.pas';
 
 {$R *.res}
 
