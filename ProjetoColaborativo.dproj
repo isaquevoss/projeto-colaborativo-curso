@@ -182,6 +182,7 @@
             <Form>FrmValidarFormatarDados</Form>
         </DCCReference>
         <DCCReference Include="classes\uVendedorClasse.pas"/>
+        <DCCReference Include="classes\uEstoqueClasse.pas"/>
         <DCCReference Include="classes\uClienteClasse.pas"/>
         <DCCReference Include="classes\uUsuarioClasse.pas"/>
         <DCCReference Include="uCadastroUsuario.pas">
