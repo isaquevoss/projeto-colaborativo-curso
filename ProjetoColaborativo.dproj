@@ -175,7 +175,6 @@
         <DCCReference Include="uFrmValidarFormulario.pas">
             <Form>frmValidarFormulario</Form>
         </DCCReference>
-        <DCCReference Include="FormatarCpfCnpj.pas"/>
         <DCCReference Include="uCadastroCliente.pas">
             <Form>frmCadastroCliente</Form>
         </DCCReference>
