@@ -181,14 +181,10 @@
         <DCCReference Include="uTesteValidarFormatarDados.pas">
             <Form>FrmValidarFormatarDados</Form>
         </DCCReference>
-        <DCCReference Include="classes\uVendedorClasse.pas"/>
-		</DCCReference>
-        <DCCReference Include="classes\uTransportadoraClasse.pas"/>
-		</DCCReference>
-        <DCCReference Include="classes\uClienteClasse.pas"/>
-		</DCCReference>
-        <DCCReference Include="classes\uUsuarioClasse.pas"/>
-		</DCCReference>
+        <DCCReference Include="classes\uVendedorClasse.pas"/>		
+        <DCCReference Include="classes\uTransportadoraClasse.pas"/>		
+        <DCCReference Include="classes\uClienteClasse.pas"/>		
+        <DCCReference Include="classes\uUsuarioClasse.pas"/>		
         <DCCReference Include="uCadastroUsuario.pas">
             <Form>CadastroUsuario</Form>
             <FormType>dfm</FormType>
