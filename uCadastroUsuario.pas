@@ -15,6 +15,7 @@ type
     btnGravar: TButton;
     btnCancelar: TButton;
     procedure btnGravarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,6 +29,11 @@ implementation
 
 {$R *.dfm}
 
+
+procedure TCadastroUsuario.btnCancelarClick(Sender: TObject);
+begin
+  Close();
+end;
 
 procedure TCadastroUsuario.btnGravarClick(Sender: TObject);
 var

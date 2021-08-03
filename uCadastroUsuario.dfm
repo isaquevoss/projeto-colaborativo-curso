@@ -59,5 +59,6 @@ object CadastroUsuario: TCadastroUsuario
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 3
+    OnClick = btnCancelarClick
   end
 end
