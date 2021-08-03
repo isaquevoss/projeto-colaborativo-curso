@@ -21,6 +21,10 @@ type
     procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure validarLogin();
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edtSenhaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -50,7 +54,7 @@ procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 begin
   if edtSenha.Text = '' then
   begin
-    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.'+#13+'Dica: Caso não souber a senha tecle CTRL+U');
+    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.'+#13+'Dica: Caso não souber a senha tecle CTRL+T');
     edtSenha.SetFocus;
     Exit;
   end
@@ -58,21 +62,41 @@ begin
     validarLogin();
 end;
 
-procedure TfrmLogin.edtSenhaKeyPress(Sender: TObject; var Key: Char);
+procedure TfrmLogin.cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
-  if Key = #13 then
+if (Key = 84) and (Shift = [ssCtrl]) then
   begin
-    validarLogin();
+    dmUsuario.definirSenhaPadrao();
+    ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
+  end;
+end;
+
+procedure TfrmLogin.edtSenhaKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = 84) and (Shift = [ssCtrl]) then
+  begin
+    dmUsuario.definirSenhaPadrao();
+    ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
   end;
 end;
 
 procedure TfrmLogin.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-if (Key = 117) and (Shift = [ssCtrl]) then
+if (Key = 84) and (Shift = [ssCtrl]) then
   begin
     dmUsuario.definirSenhaPadrao();
     ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
+  end;
+end;
+
+procedure TfrmLogin.edtSenhaKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    validarLogin();
   end;
 end;
 
@@ -104,7 +128,7 @@ begin
 
     if dmUsuario.qrLogin.IsEmpty then
       begin
-        ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!'+#13+'Dica: Caso não souber a senha tecle CTRL+U');
+        ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!'+#13+'Dica: Caso não souber a senha tecle CTRL+T');
         edtSenha.Text := '';
         edtSenha.SetFocus;
       end

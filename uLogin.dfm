@@ -38,6 +38,7 @@ object frmLogin: TfrmLogin
     Height = 21
     Style = csDropDownList
     TabOrder = 0
+    OnKeyDown = cbbUsuarioKeyDown
   end
   object edtSenha: TEdit
     Left = 128
@@ -46,6 +47,7 @@ object frmLogin: TfrmLogin
     Height = 21
     PasswordChar = '*'
     TabOrder = 1
+    OnKeyDown = edtSenhaKeyDown
     OnKeyPress = edtSenhaKeyPress
   end
   object btnEntrar: TButton
