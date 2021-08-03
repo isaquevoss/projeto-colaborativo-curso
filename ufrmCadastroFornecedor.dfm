@@ -2,8 +2,8 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
   Left = 0
   Top = 0
   Caption = 'Cadastrar Fornecedor'
-  ClientHeight = 290
-  ClientWidth = 360
+  ClientHeight = 371
+  ClientWidth = 429
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -29,36 +29,36 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     ParentFont = False
   end
   object lbl_NomeFornecedr: TLabel
-    Left = 16
+    Left = 53
     Top = 56
     Width = 31
     Height = 13
     Caption = 'Nome:'
   end
   object lbl_FantasiaFornecedr: TLabel
-    Left = 16
-    Top = 88
+    Left = 39
+    Top = 96
     Width = 45
     Height = 13
     Caption = 'Fantasia:'
   end
   object lbl_CnpjFornecedr: TLabel
-    Left = 16
-    Top = 120
+    Left = 39
+    Top = 139
     Width = 52
     Height = 13
     Caption = 'CNPJ/CPF:'
   end
   object lbl_IeFornecedr: TLabel
-    Left = 16
-    Top = 152
+    Left = 39
+    Top = 189
     Width = 32
     Height = 13
     Caption = 'IE/RG:'
   end
   object lbl_EnderFornecedr: TLabel
-    Left = 16
-    Top = 184
+    Left = 39
+    Top = 232
     Width = 49
     Height = 13
     Caption = 'Endere'#231'o:'
@@ -70,23 +70,33 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     Height = 13
     Caption = 'C'#243'digo:'
   end
+  object lbnome: TLabel
+    Left = 101
+    Top = 80
+    Width = 34
+    Height = 13
+    Caption = 'lbnome'
+    Color = clBtnFace
+    ParentColor = False
+    Visible = False
+  end
   object edt_NomeFornecedr: TEdit
-    Left = 77
+    Left = 101
     Top = 53
     Width = 252
     Height = 21
     TabOrder = 0
   end
   object edt_FantasiaFornecedr: TEdit
-    Left = 77
-    Top = 85
+    Left = 101
+    Top = 93
     Width = 252
     Height = 21
     TabOrder = 1
   end
   object edt_CnpjFornecedr: TEdit
-    Left = 74
-    Top = 122
+    Left = 97
+    Top = 136
     Width = 124
     Height = 21
     TabOrder = 2
@@ -94,22 +104,22 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     OnExit = edCnpjCpfExit
   end
   object edt_IeRgFornecedr: TEdit
-    Left = 77
-    Top = 149
+    Left = 94
+    Top = 186
     Width = 124
     Height = 21
     TabOrder = 3
   end
   object edt_EnderFornecedr: TEdit
-    Left = 77
-    Top = 181
+    Left = 94
+    Top = 229
     Width = 252
     Height = 21
     TabOrder = 4
   end
   object btn_SalvaFornecedr: TButton
-    Left = 16
-    Top = 216
+    Left = 56
+    Top = 272
     Width = 313
     Height = 29
     Caption = 'Salvar'
@@ -117,8 +127,8 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     OnClick = btn_SalvaFornecedrClick
   end
   object btn_limparFrmFornecedr: TButton
-    Left = 16
-    Top = 251
+    Left = 56
+    Top = 315
     Width = 313
     Height = 31
     Caption = 'Limpar o formulario'
@@ -126,8 +136,8 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
     OnClick = btn_limparFrmFornecedrClick
   end
   object ComboBox1: TComboBox
-    Left = 232
-    Top = 122
+    Left = 240
+    Top = 136
     Width = 57
     Height = 21
     Style = csDropDownList
@@ -138,7 +148,7 @@ object frmCadastroFornecedr: TfrmCadastroFornecedr
   end
   object ACBrValidador1: TACBrValidador
     IgnorarChar = './-'
-    Left = 320
-    Top = 112
+    Left = 384
+    Top = 152
   end
 end

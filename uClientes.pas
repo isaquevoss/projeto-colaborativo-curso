@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, udmClientes, Vcl.ExtCtrls, uCadastroCliente;
+  Vcl.DBGrids, udmClientes, Vcl.ExtCtrls, uCadastroCliente, uClienteClasse;
 
 type
   TForm2 = class(TForm)
@@ -52,10 +52,13 @@ begin
 end;
 
 procedure TForm2.buscar;
-
+ var
+  cliente : TCliente;
 begin
+cliente := TCliente.Create();
+cliente.nome := edtCliente.Text;
 TimerBusca.Enabled := false;
-Dmclientes.buscarclientes(edtCliente.text);
+Dmclientes.buscarclientes(cliente);
 mostrarResultadosBusca();
 
 end;

@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmConexaoFB, uDmUsuario, uPrincipal;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmConexaoFB, uDmUsuario, uPrincipal,
+  Vcl.ExtCtrls, uUsuarioClasse, uCadastroUsuario;
 
 type
   TfrmLogin = class(TForm)
@@ -14,11 +15,20 @@ type
     btnCancelar: TButton;
     lblUsuario: TLabel;
     lblSenha: TLabel;
+    lblNovoUsuario: TLabel;
     procedure btnCancelarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
     procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure validarLogin();
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure edtSenhaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure lblNovoUsuarioClick(Sender: TObject);
+    procedure listarUsuarios();
+    procedure FormShow(Sender: TObject);
+    procedure cbbUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,12 +58,52 @@ procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 begin
   if edtSenha.Text = '' then
   begin
-    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.');
+    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.'+#13+#13+'Dica: Caso não souber a senha tecle CTRL+T');
     edtSenha.SetFocus;
     Exit;
   end
   else
     validarLogin();
+end;
+
+procedure TfrmLogin.cbbUsuarioClick(Sender: TObject);
+begin
+  listarUsuarios();
+end;
+
+procedure TfrmLogin.cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = 84) and (Shift = [ssCtrl]) then
+  begin
+    dmUsuario.definirSenhaPadrao();
+    ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
+  end;
+end;
+
+procedure TfrmLogin.edtSenhaKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = 84) and (Shift = [ssCtrl]) then
+  begin
+    dmUsuario.definirSenhaPadrao();
+    ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
+  end;
+end;
+
+procedure TfrmLogin.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = 84) and (Shift = [ssCtrl]) then
+  begin
+    dmUsuario.definirSenhaPadrao();
+    ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
+  end;
+end;
+
+procedure TfrmLogin.FormShow(Sender: TObject);
+begin
+  listarUsuarios();
 end;
 
 procedure TfrmLogin.edtSenhaKeyPress(Sender: TObject; var Key: Char);
@@ -64,15 +114,19 @@ begin
   end;
 end;
 
-procedure TfrmLogin.FormShow(Sender: TObject);
+procedure TfrmLogin.lblNovoUsuarioClick(Sender: TObject);
+begin
+  CadastroUsuario.ShowModal();
+end;
+
+procedure TfrmLogin.listarUsuarios;
 var
-  i : integer;
   nomeUsuario: TStringList;
 begin
    if not DmConexaoFB.Conexao.Connected then
     DmConexaoFB.conectarBanco();
 
-   nomeUsuario := TStringList.Create();
+  nomeUsuario := TStringList.Create();
 
   dmUsuario.carregarNomeUsuario(nomeUsuario);
   cbbUsuario.Items.AddStrings(nomeUsuario);
@@ -81,19 +135,28 @@ begin
 end;
 
 procedure TfrmLogin.validarLogin;
+var
+  usuario : TUsuario;
 begin
-  dmUsuario.validarLogin(cbbUsuario.Text, edtSenha.Text);
+  usuario := TUsuario.Create();
+  try
+    usuario.usuario := cbbUsuario.Text;
+    usuario.senha := edtSenha.Text;
+    dmUsuario.validarLogin(usuario);
 
-  if dmUsuario.qrLogin.IsEmpty then
-    begin
-      ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!');
-      edtSenha.Text := '';
-      edtSenha.SetFocus;
-    end
-  else
-    begin
-      ModalResult := mrOk;
-    end;
+    if dmUsuario.qrLogin.IsEmpty then
+      begin
+        ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!'+#13+#13+'Dica: Caso não souber a senha tecle CTRL+T');
+        edtSenha.Text := '';
+        edtSenha.SetFocus;
+      end
+    else
+      begin
+        ModalResult := mrOk;
+      end;
+  finally
+    usuario.Free();
+  end;
 end;
 
 end.
