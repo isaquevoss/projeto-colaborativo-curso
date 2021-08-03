@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uDmConexaoFB;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, uDmConexaoFB, uEstoqueClasse;
 
 type
   TDmEstoque = class(TDataModule)
@@ -18,7 +18,7 @@ type
     { Public declarations }
     procedure buscarEstoque(_descricao: string = '');
     procedure carregarEstoque();
-    procedure cadastrarEstoque(_codigo: Integer; _descricao: string; _qtd: Double; _precoVenda: Double);
+    procedure cadastrarEstoque(_estoque : TEstoque);
     procedure proximoCodigo(var _proxCodigo: string);
   end;
 
@@ -56,8 +56,7 @@ begin
 end;
 
 
-procedure TDmEstoque.cadastrarEstoque(_codigo: Integer; _descricao: string; _qtd,
-  _precoVenda: Double);
+procedure TDmEstoque.cadastrarEstoque(_estoque : TEstoque);
 begin
   if not DmConexaoFB.Conexao.Connected then
     DmConexaoFB.conectarBanco();
@@ -67,10 +66,10 @@ begin
   qrEstoque.SQL.Add('insert into estoque (codigo, descricao, qtd, preco_venda)');
   qrEstoque.SQL.Add('values(:codigo, :descricao, :qtd, :precoVenda)');
 
-  qrEstoque.ParamByName('codigo').AsInteger := _codigo;
-  qrEstoque.ParamByName('descricao').AsString := _descricao;
-  qrEstoque.ParamByName('qtd').AsFloat := _qtd;
-  qrEstoque.ParamByName('precoVenda').AsFloat := _precoVenda;
+  qrEstoque.ParamByName('codigo').AsInteger := _estoque.codigo;
+  qrEstoque.ParamByName('descricao').AsString := _estoque.descricao;
+  qrEstoque.ParamByName('qtd').AsFloat := _estoque.qtd;
+  qrEstoque.ParamByName('precoVenda').AsFloat := _estoque.pVenda;
 
   qrEstoque.ExecSQL();
 

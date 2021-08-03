@@ -1,10 +1,10 @@
-unit uCadastroEstoque;
+﻿unit uCadastroEstoque;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmEstoque, uDmConexaoFB;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmEstoque, uDmConexaoFB, uEstoqueClasse;
 
 type
   TfrmCadastroEstoque = class(TForm)
@@ -49,7 +49,9 @@ begin
 end;
 
 procedure TfrmCadastroEstoque.btnGravarClick(Sender: TObject);
-var i : Integer;
+var
+  i : Integer;
+  estoque : TEstoque;
 
 begin
   for I := 0 to ComponentCount -1 do
@@ -75,14 +77,22 @@ begin
       lblDescricaoIncompleto.Visible := false;
     end;
 
-
+  estoque := TEstoque.Create;
   try
-    DmEstoque.cadastrarEstoque(StrToInt(lblCodEstoque.Caption), edtDescricao.Text, StrToFloat(edtQtd.Text), StrToFloat(edtprecoVenda.Text));
-  except on E: Exception do
-  begin
-    ShowMessage('Não foi possível cadastrar o produto!'+#13+e.Message);
-    Exit;
-  end;
+    try
+      estoque.codigo := StrToInt(lblCodigo.Caption);
+      estoque.descricao := edtDescricao.Text;
+      estoque.qtd := StrToFloat(edtQtd.Text);
+      estoque.pVenda := StrToFloat(edtprecoVenda.Text);
+      DmEstoque.cadastrarEstoque(estoque);
+    except on E: Exception do
+      begin
+        ShowMessage('Não foi possível cadastrar o produto!'+#13+e.Message);
+        Exit;
+      end;
+    end;
+  finally
+    estoque.Free();
   end;
 
   ModalResult := mrOk;
