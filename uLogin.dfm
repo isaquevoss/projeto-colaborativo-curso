@@ -2,7 +2,7 @@ object frmLogin: TfrmLogin
   Left = 0
   Top = 0
   Caption = 'Login'
-  ClientHeight = 210
+  ClientHeight = 234
   ClientWidth = 417
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,8 +10,10 @@ object frmLogin: TfrmLogin
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -29,6 +31,20 @@ object frmLogin: TfrmLogin
     Height = 13
     Caption = 'Senha'
   end
+  object lblNovoUsuario: TLabel
+    Left = 200
+    Top = 213
+    Width = 214
+    Height = 13
+    Caption = 'Clique aqui para cadastrar um usu'#225'rio'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = lblNovoUsuarioClick
+  end
   object cbbUsuario: TComboBox
     Left = 128
     Top = 62
@@ -36,6 +52,8 @@ object frmLogin: TfrmLogin
     Height = 21
     Style = csDropDownList
     TabOrder = 0
+    OnClick = cbbUsuarioClick
+    OnKeyDown = cbbUsuarioKeyDown
   end
   object edtSenha: TEdit
     Left = 128
@@ -44,6 +62,7 @@ object frmLogin: TfrmLogin
     Height = 21
     PasswordChar = '*'
     TabOrder = 1
+    OnKeyDown = edtSenhaKeyDown
     OnKeyPress = edtSenhaKeyPress
   end
   object btnEntrar: TButton

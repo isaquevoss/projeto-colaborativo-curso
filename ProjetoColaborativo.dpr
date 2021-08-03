@@ -31,12 +31,13 @@ uses
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
   uFrmValidarFormulario in 'uFrmValidarFormulario.pas' {frmValidarFormulario},
-  FormatarCpfCnpj in 'FormatarCpfCnpj.pas',
   uCadastroCliente in 'uCadastroCliente.pas' {frmCadastroCliente},
   uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
   System.UITypes {FrmValidarFormatarDados},
   uVendedorClasse in 'classes\uVendedorClasse.pas',
-  uClienteClasse in 'classes\uClienteClasse.pas';
+  uClienteClasse in 'classes\uClienteClasse.pas',
+  uUsuarioClasse in 'classes\uUsuarioClasse.pas',
+  uCadastroUsuario in 'uCadastroUsuario.pas' {CadastroUsuario};
 
 {$R *.res}
 
@@ -73,6 +74,7 @@ begin
   Application.CreateForm(TfrmValidarFormulario, frmValidarFormulario);
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TdmUsuario, dmUsuario);
+  Application.CreateForm(TCadastroUsuario, CadastroUsuario);
   if frmLogin.ShowModal <> mrOk then
     Application.Terminate;
 
