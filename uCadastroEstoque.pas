@@ -80,7 +80,7 @@ begin
   estoque := TEstoque.Create;
   try
     try
-      estoque.codigo := StrToInt(lblCodigo.Caption);
+      estoque.codigo := StrToInt(lblCodEstoque.Caption);
       estoque.descricao := edtDescricao.Text;
       estoque.qtd := StrToFloat(edtQtd.Text);
       estoque.pVenda := StrToFloat(edtprecoVenda.Text);

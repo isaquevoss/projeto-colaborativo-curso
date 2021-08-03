@@ -63,7 +63,7 @@ object frmCadastroEstoque: TfrmCadastroEstoque
   end
   object lblCodEstoque: TLabel
     Left = 59
-    Top = 22
+    Top = 21
     Width = 47
     Height = 19
     Caption = 'NOVO'
