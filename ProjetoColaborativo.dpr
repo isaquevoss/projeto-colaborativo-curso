@@ -36,7 +36,8 @@ uses
   uTesteValidarFormatarDados in 'uTesteValidarFormatarDados.pas' {FrmValidarFormatarDados},
   System.UITypes {FrmValidarFormatarDados},
   uVendedorClasse in 'classes\uVendedorClasse.pas',
-  uEstoqueClasse in 'classes\uEstoqueClasse.pas';
+  uEstoqueClasse in 'classes\uEstoqueClasse.pas',
+  uClienteClasse in 'classes\uClienteClasse.pas';
 
 {$R *.res}
 
