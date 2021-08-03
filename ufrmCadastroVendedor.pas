@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  Vcl.StdCtrls, uDmVendedor, ACBrBase, ACBrValidador;
+  Vcl.StdCtrls, uDmVendedor, ACBrBase, ACBrValidador, uVendedorClasse;
 
 type
   TfrmCadastroVendedor = class(TForm)
@@ -22,14 +22,27 @@ type
     edtcpfcnpj: TEdit;
     lblcpfcnpj: TLabel;
     acbrvldr1: TACBrValidador;
+    Button1: TButton;
+    Button2: TButton;
     procedure btnGravarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edtcpfcnpjExit(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
+    Fvendedor: TVendedor;
+    function getVendedor: TVendedor;
+
+    procedure atualizarDadosTela();
+    procedure atualizarClasseVendedor();
+
     { Private declarations }
   public
     procedure limparFormulario();
+    procedure editar(id: Integer);
+
+    property vendedor: TVendedor read Fvendedor write fvendedor;
   end;
 
 var
@@ -37,27 +50,54 @@ var
 
 implementation
 
-uses
-  uVendedorClasse;
+
 
 {$R *.dfm}
 
 procedure TfrmCadastroVendedor.btnGravarClick(Sender: TObject);
-var
-  vendedor: TVendedor;
 begin
-  vendedor := TVendedor.Create();
-  try
-    vendedor.nome := edNome.Text;
-    vendedor.pComissaoAVista := StrToFloat(edComissaoAVista.Text);
-    vendedor.pComissaoAPrazo := StrToFloat(EdComissaoAPrazo.Text);
-    vendedor.pDescontoMaximo := StrToFloat(EdMaxDesconto.Text);
-    DmVendedor.cadastrar(vendedor);
-  finally
-    vendedor.Free();
-  end;
+  atualizarClasseVendedor();
+
+  DmVendedor.cadastrar(vendedor);
 
   ModalResult := mrOk;
+end;
+
+procedure TfrmCadastroVendedor.Button1Click(Sender: TObject);
+begin
+  atualizarClasseVendedor();
+
+end;
+
+procedure TfrmCadastroVendedor.Button2Click(Sender: TObject);
+begin
+  if not Assigned(vendedor) then
+  begin
+    vendedor := TVendedor.Create;
+    vendedor.codigo := 15;
+    vendedor.nome := 'meu novo vendedor';
+    vendedor.pComissaoAVista := 15;
+    vendedor.pComissaoAPrazo := 10;
+    vendedor.pDescontoMaximo := 30;
+  end;
+  atualizarDadosTela();
+end;
+
+procedure TfrmCadastroVendedor.atualizarClasseVendedor;
+begin
+  Fvendedor.nome := edNome.Text;
+  Fvendedor.pComissaoAVista := StrToFloat(edComissaoAVista.Text);
+  Fvendedor.pComissaoAPrazo := StrToFloat(EdComissaoAPrazo.Text);
+  Fvendedor.pDescontoMaximo := StrToFloat(EdMaxDesconto.Text);
+end;
+
+procedure TfrmCadastroVendedor.atualizarDadosTela;
+begin
+  lbCodigo.Caption := 'Codigo ' + inttostr(vendedor.codigo);
+  edNome.Text := Fvendedor.nome;
+  EdComissaoAPrazo.Text := FloatToStr(Fvendedor.pComissaoAPrazo);
+  edComissaoAVista.Text := FloatToStr(Fvendedor.pComissaoAVista);
+  EdMaxDesconto.Text := FloatToStr(Fvendedor.pDescontoMaximo);
 end;
 
 procedure TfrmCadastroVendedor.btnCancelarClick(Sender: TObject);
@@ -76,6 +116,12 @@ begin
     if Pos(letra, '1234567890') > 0 then
       Result := Result + Copy(_texto, i, 1);
   end;
+end;
+
+procedure TfrmCadastroVendedor.editar(id: Integer);
+begin
+  vendedor := DmVendedor.getVendedorById(id);
+  ShowModal();
 end;
 
 procedure TfrmCadastroVendedor.edtcpfcnpjExit(Sender: TObject);
@@ -114,6 +160,13 @@ end;
 procedure TfrmCadastroVendedor.FormShow(Sender: TObject);
 begin
   limparFormulario();
+  if Assigned(vendedor) then
+    atualizarDadosTela();
+end;
+
+function TfrmCadastroVendedor.getVendedor: TVendedor;
+begin
+
 end;
 
 procedure TfrmCadastroVendedor.limparFormulario;

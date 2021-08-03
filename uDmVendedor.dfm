@@ -17,4 +17,9 @@ object DmVendedor: TDmVendedor
     Left = 152
     Top = 80
   end
+  object qrBuscarVendedor: TFDQuery
+    Connection = DmConexaoFB.Conexao
+    Left = 296
+    Top = 24
+  end
 end

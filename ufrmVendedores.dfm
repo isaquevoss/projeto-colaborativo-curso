@@ -38,4 +38,13 @@ object frmVendedores: TfrmVendedores
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
+  object Button2: TButton
+    Left = 376
+    Top = 24
+    Width = 75
+    Height = 25
+    Caption = 'Editar'
+    TabOrder = 2
+    OnClick = Button2Click
+  end
 end

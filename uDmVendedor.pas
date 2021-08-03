@@ -13,9 +13,11 @@ type
     qrInsertVendedor: TFDQuery;
     qrVendedores: TFDQuery;
     dsVendedores: TDataSource;
+    qrBuscarVendedor: TFDQuery;
   private
     vendedor: string;
   public
+    function getVendedorById(codigo: integer): TVendedor;
     procedure carregarVendedores();
     procedure cadastrar(_vendedor: TVendedor);
   end;
@@ -55,6 +57,29 @@ procedure TDmVendedor.carregarVendedores;
 begin
   qrVendedores.Close();
   qrVendedores.Open('select * from vendedor order by id desc');
+end;
+
+function TDmVendedor.getVendedorById(codigo: integer): TVendedor;
+var
+  _vendedor: TVendedor;
+begin
+  qrBuscarVendedor.SQL.Clear();
+  qrBuscarVendedor.SQL.Add('select * from vendedor where id = :id');
+  qrBuscarVendedor.ParamByName('id').AsInteger := codigo;
+  qrBuscarVendedor.Open();
+
+  if qrBuscarVendedor.RecordCount = 0 then
+    raise Exception.Create('Nenhum vendedor encontrado');
+
+  _vendedor := TVendedor.Create();
+  _vendedor.codigo := qrBuscarVendedor.FieldByName('id').AsInteger;
+  _vendedor.nome := qrBuscarVendedor.FieldByName('nome').AsString;
+  _vendedor.pComissaoAVista := qrBuscarVendedor.FieldByName('comissaov').AsFloat;
+  _vendedor.pComissaoAPrazo := qrBuscarVendedor.FieldByName('comissaop').AsFloat;
+  _vendedor.pDescontoMaximo := qrBuscarVendedor.FieldByName('desconto_max').AsFloat;
+
+  Result := _vendedor;
+
 end;
 
 end.
