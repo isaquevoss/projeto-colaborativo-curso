@@ -36,6 +36,7 @@ uses
   System.UITypes {FrmValidarFormatarDados},
   uVendedorClasse in 'classes\uVendedorClasse.pas',
   uTransportadoraClasse in 'classes\uTransportadoraClasse.pas',
+  uEstoqueClasse in 'classes\uEstoqueClasse.pas',
   uClienteClasse in 'classes\uClienteClasse.pas',
   uUsuarioClasse in 'classes\uUsuarioClasse.pas',
   uCadastroUsuario in 'uCadastroUsuario.pas' {CadastroUsuario};
