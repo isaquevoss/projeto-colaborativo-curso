@@ -20,6 +20,7 @@ type
     procedure carregarNomeUsuario(var _nomeUsuario : TStringList);
     procedure validarLogin(_usuario : TUsuario);
     procedure definirSenhaPadrao();
+    procedure cadastrarUsuario(_usuario : TUsuario);
   end;
 
 var
@@ -32,6 +33,16 @@ implementation
 {$R *.dfm}
 
 { TDataModule1 }
+
+procedure TdmUsuario.cadastrarUsuario(_usuario: TUsuario);
+begin
+  qrUsuario.Close;
+  qrUsuario.SQL.Clear();
+  qrUsuario.SQL.Add('insert into usuarios(usuario, senha) values(:nome, :senha');
+  qrUsuario.ParamByName('nome').AsString := _usuario.usuario;
+  qrUsuario.ParamByName('senha').AsString := _usuario.senha;
+  qrUsuario.ExecSQL();
+end;
 
 procedure TdmUsuario.carregarNomeUsuario(var _nomeUsuario : TStringList);
 begin
