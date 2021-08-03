@@ -37,7 +37,8 @@ uses
   System.UITypes {FrmValidarFormatarDados},
   uVendedorClasse in 'classes\uVendedorClasse.pas',
   uClienteClasse in 'classes\uClienteClasse.pas',
-  uUsuarioClasse in 'classes\uUsuarioClasse.pas';
+  uUsuarioClasse in 'classes\uUsuarioClasse.pas',
+  uCadastroUsuario in 'uCadastroUsuario.pas' {CadastroUsuario};
 
 {$R *.res}
 
@@ -74,6 +75,7 @@ begin
   Application.CreateForm(TfrmValidarFormulario, frmValidarFormulario);
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TdmUsuario, dmUsuario);
+  Application.CreateForm(TCadastroUsuario, CadastroUsuario);
   if frmLogin.ShowModal <> mrOk then
     Application.Terminate;
 

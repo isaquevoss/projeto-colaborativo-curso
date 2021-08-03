@@ -2,7 +2,7 @@ object frmLogin: TfrmLogin
   Left = 0
   Top = 0
   Caption = 'Login'
-  ClientHeight = 210
+  ClientHeight = 234
   ClientWidth = 417
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -30,6 +30,20 @@ object frmLogin: TfrmLogin
     Width = 30
     Height = 13
     Caption = 'Senha'
+  end
+  object lblNovoUsuario: TLabel
+    Left = 200
+    Top = 213
+    Width = 214
+    Height = 13
+    Caption = 'Clique aqui para cadastrar um usu'#225'rio'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    OnClick = lblNovoUsuarioClick
   end
   object cbbUsuario: TComboBox
     Left = 128

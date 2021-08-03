@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmConexaoFB, uDmUsuario, uPrincipal,
-  Vcl.ExtCtrls, uUsuarioClasse;
+  Vcl.ExtCtrls, uUsuarioClasse, uCadastroUsuario;
 
 type
   TfrmLogin = class(TForm)
@@ -15,6 +15,7 @@ type
     btnCancelar: TButton;
     lblUsuario: TLabel;
     lblSenha: TLabel;
+    lblNovoUsuario: TLabel;
     procedure btnCancelarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
@@ -25,6 +26,7 @@ type
       Shift: TShiftState);
     procedure cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure lblNovoUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -108,12 +110,17 @@ begin
    if not DmConexaoFB.Conexao.Connected then
     DmConexaoFB.conectarBanco();
 
-   nomeUsuario := TStringList.Create();
+  nomeUsuario := TStringList.Create();
 
   dmUsuario.carregarNomeUsuario(nomeUsuario);
   cbbUsuario.Items.AddStrings(nomeUsuario);
 
   cbbUsuario.ItemIndex := 0;
+end;
+
+procedure TfrmLogin.lblNovoUsuarioClick(Sender: TObject);
+begin
+  CadastroUsuario.ShowModal();
 end;
 
 procedure TfrmLogin.validarLogin;
