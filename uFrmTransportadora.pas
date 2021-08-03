@@ -58,6 +58,8 @@ var
   FrmTransportadora: TFrmTransportadora;
 
 implementation
+uses
+  uTransportadoraClasse;
 
 {$R *.dfm}
 
@@ -74,7 +76,9 @@ end;
 procedure TFrmTransportadora.btnSalvarClick(Sender: TObject);
 var
   i: Integer;
+  transportadora : TTransportadora;
 begin
+    transportadora := TTransportadora.Create();
 
     for i := 0 to ComponentCount - 1 do
     begin
@@ -95,23 +99,33 @@ begin
           exit
         end;
 
-         validaFormulario();
+        if not validaFormulario then
+        begin
+          ShowMessage('Formulário com dados inválidos verifique');
+          Exit;
+        end;
 
     end;
 
 
 
     try
-      DmTransportadora.Cadastrar(edtNome.Text,edtEndereco.Text,edtCidade.Text,cbxUF.Text,edtTelefone.Text,edtEmail.Text,edtCnpj.Text,edtRntrc.Text);
+      transportadora.razao := edtNome.Text;
+      transportadora.endereco := edtEndereco.Text;
+      transportadora.cidade := edtCidade.text;
+      transportadora.UF := cbxUF.Text;
+      transportadora.telefone := edtTelefone.Text;
+      transportadora.email := edtEmail.Text;
+      transportadora.CNPJ := edtCnpj.Text;
+      transportadora.RNTRC := edtRntrc.Text;
+      DmTransportadora.Cadastrar(transportadora);
       ShowMessage('Transportadora cadastrado com sucesso!');
       LimparFormulario();
-      // Atualizando a Label REGISTROS, e atualizando o grid com a transportadora nova
+ //      Atualizando a Label REGISTROS, e atualizando o grid com a transportadora nova
       DmTransportadora.CarregarTransportadora;
       frmListaTransportadora.lbl_qtdRegistros.Caption := 'Registros: '+ IntToStr(DmTransportadora.qrTransportadora.RecordCount);
-    Except on E: Exception do
-      begin
-        ShowMessage('Houve erros na gravação dos dados: '+E.Message);
-      end;
+    finally
+      transportadora.Free();
     end;
 
 
@@ -218,18 +232,18 @@ end;
 
 function TFrmTransportadora.validaFormulario: Boolean;
 begin
-  Result := True;
+ Result := True;
   if not validarNome then
   begin
     Result := False;
   end;
-  if not Length(edtCidade.Text) < 3 then
+  if not (Length(edtCidade.Text) > 3) then
   begin
      Result := False;
      edtCidade.Hint:= 'Informe uma cidade valida';
 
   end;
-  if not Length(edtEndereco.Text)< 3 then
+  if not (Length(edtEndereco.Text)> 2) then
   begin
     Result := False;
     edtEndereco.Hint := 'Informe um endereco valido';

@@ -1,7 +1,6 @@
 object FrmTransportadora: TFrmTransportadora
   Left = 0
   Top = 0
-  Anchors = [akLeft, akTop, akRight, akBottom]
   Caption = 'Cadastro da Transportadora'
   ClientHeight = 398
   ClientWidth = 444
@@ -12,6 +11,7 @@ object FrmTransportadora: TFrmTransportadora
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnShow = FormShow
   ExplicitWidth = 320
   ExplicitHeight = 240
