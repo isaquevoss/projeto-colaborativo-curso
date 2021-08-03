@@ -52,6 +52,7 @@ object frmLogin: TfrmLogin
     Height = 21
     Style = csDropDownList
     TabOrder = 0
+    OnClick = cbbUsuarioClick
     OnKeyDown = cbbUsuarioKeyDown
   end
   object edtSenha: TEdit

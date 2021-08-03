@@ -38,7 +38,7 @@ procedure TdmUsuario.cadastrarUsuario(_usuario: TUsuario);
 begin
   qrUsuario.Close;
   qrUsuario.SQL.Clear();
-  qrUsuario.SQL.Add('insert into usuarios(usuario, senha) values(:nome, :senha');
+  qrUsuario.SQL.Add('insert into usuarios(usuario, senha) values(:nome, :senha)');
   qrUsuario.ParamByName('nome').AsString := _usuario.usuario;
   qrUsuario.ParamByName('senha').AsString := _usuario.senha;
   qrUsuario.ExecSQL();

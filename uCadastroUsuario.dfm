@@ -40,6 +40,7 @@ object CadastroUsuario: TCadastroUsuario
     Top = 99
     Width = 121
     Height = 21
+    PasswordChar = '*'
     TabOrder = 1
   end
   object btnGravar: TButton
@@ -49,6 +50,7 @@ object CadastroUsuario: TCadastroUsuario
     Height = 25
     Caption = 'Gravar'
     TabOrder = 2
+    OnClick = btnGravarClick
   end
   object btnCancelar: TButton
     Left = 136

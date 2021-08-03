@@ -17,7 +17,6 @@ type
     lblSenha: TLabel;
     lblNovoUsuario: TLabel;
     procedure btnCancelarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
     procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure validarLogin();
@@ -27,6 +26,9 @@ type
     procedure cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure lblNovoUsuarioClick(Sender: TObject);
+    procedure listarUsuarios();
+    procedure FormShow(Sender: TObject);
+    procedure cbbUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,6 +66,11 @@ begin
     validarLogin();
 end;
 
+procedure TfrmLogin.cbbUsuarioClick(Sender: TObject);
+begin
+  listarUsuarios();
+end;
+
 procedure TfrmLogin.cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -94,6 +101,11 @@ if (Key = 84) and (Shift = [ssCtrl]) then
   end;
 end;
 
+procedure TfrmLogin.FormShow(Sender: TObject);
+begin
+  listarUsuarios();
+end;
+
 procedure TfrmLogin.edtSenhaKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -102,9 +114,13 @@ begin
   end;
 end;
 
-procedure TfrmLogin.FormShow(Sender: TObject);
+procedure TfrmLogin.lblNovoUsuarioClick(Sender: TObject);
+begin
+  CadastroUsuario.ShowModal();
+end;
+
+procedure TfrmLogin.listarUsuarios;
 var
-  i : integer;
   nomeUsuario: TStringList;
 begin
    if not DmConexaoFB.Conexao.Connected then
@@ -116,11 +132,6 @@ begin
   cbbUsuario.Items.AddStrings(nomeUsuario);
 
   cbbUsuario.ItemIndex := 0;
-end;
-
-procedure TfrmLogin.lblNovoUsuarioClick(Sender: TObject);
-begin
-  CadastroUsuario.ShowModal();
 end;
 
 procedure TfrmLogin.validarLogin;
