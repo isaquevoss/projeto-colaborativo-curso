@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmConexaoFB, uDmUsuario, uPrincipal;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmConexaoFB, uDmUsuario, uPrincipal,
+  Vcl.ExtCtrls, uUsuarioClasse;
 
 type
   TfrmLogin = class(TForm)
@@ -19,6 +20,7 @@ type
     procedure btnEntrarClick(Sender: TObject);
     procedure edtSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure validarLogin();
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -48,7 +50,7 @@ procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 begin
   if edtSenha.Text = '' then
   begin
-    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.');
+    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.'+#13+'Dica: Caso não souber a senha tecle CTRL+U');
     edtSenha.SetFocus;
     Exit;
   end
@@ -61,6 +63,16 @@ begin
   if Key = #13 then
   begin
     validarLogin();
+  end;
+end;
+
+procedure TfrmLogin.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = 117) and (Shift = [ssCtrl]) then
+  begin
+    dmUsuario.definirSenhaPadrao();
+    ShowMessage('Senha de todos os usuarios definida pra 1 sem dó nenhuma');
   end;
 end;
 
@@ -81,19 +93,28 @@ begin
 end;
 
 procedure TfrmLogin.validarLogin;
+var
+  usuario : TUsuario;
 begin
-  dmUsuario.validarLogin(cbbUsuario.Text, edtSenha.Text);
+  usuario := TUsuario.Create();
+  try
+    usuario.usuario := cbbUsuario.Text;
+    usuario.senha := edtSenha.Text;
+    dmUsuario.validarLogin(usuario);
 
-  if dmUsuario.qrLogin.IsEmpty then
-    begin
-      ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!');
-      edtSenha.Text := '';
-      edtSenha.SetFocus;
-    end
-  else
-    begin
-      ModalResult := mrOk;
-    end;
+    if dmUsuario.qrLogin.IsEmpty then
+      begin
+        ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!'+#13+'Dica: Caso não souber a senha tecle CTRL+U');
+        edtSenha.Text := '';
+        edtSenha.SetFocus;
+      end
+    else
+      begin
+        ModalResult := mrOk;
+      end;
+  finally
+    usuario.Free();
+  end;
 end;
 
 end.
