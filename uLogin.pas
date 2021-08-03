@@ -28,7 +28,6 @@ type
     procedure lblNovoUsuarioClick(Sender: TObject);
     procedure listarUsuarios();
     procedure FormShow(Sender: TObject);
-    procedure cbbUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,11 +63,6 @@ begin
   end
   else
     validarLogin();
-end;
-
-procedure TfrmLogin.cbbUsuarioClick(Sender: TObject);
-begin
-  listarUsuarios();
 end;
 
 procedure TfrmLogin.cbbUsuarioKeyDown(Sender: TObject; var Key: Word;
