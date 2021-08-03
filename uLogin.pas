@@ -58,7 +58,7 @@ procedure TfrmLogin.btnEntrarClick(Sender: TObject);
 begin
   if edtSenha.Text = '' then
   begin
-    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.'+#13+'Dica: Caso não souber a senha tecle CTRL+T');
+    ShowMessage('Preencha a senha do usuário '+cbbUsuario.Text+'.'+#13+#13+'Dica: Caso não souber a senha tecle CTRL+T');
     edtSenha.SetFocus;
     Exit;
   end
@@ -146,7 +146,7 @@ begin
 
     if dmUsuario.qrLogin.IsEmpty then
       begin
-        ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!'+#13+'Dica: Caso não souber a senha tecle CTRL+T');
+        ShowMessage('Senha do usuário '+ cbbUsuario.Text + ' inválida!'+#13+#13+'Dica: Caso não souber a senha tecle CTRL+T');
         edtSenha.Text := '';
         edtSenha.SetFocus;
       end
