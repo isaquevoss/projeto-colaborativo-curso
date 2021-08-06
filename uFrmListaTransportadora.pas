@@ -15,10 +15,12 @@ type
     edt_BuscarRzTransp: TEdit;
     tmr_BuscaTransp: TTimer;
     lbl_qtdRegistros: TLabel;
+    btnEditar: TButton;
     procedure btnCadastrarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edt_BuscarRzTranspChange(Sender: TObject);
     procedure tmr_BuscaTranspTimer(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,6 +40,16 @@ implementation
 procedure TfrmListaTransportadora.btnCadastrarClick(Sender: TObject);
 begin
   FrmTransportadora.ShowModal;
+end;
+
+procedure TfrmListaTransportadora.btnEditarClick(Sender: TObject);
+begin
+  if DmTransportadora.qrTransportadora.FieldByName('codigo').AsInteger >0 then
+  begin
+    FrmTransportadora.editar(DmTransportadora.qrTransportadora.FieldByName('codigo').AsInteger);
+    DmTransportadora.CarregarTransportadora;
+  end;
+
 end;
 
 procedure TfrmListaTransportadora.CarregarLista;

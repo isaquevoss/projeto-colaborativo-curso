@@ -13,8 +13,6 @@ object FrmTransportadora: TFrmTransportadora
   OldCreateOrder = False
   Position = poScreenCenter
   OnShow = FormShow
-  ExplicitWidth = 320
-  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   object lblNome: TLabel

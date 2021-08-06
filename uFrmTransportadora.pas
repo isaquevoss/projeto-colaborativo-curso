@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, uDmTransportadora, uFrmListaTransportadora,
-  ACBrBase, ACBrValidador, Vcl.ExtCtrls;
+  ACBrBase, ACBrValidador, Vcl.ExtCtrls,uTransportadoraClasse;
 
 type
   TFrmTransportadora = class(TForm)
@@ -44,6 +44,7 @@ type
     procedure btnLimparClick(Sender: TObject);
     procedure edtNomeExit(Sender: TObject);
   private
+    Ftransportadora: TTransportadora;
     { Private declarations }
   public
     { Public declarations }
@@ -51,6 +52,12 @@ type
     procedure ValidaCpfCnpj();
     function validarNome(): Boolean;
     function validaFormulario() : Boolean;
+    procedure editar(codigo: Integer);
+    procedure atualizarDadosTela();
+
+    property transportadora: TTransportadora read Ftransportadora write Ftransportadora;
+
+
 
   end;
 
@@ -58,10 +65,22 @@ var
   FrmTransportadora: TFrmTransportadora;
 
 implementation
-uses
-  uTransportadoraClasse;
+
 
 {$R *.dfm}
+
+procedure TFrmTransportadora.atualizarDadosTela;
+begin
+  edtNome.Text := Ftransportadora.razao;
+  edtEndereco.Text:= Ftransportadora.endereco;
+  edtCidade.text := Ftransportadora.cidade;
+  cbxUF.Text := Ftransportadora.UF;
+  edtTelefone.Text := Ftransportadora.telefone;
+  edtEmail.Text := Ftransportadora.email;
+  edtCnpj.Text := Ftransportadora.CNPJ;
+  edtRntrc.Text := Ftransportadora.RNTRC;
+
+end;
 
 procedure TFrmTransportadora.btnCancelarClick(Sender: TObject);
 begin
@@ -143,6 +162,12 @@ begin
   end;
 end;
 
+procedure TFrmTransportadora.editar(codigo : Integer);
+begin
+  transportadora := DmTransportadora.getTransportadoraByCod(codigo);
+  ShowModal();
+end;
+
 procedure TFrmTransportadora.edtCnpjExit(Sender: TObject);
 begin
   ValidaCpfCnpj();
@@ -156,6 +181,8 @@ end;
 procedure TFrmTransportadora.FormShow(Sender: TObject);
 begin
  LimparFormulario();
+   if Assigned(transportadora) then
+    atualizarDadosTela();
 end;
 
 procedure TFrmTransportadora.LimparFormulario;

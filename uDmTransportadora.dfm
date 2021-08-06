@@ -17,4 +17,9 @@ object DmTransportadora: TDmTransportadora
     Left = 232
     Top = 136
   end
+  object qrBuscarTransportadora: TFDQuery
+    Connection = DmConexaoFB.Conexao
+    Left = 96
+    Top = 128
+  end
 end
