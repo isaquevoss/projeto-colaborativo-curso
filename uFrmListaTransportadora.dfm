@@ -59,6 +59,15 @@ object frmListaTransportadora: TfrmListaTransportadora
     TabOrder = 0
     OnChange = edt_BuscarRzTranspChange
   end
+  object btnEditar: TButton
+    Left = 472
+    Top = 39
+    Width = 155
+    Height = 25
+    Caption = 'Editar Transportadora'
+    TabOrder = 3
+    OnClick = btnEditarClick
+  end
   object tmr_BuscaTransp: TTimer
     Interval = 1500
     OnTimer = tmr_BuscaTranspTimer

@@ -13,13 +13,17 @@ type
     qrInsertUpdate: TFDQuery;
     qrTransportadora: TFDQuery;
     dsTransportadora: TDataSource;
+    qrBuscarTransportadora: TFDQuery;
   private
     { Private declarations }
+    transportadora : string;
   public
     { Public declarations }
     procedure Cadastrar(_transportadora: TTransportadora);
     procedure CarregarTransportadora();
     procedure BuscarTransp(_razao: string);
+    function getTransportadoraByCod(codigo: Integer):TTransportadora;
+
   end;
 
 var
@@ -80,6 +84,32 @@ begin
   qrTransportadora.Close();
   qrTransportadora.SQL.Clear();
   qrTransportadora.Open('Select * from transporte');
+end;
+
+function TDmTransportadora.getTransportadoraByCod(codigo: Integer): TTransportadora;
+  var _transportadora : TTransportadora;
+begin
+  qrBuscarTransportadora.SQL.Clear();
+  qrBuscarTransportadora.SQL.Add('select * from transporte where codigo = :codigo');
+  qrBuscarTransportadora.ParamByName('codigo').AsInteger := codigo;
+  qrBuscarTransportadora.Open();
+
+  if qrBuscarTransportadora.RecordCount = 0 then
+    raise Exception.Create('Nenhum vendedor encontrado!');
+
+    _transportadora := TTransportadora.Create();
+    _transportadora.codigo := qrBuscarTransportadora.FieldByName('codigo').AsInteger;
+    _transportadora.razao := qrBuscarTransportadora.FieldByName('RAZAO_SOCIAL').AsString;
+    _transportadora.endereco := qrBuscarTransportadora.FieldByName('ENDERECO').AsString;
+    _transportadora.cidade := qrBuscarTransportadora.FieldByName('CIDADE').AsString;
+    _transportadora.UF := qrBuscarTransportadora.FieldByName('UF').AsString;
+    _transportadora.telefone := qrBuscarTransportadora.FieldByName('TELEFONE').AsString;
+    _transportadora.email := qrBuscarTransportadora.FieldByName('EMAIL').AsString;
+    _transportadora.CNPJ := qrBuscarTransportadora.FieldByName('CNPJ').AsString;
+    _transportadora.RNTRC := qrBuscarTransportadora.FieldByName('RNTRC').AsString;
+
+    Result:= _transportadora;
+
 end;
 
 end.
