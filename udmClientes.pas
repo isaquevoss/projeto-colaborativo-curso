@@ -16,21 +16,20 @@ type
   private
     { Private declarations }
   public
-     procedure buscarclientes(_cliente: TCliente);
-     procedure cadastrarCliente(_cliente: TCliente);
+    procedure buscarclientes(_cliente: TCliente);
+    procedure cadastrarCliente(_cliente: TCliente);
+    procedure carregarClientes();
+    function getClienteById(codigo: integer): TCliente;
   end;
 
 var
-  Dmclientes: tdmclientes;
-
-
+  Dmclientes: TDmclientes;
 
 implementation
 
-{%CLASSGROUP 'Vcl.Controls.TControl'}
+{ %CLASSGROUP 'Vcl.Controls.TControl' }
 
 {$R *.dfm}
-
 { TDataModule1 }
 
 procedure TDmclientes.buscarclientes(_cliente: TCliente);
@@ -39,34 +38,62 @@ begin
   if not DmConexaoFB.Conexao.Connected then
     DmConexaoFB.conectarBanco();
 
+  qrClientes.Close();
+  qrClientes.SQL.Clear();
 
-  qrclientes.Close();
-  qrclientes.SQL.Clear();
+  qrClientes.SQL.Add('select nome from cliente ');
+  qrClientes.SQL.Add('where nome containing :nome');
 
-  qrclientes.SQL.Add('select nome from cliente ');
-  qrclientes.SQL.Add('where nome containing :nome');
-
-  qrclientes.ParamByName('nome').AsString := _cliente.nome;
-  qrclientes.Open();
+  qrClientes.ParamByName('nome').AsString := _cliente.nome;
+  qrClientes.Open();
 
 end;
 
 procedure TDmclientes.cadastrarCliente(_cliente: TCliente);
 begin
   if not DmConexaoFB.Conexao.Connected then
-        DmConexaoFB.conectarBanco();
+    DmConexaoFB.conectarBanco();
 
-  //Limpando e fechando a Query
+  // Limpando e fechando a Query
   qrInsertClientes.Close;
   qrInsertClientes.SQL.Clear;
 
-  //Iniciando o SQL
+  // Iniciando o SQL
   qrInsertClientes.SQL.Add('Insert into cliente (codigo, nome, cadastro)');
-  qrInsertClientes.SQL.Add('values (cast((select count(cliente.codigo) from cliente) as VARCHAR(6)), :nome, :cadastro);');
+  qrInsertClientes.SQL.Add
+    ('values (cast((select count(cliente.codigo) from cliente) as VARCHAR(6)), :nome, :cadastro);');
   qrInsertClientes.ParamByName('nome').AsString := _cliente.nome;
   qrInsertClientes.ParamByName('cadastro').AsString := _cliente.dataCadastro;
   qrInsertClientes.ExecSQL;
 
+end;
+
+procedure TDmclientes.carregarClientes;
+begin
+  qrClientes.Close();
+  qrClientes.SQL.Clear();
+  qrClientes.Open('select * from cliente');
+end;
+
+function TDmclientes.getClienteById(codigo: integer): TCliente;
+var
+  _cliente: TCliente;
+
+begin
+  qrClientes.SQL.Clear();
+  qrClientes.SQL.Add('select * from cliente where codigo = :codigo');
+  qrClientes.ParamByName('codigo').AsString := inttostr(codigo).PadLeft(6, '0');
+  qrClientes.Open();
+
+  if qrClientes.RecordCount = 0 then
+    raise Exception.Create('Nenhum cliente encontrado');
+
+  _cliente := TCliente.Create();
+  _cliente.nome := qrClientes.FieldByName('nome').AsString;
+  _cliente.cpf := qrClientes.FieldByName('cnpj_cnpf').AsString;
+  _cliente.dataCadastro := qrClientes.FieldByName('cadastro').AsString;
+
+  Result := _cliente;
 end;
 
 end.
