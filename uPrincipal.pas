@@ -71,7 +71,7 @@ end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
-form2.Show();
+  frmBuscaClientes.Show();
 end;
 
 procedure TForm1.Button5Click(Sender: TObject);

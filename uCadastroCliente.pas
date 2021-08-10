@@ -27,14 +27,22 @@ type
     procedure FormShow(Sender: TObject);
     procedure btn_LimparFormClick(Sender: TObject);
 
+
+
   private
     { Private declarations }
+    Fcliente: TCliente;
+    function getCliente: TCliente;
   public
     { Public declarations }
     function soNumeros(_texto: string): string;
     procedure limparClientes();
     function validaNome(): Boolean;
     function formValido(): Boolean;
+    procedure editar(codigo: Integer);
+    procedure atualizarDadosTela();
+
+    property cliente: TCliente read Fcliente write Fcliente;
   end;
 
 var
@@ -43,6 +51,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadastroCliente.atualizarDadosTela;
+begin
+  Edit_nomeCliente.Text := cliente.nome;
+  Edit_CpfCnpj.Text := cliente.cpf;
+  Edit_DataCadastro.Text := cliente.dataCadastro;
+end;
 
 procedure TfrmCadastroCliente.btn_CadastrarClienteClick(Sender: TObject);
 var
@@ -95,6 +110,13 @@ begin
   close();
 end;
 
+procedure TfrmCadastroCliente.editar(codigo: Integer);
+begin
+  cliente := Dmclientes.getClienteById(codigo);
+
+  ShowModal();
+end;
+
 procedure TfrmCadastroCliente.Edit_CpfCnpjExit(Sender: TObject);
 var
   cnpj_Cpf: string;
@@ -131,6 +153,9 @@ procedure TfrmCadastroCliente.FormShow(Sender: TObject);
 begin
   limparClientes();
   lbValidaNome.Visible := false;
+
+  if Assigned(cliente) then
+    atualizarDadosTela();
 end;
 
 function TfrmCadastroCliente.formValido: Boolean;
@@ -145,6 +170,11 @@ begin
 
   if Edit_DataCadastro.Text = '' then
     Result := false;
+end;
+
+function TfrmCadastroCliente.getCliente: TCliente;
+begin
+
 end;
 
 procedure TfrmCadastroCliente.limparClientes;

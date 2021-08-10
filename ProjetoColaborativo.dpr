@@ -14,7 +14,7 @@ uses
   uDmVersoesExe in 'uDmVersoesExe.pas' {dmVersoes: TDataModule},
   uDmEstoque in 'uDmEstoque.pas' {DmEstoque: TDataModule},
   uListagemEstoque in 'uListagemEstoque.pas' {FrmListagemEstoque},
-  uClientes in 'uClientes.pas' {Form2},
+  uClientes in 'uClientes.pas' {frmBuscaClientes},
   udmClientes in 'udmClientes.pas' {Dmclientes: TDataModule},
   uDmVendasPorCliente in 'uDmVendasPorCliente.pas' {dmVendasPorCliente: TDataModule},
   uVendasPorCliente in 'uVendasPorCliente.pas' {frmVendasPorCliente},
@@ -54,7 +54,7 @@ begin
   Application.CreateForm(TdmVersoes, dmVersoes);
   Application.CreateForm(TDmEstoque, DmEstoque);
   Application.CreateForm(TFrmListagemEstoque, FrmListagemEstoque);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TfrmBuscaClientes, frmBuscaClientes);
   Application.CreateForm(TDmclientes, Dmclientes);
   Application.CreateForm(TdmVendasPorCliente, dmVendasPorCliente);
   Application.CreateForm(TfrmVendasPorCliente, frmVendasPorCliente);
