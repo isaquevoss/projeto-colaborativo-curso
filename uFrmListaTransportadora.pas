@@ -39,7 +39,7 @@ implementation
 
 procedure TfrmListaTransportadora.btnCadastrarClick(Sender: TObject);
 begin
-  FrmTransportadora.ShowModal;
+  FrmTransportadora.novo;
 end;
 
 procedure TfrmListaTransportadora.btnEditarClick(Sender: TObject);
