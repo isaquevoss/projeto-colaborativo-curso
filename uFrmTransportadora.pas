@@ -167,9 +167,15 @@ end;
 
 procedure TFrmTransportadora.FormShow(Sender: TObject);
 begin
-  LimparFormulario();
-  if Assigned(transportadora) then
+
+  if operacao = fmEdit then
+  begin
     atualizarDadosTela();
+  end;
+  if operacao = fmInsert then
+  begin
+    LimparFormulario();
+  end;
 end;
 
 procedure TFrmTransportadora.LimparFormulario;
