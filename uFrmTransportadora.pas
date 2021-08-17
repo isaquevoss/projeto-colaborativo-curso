@@ -80,7 +80,7 @@ begin
   edtNome.Text := Ftransportadora.razao;
   edtEndereco.Text := Ftransportadora.endereco;
   edtCidade.text := Ftransportadora.cidade;
-  cbxUF.Text := Ftransportadora.UF;
+  cbxUF.Text:= Ftransportadora.UF;
   edtTelefone.Text := Ftransportadora.telefone;
   edtEmail.Text := Ftransportadora.email;
   edtCnpj.Text := Ftransportadora.CNPJ;
@@ -215,7 +215,7 @@ begin
   transportadora.razao := edtNome.Text;
   transportadora.endereco := edtEndereco.Text;
   transportadora.cidade := edtCidade.text;
-  transportadora.UF := cbxUF.Text;
+  transportadora.UF:= cbxUF.Text;
   transportadora.telefone := edtTelefone.Text;
   transportadora.email := edtEmail.Text;
   transportadora.CNPJ := edtCnpj.Text;
