@@ -20,6 +20,7 @@ type
   public
     { Public declarations }
     procedure Cadastrar(_transportadora: TTransportadora);
+    procedure Atualizar(_transportadora : TTransportadora);
     procedure CarregarTransportadora();
     procedure BuscarTransp(_razao: string);
     function getTransportadoraByCod(codigo: Integer):TTransportadora;
@@ -37,6 +38,32 @@ implementation
 {$R *.dfm}
 
 { TDataModule1 }
+
+procedure TDmTransportadora.Atualizar(_transportadora: TTransportadora);
+begin
+  if not DmConexaoFB.Conexao.Connected then
+    DmConexaoFB.conectarBanco();
+    qrInsertUpdate.Close();
+    qrInsertUpdate.SQL.Clear();
+    qrInsertUpdate.SQL.Add('UPDATE TRANSPORTE SET');
+    qrInsertUpdate.SQL.Add('RAZAO_SOCIAL = :razao_social, ENDERECO = :ENDERECO,CIDADE = :CIDADE,');
+    qrInsertUpdate.SQL.Add('UF = :UF, TELEFONE = :TELEFONE,EMAIL = :EMAIL,');
+    qrInsertUpdate.SQL.Add('CNPJ = :CNPJ,RNTRC= :RNTRC');
+    qrInsertUpdate.SQL.Add('WHERE CODIGO = :CODIGO');
+    qrInsertUpdate.ParamByName('RAZAO_SOCIAL').Value := _transportadora.razao;
+    qrInsertUpdate.ParamByName('ENDERECO').AsString := _transportadora.endereco;
+    qrInsertUpdate.ParamByName('CIDADE').AsString := _transportadora.cidade;
+    qrInsertUpdate.ParamByName('UF').AsString := _transportadora.UF;
+    qrInsertUpdate.ParamByName('TELEFONE').AsString := _transportadora.telefone;
+    qrInsertUpdate.ParamByName('EMAIL').AsString := _transportadora.email;
+    qrInsertUpdate.ParamByName('CNPJ').AsString := _transportadora.CNPJ;
+    qrInsertUpdate.ParamByName('RNTRC').AsString := _transportadora.RNTRC;
+    qrInsertUpdate.ParamByName('CODIGO').AsInteger := _transportadora.codigo;
+
+    qrInsertUpdate.ExecSQL();
+
+
+end;
 
 procedure TDmTransportadora.BuscarTransp(_razao: string);
 begin
@@ -95,7 +122,7 @@ begin
   qrBuscarTransportadora.Open();
 
   if qrBuscarTransportadora.RecordCount = 0 then
-    raise Exception.Create('Nenhum vendedor encontrado!');
+    raise Exception.Create('Nenhuma transportadora encontrada!');
 
     _transportadora := TTransportadora.Create();
     _transportadora.codigo := qrBuscarTransportadora.FieldByName('codigo').AsInteger;
