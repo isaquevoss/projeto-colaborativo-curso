@@ -88,7 +88,7 @@ object Form1: TForm1
   end
   object Button8: TButton
     Left = 240
-    Top = 248
+    Top = 152
     Width = 169
     Height = 25
     Caption = 'Teste Validar formatar cnpj'
@@ -103,5 +103,14 @@ object Form1: TForm1
     Caption = 'Validar Formul'#225'rios'
     TabOrder = 9
     OnClick = Button9Click
+  end
+  object Button10: TButton
+    Left = 240
+    Top = 216
+    Width = 169
+    Height = 25
+    Caption = 'Vendedores MVC'
+    TabOrder = 10
+    OnClick = Button10Click
   end
 end
