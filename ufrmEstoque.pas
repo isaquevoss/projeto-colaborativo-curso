@@ -1,4 +1,4 @@
-unit uEstoque;
+unit ufrmEstoque;
 
 interface
 
