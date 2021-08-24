@@ -223,7 +223,7 @@ object FrmTransportadora: TFrmTransportadora
     TabOrder = 7
   end
   object btnSalvar: TButton
-    Left = 263
+    Left = 255
     Top = 347
     Width = 105
     Height = 25

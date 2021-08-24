@@ -3,13 +3,18 @@ unit uFrmTransportadora;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  uDmTransportadora, uFrmListaTransportadora, ACBrBase, ACBrValidador, Vcl.ExtCtrls,
-  uTransportadoraClasse;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, uDmTransportadora, uFrmListaTransportadora, ACBrBase,
+  ACBrValidador, Vcl.ExtCtrls, uTransportadoraClasse;
 
 type
-  TFormOperacao = (fmInsert,fmEdit);
+  TFormOperacao = (fmInsert , fmEdit);
+
+  asdkjflçabsolute= (asfd = 595,sdaf= 111,aaaa =12 , fwewer,werwe , dddddd);
+
+  TMoleloDFe = (mdNfe = 55, mdNfce = 65, mdSat = 59);
+
   TFrmTransportadora = class(TForm)
     edtNome: TEdit;
     lblNome: TLabel;
@@ -64,7 +69,6 @@ type
     procedure SalvarEditada();
     procedure validarCampos();
     property transportadora: TTransportadora read Ftransportadora write Ftransportadora;
-
   end;
 
 var
@@ -80,7 +84,7 @@ begin
   edtNome.Text := Ftransportadora.razao;
   edtEndereco.Text := Ftransportadora.endereco;
   edtCidade.text := Ftransportadora.cidade;
-  cbxUF.Text:= Ftransportadora.UF;
+  cbxUF.Text := Ftransportadora.UF;
   edtTelefone.Text := Ftransportadora.telefone;
   edtEmail.Text := Ftransportadora.email;
   edtCnpj.Text := Ftransportadora.CNPJ;
@@ -103,7 +107,7 @@ var
   transportadora: TTransportadora;
 begin
   transportadora := TTransportadora.Create();
-  if operacao = fmEdit then
+  if operacao = fmInsert then
   begin
     try
       SalvarEditada();
@@ -113,17 +117,16 @@ begin
       transportadora.Free();
     end;
   end;
-  if operacao = fmInsert then
+  if operacao = fmEdit then
   begin
     try
-    SalvarNova();
-    DmTransportadora.CarregarTransportadora;
-    frmListaTransportadora.lbl_qtdRegistros.Caption := 'Registros: ' + IntToStr(DmTransportadora.qrTransportadora.RecordCount);
+      SalvarNova();
+      DmTransportadora.CarregarTransportadora;
+      frmListaTransportadora.lbl_qtdRegistros.Caption := 'Registros: ' + IntToStr(DmTransportadora.qrTransportadora.RecordCount);
 
     finally
-    transportadora.Free();
+      transportadora.Free();
     end;
-
 
   end;
        // separar em 3 blocos 3 metodos e chamar cada medoto no if
@@ -208,25 +211,25 @@ end;
 
 procedure TFrmTransportadora.SalvarEditada;
 var
-    transportadora: TTransportadora;
+  transportadora: TTransportadora;
 begin
   transportadora := TTransportadora.Create;
-  transportadora.codigo := DmTransportadora.qrTransportadora.FieldByName('codigo').AsInteger ;
+  transportadora.codigo := DmTransportadora.qrTransportadora.FieldByName('codigo').AsInteger;
   transportadora.razao := edtNome.Text;
   transportadora.endereco := edtEndereco.Text;
   transportadora.cidade := edtCidade.text;
-  transportadora.UF:= cbxUF.Text;
+  transportadora.UF := cbxUF.Text;
   transportadora.telefone := edtTelefone.Text;
   transportadora.email := edtEmail.Text;
   transportadora.CNPJ := edtCnpj.Text;
   transportadora.RNTRC := edtRntrc.Text;
   validarCampos();
 
-   if not validaFormulario then
-      begin
-        ShowMessage('Formulário com dados inválidos verifique');
-        Exit;
-      end;
+  if not validaFormulario then
+  begin
+    ShowMessage('Formulário com dados inválidos verifique');
+    Exit;
+  end;
   DmTransportadora.Atualizar(transportadora);
   ShowMessage('Transportadora atualizada com sucesso!');
   LimparFormulario();
@@ -234,8 +237,8 @@ begin
 end;
 
 procedure TFrmTransportadora.SalvarNova;
-  var
-    transportadora: TTransportadora;
+var
+  transportadora: TTransportadora;
 begin
   transportadora := TTransportadora.Create;
   transportadora.razao := edtNome.Text;
@@ -248,11 +251,11 @@ begin
   transportadora.RNTRC := edtRntrc.Text;
   validarCampos();
 
-   if not validaFormulario then
-      begin
-        ShowMessage('Formulário com dados inválidos verifique');
-        Exit;
-      end;
+  if not validaFormulario then
+  begin
+    ShowMessage('Formulário com dados inválidos verifique');
+    Exit;
+  end;
   DmTransportadora.Cadastrar(transportadora);
   ShowMessage('Transportadora cadastrado com sucesso!');
   LimparFormulario();
@@ -339,29 +342,29 @@ begin
 end;
 
 procedure TFrmTransportadora.validarCampos;
-  var
-    i: Integer;
+var
+  i: Integer;
 begin
-   for i := 0 to ComponentCount - 1 do
-    begin
-      if Components[i] is TEdit then
-        if TEdit(Components[i]).Text = '' then
-        begin
-          ShowMessage('Existem campos em branco, verifique!');
-          TEdit(Components[i]).SetFocus;
-          exit
-        end;
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if Components[i] is TEdit then
+      if TEdit(Components[i]).Text = '' then
+      begin
+        ShowMessage('Existem campos em branco, verifique!');
+        TEdit(Components[i]).SetFocus;
+        exit
+      end;
 
-      if Components[i] is TComboBox then
-        if TComboBox(Components[i]).Text = '' then
-        begin
-          lblValidaUf.Caption := 'Informe a UF';
-          lblValidaUf.Font.Color := clRed;
-          lblValidaUf.Visible := True;
-          exit
-        end;
+    if Components[i] is TComboBox then
+      if TComboBox(Components[i]).Text = '' then
+      begin
+        lblValidaUf.Caption := 'Informe a UF';
+        lblValidaUf.Font.Color := clRed;
+        lblValidaUf.Visible := True;
+        exit
+      end;
 
-    end;
+  end;
 end;
 
 function TFrmTransportadora.validarNome: Boolean;

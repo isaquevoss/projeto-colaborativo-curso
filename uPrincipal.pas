@@ -19,6 +19,7 @@ type
     Button7: TButton;
     Button8: TButton;
     Button9: TButton;
+    Button10: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -29,6 +30,7 @@ type
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
+    procedure Button10Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -44,7 +46,7 @@ implementation
     uItensVendidosPorDia, uClientes,
     uVendasPorCliente, uFrmFornecedor, uFrmListaTransportadora,
   ufrmCadastroVendedor, ufrmVendedores, uTesteValidarFormatarDados,
-  uFrmValidarFormulario;
+  uFrmValidarFormulario, uControlleApp;
 
 
 {$R *.dfm}
@@ -52,6 +54,11 @@ implementation
 procedure TForm1.btn_VersoesClick(Sender: TObject);
 begin
  frmVersoesExe.Show;
+end;
+
+procedure TForm1.Button10Click(Sender: TObject);
+begin
+  controleApp.showVendedorCad();
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);

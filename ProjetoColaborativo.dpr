@@ -39,7 +39,14 @@ uses
   uEstoqueClasse in 'classes\uEstoqueClasse.pas',
   uClienteClasse in 'classes\uClienteClasse.pas',
   uUsuarioClasse in 'classes\uUsuarioClasse.pas',
-  uCadastroUsuario in 'uCadastroUsuario.pas' {CadastroUsuario};
+  uCadastroUsuario in 'uCadastroUsuario.pas' {CadastroUsuario},
+  uControle in 'controles\uControle.pas',
+  uModelo in 'modelos\uModelo.pas',
+  uConexao in 'database\uConexao.pas',
+  uControleVendedor in 'controles\uControleVendedor.pas',
+  uVendedor in 'modelos\uVendedor.pas',
+  uViewVendedor in 'views\uViewVendedor.pas' {viewVendedor},
+  uControlleApp in 'controles\uControlleApp.pas';
 
 {$R *.res}
 
@@ -77,8 +84,15 @@ begin
   Application.CreateForm(TfrmLogin, frmLogin);
   Application.CreateForm(TdmUsuario, dmUsuario);
   Application.CreateForm(TCadastroUsuario, CadastroUsuario);
+  Application.CreateForm(TviewVendedor, viewVendedor);
   if frmLogin.ShowModal <> mrOk then
     Application.Terminate;
+
+  controleApp := TControleApp.Create();
+  conexao := TConexao.Create();
+  conexao.cn := DmConexaoFB.Conexao;
+  controleVendedor := TControleVendedor.Create();
+
 
   Application.Run;
 end.
