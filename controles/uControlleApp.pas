@@ -3,13 +3,14 @@ unit uControlleApp;
 interface
 
 uses
-  uControle;
+  uControle, uClientes;
 
 type
   TControleApp = class(TControle)
   private
   public
     procedure showVendedorCad();
+    procedure showClienteCad();
   end;
   var controleApp: TControleApp;
 
@@ -19,6 +20,12 @@ uses
   uViewVendedor;
 
 { TControleApp }
+
+procedure TControleApp.showClienteCad;
+begin
+  frmBuscaClientes.ShowModal;
+
+end;
 
 procedure TControleApp.showVendedorCad;
 begin
