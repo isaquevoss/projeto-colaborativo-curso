@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  uVersoesExe, Vcl.StdCtrls, uEstoque;
+  uVersoesExe, Vcl.StdCtrls, ufrmEstoque;
 
 type
   TForm1 = class(TForm)

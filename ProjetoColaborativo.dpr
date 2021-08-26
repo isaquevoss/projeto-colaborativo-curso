@@ -26,7 +26,7 @@ uses
   uDmVendedor in 'uDmVendedor.pas' {DmVendedor: TDataModule},
   uFrmListaTransportadora in 'uFrmListaTransportadora.pas' {frmListaTransportadora},
   uDmTransportadora in 'uDmTransportadora.pas' {DmTransportadora: TDataModule},
-  uEstoque in 'uEstoque.pas' {frmEstoque},
+  ufrmEstoque in 'ufrmEstoque.pas' {frmEstoque},
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
@@ -47,6 +47,7 @@ uses
   uVendedor in 'modelos\uVendedor.pas',
   uViewVendedor in 'views\uViewVendedor.pas' {viewVendedor},
   uControlleApp in 'controles\uControlleApp.pas',
+  uEstoque in 'modelos\uEstoque.pas',
   uCliente in 'modelos\uCliente.pas';
 
 {$R *.res}
