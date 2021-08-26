@@ -20,6 +20,7 @@ type
     Button8: TButton;
     Button9: TButton;
     Button10: TButton;
+    btnTransportadoraMVC: TButton;
     btClientesMVC: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
@@ -32,6 +33,7 @@ type
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
     procedure Button10Click(Sender: TObject);
+    procedure btnTransportadoraMVCClick(Sender: TObject);
     procedure btClientesMVCClick(Sender: TObject);
 
   private
@@ -52,6 +54,11 @@ implementation
 
 
 {$R *.dfm}
+
+procedure TForm1.btnTransportadoraMVCClick(Sender: TObject);
+begin
+  //
+end;
 
 procedure TForm1.btClientesMVCClick(Sender: TObject);
 begin
@@ -95,7 +102,9 @@ end;
 
 procedure TForm1.Button6Click(Sender: TObject);
 begin
-  frmListaTransportadora.Show();
+  frmLista
+  
+  portadora.Show();
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);

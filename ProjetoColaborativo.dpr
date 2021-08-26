@@ -47,6 +47,7 @@ uses
   uVendedor in 'modelos\uVendedor.pas',
   uViewVendedor in 'views\uViewVendedor.pas' {viewVendedor},
   uControlleApp in 'controles\uControlleApp.pas',
+  uViewTransportadora in 'views\uViewTransportadora.pas' {viewTransportadora},
   uEstoque in 'modelos\uEstoque.pas',
   uCliente in 'modelos\uCliente.pas';
 
@@ -87,6 +88,7 @@ begin
   Application.CreateForm(TdmUsuario, dmUsuario);
   Application.CreateForm(TCadastroUsuario, CadastroUsuario);
   Application.CreateForm(TviewVendedor, viewVendedor);
+  Application.CreateForm(TviewTransportadora, viewTransportadora);
   if frmLogin.ShowModal <> mrOk then
     Application.Terminate;
 

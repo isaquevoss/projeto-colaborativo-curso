@@ -200,6 +200,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="controles\uControlleApp.pas"/>
+        <DCCReference Include="views\uViewTransportadora.pas">
+            <Form>viewTransportadora</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="modelos\uEstoque.pas"/>
         <DCCReference Include="modelos\uCliente.pas"/>
         <BuildConfiguration Include="Release">
