@@ -31,8 +31,6 @@ object frmEstoque: TfrmEstoque
     Height = 65
     Align = alTop
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 2
     object btnListagem: TButton
       Left = 31
       Top = 21

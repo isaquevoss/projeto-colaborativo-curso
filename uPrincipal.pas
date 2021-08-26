@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
-  uVersoesExe, Vcl.StdCtrls, uEstoque;
+  uVersoesExe, Vcl.StdCtrls, ufrmEstoque;
 
 type
   TForm1 = class(TForm)
@@ -21,6 +21,7 @@ type
     Button9: TButton;
     Button10: TButton;
     btnTransportadoraMVC: TButton;
+    btClientesMVC: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btn_VersoesClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -33,6 +34,7 @@ type
     procedure Button9Click(Sender: TObject);
     procedure Button10Click(Sender: TObject);
     procedure btnTransportadoraMVCClick(Sender: TObject);
+    procedure btClientesMVCClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -56,6 +58,11 @@ implementation
 procedure TForm1.btnTransportadoraMVCClick(Sender: TObject);
 begin
   //
+end;
+
+procedure TForm1.btClientesMVCClick(Sender: TObject);
+begin
+  controleApp.showClienteCad;
 end;
 
 procedure TForm1.btn_VersoesClick(Sender: TObject);
@@ -95,7 +102,9 @@ end;
 
 procedure TForm1.Button6Click(Sender: TObject);
 begin
-  frmListaTransportadora.Show();
+  frmLista
+  
+  portadora.Show();
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
