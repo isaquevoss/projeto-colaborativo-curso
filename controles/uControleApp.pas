@@ -3,7 +3,7 @@ unit uControleApp;
 interface
 
 uses
-  uControle, uClientes;
+  uControle, uViewCliente;
 
 type
   TControleApp = class(TControle)
@@ -23,7 +23,7 @@ uses
 
 procedure TControleApp.showClienteCad;
 begin
-  frmBuscaClientes.ShowModal;
+  viewClientes.ShowModal;
 
 end;
 
