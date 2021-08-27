@@ -102,9 +102,7 @@ end;
 
 procedure TForm1.Button6Click(Sender: TObject);
 begin
-  frmLista
-  
-  portadora.Show();
+  frmListaTransportadora.Show();
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);

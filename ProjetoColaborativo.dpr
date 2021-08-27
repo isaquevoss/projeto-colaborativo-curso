@@ -47,7 +47,6 @@ uses
   uVendedor in 'modelos\uVendedor.pas',
   uViewVendedor in 'views\uViewVendedor.pas' {viewVendedor},
   uControleApp in 'controles\uControleApp.pas',
-  uControlleApp in 'controles\uControlleApp.pas',
   uViewTransportadora in 'views\uViewTransportadora.pas' {viewTransportadora},
   uEstoque in 'modelos\uEstoque.pas',
   uCliente in 'modelos\uCliente.pas';
