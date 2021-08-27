@@ -46,7 +46,7 @@ implementation
     uItensVendidosPorDia, uClientes,
     uVendasPorCliente, uFrmFornecedor, uFrmListaTransportadora,
   ufrmCadastroVendedor, ufrmVendedores, uTesteValidarFormatarDados,
-  uFrmValidarFormulario, uControlleApp;
+  uFrmValidarFormulario, uControleApp;
 
 
 {$R *.dfm}

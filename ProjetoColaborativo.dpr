@@ -46,7 +46,7 @@ uses
   uControleVendedor in 'controles\uControleVendedor.pas',
   uVendedor in 'modelos\uVendedor.pas',
   uViewVendedor in 'views\uViewVendedor.pas' {viewVendedor},
-  uControlleApp in 'controles\uControlleApp.pas';
+  uControleApp in 'controles\uControleApp.pas';
 
 {$R *.res}
 
