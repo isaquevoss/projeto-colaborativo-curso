@@ -106,11 +106,28 @@ object Form1: TForm1
   end
   object Button10: TButton
     Left = 240
-    Top = 216
+    Top = 200
     Width = 169
     Height = 25
     Caption = 'Vendedores MVC'
     TabOrder = 10
     OnClick = Button10Click
+  end
+  object btnTransportadoraMVC: TButton
+    Left = 440
+    Top = 24
+    Width = 169
+    Height = 25
+    Caption = 'Transportadora MVC'
+    TabOrder = 11
+    OnClick = btnTransportadoraMVCClick
+  object btClientesMVC: TButton
+    Left = 240
+    Top = 248
+    Width = 169
+    Height = 25
+    Caption = 'Clientes MVC'
+    TabOrder = 11
+    OnClick = btClientesMVCClick
   end
 end

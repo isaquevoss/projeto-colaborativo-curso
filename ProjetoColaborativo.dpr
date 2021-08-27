@@ -26,7 +26,7 @@ uses
   uDmVendedor in 'uDmVendedor.pas' {DmVendedor: TDataModule},
   uFrmListaTransportadora in 'uFrmListaTransportadora.pas' {frmListaTransportadora},
   uDmTransportadora in 'uDmTransportadora.pas' {DmTransportadora: TDataModule},
-  uEstoque in 'uEstoque.pas' {frmEstoque},
+  ufrmEstoque in 'ufrmEstoque.pas' {frmEstoque},
   uCadastroEstoque in 'uCadastroEstoque.pas' {frmCadastroEstoque},
   ufrmCadastroFornecedor in 'ufrmCadastroFornecedor.pas' {frmCadastroFornecedr},
   uDmCadastroFornecedor in 'uDmCadastroFornecedor.pas' {dmCadastroFornecedr: TDataModule},
@@ -46,7 +46,11 @@ uses
   uControleVendedor in 'controles\uControleVendedor.pas',
   uVendedor in 'modelos\uVendedor.pas',
   uViewVendedor in 'views\uViewVendedor.pas' {viewVendedor},
-  uControleApp in 'controles\uControleApp.pas';
+  uControleApp in 'controles\uControleApp.pas',
+  uControlleApp in 'controles\uControlleApp.pas',
+  uViewTransportadora in 'views\uViewTransportadora.pas' {viewTransportadora},
+  uEstoque in 'modelos\uEstoque.pas',
+  uCliente in 'modelos\uCliente.pas';
 
 {$R *.res}
 
@@ -85,6 +89,7 @@ begin
   Application.CreateForm(TdmUsuario, dmUsuario);
   Application.CreateForm(TCadastroUsuario, CadastroUsuario);
   Application.CreateForm(TviewVendedor, viewVendedor);
+  Application.CreateForm(TviewTransportadora, viewTransportadora);
   if frmLogin.ShowModal <> mrOk then
     Application.Terminate;
 
