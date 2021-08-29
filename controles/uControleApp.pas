@@ -11,13 +11,14 @@ type
   public
     procedure showVendedorCad();
     procedure showClienteCad();
+    procedure showTransportadoraCad();
   end;
   var controleApp: TControleApp;
 
 implementation
 
 uses
-  uViewVendedor;
+  uViewVendedor, uViewTransportadora;
 
 { TControleApp }
 
@@ -25,6 +26,11 @@ procedure TControleApp.showClienteCad;
 begin
   frmBuscaClientes.ShowModal;
 
+end;
+
+procedure TControleApp.showTransportadoraCad;
+begin
+  viewTransportadora.ShowModal;
 end;
 
 procedure TControleApp.showVendedorCad;

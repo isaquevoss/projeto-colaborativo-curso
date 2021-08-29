@@ -57,7 +57,7 @@ implementation
 
 procedure TForm1.btnTransportadoraMVCClick(Sender: TObject);
 begin
-  //
+  controleApp.showTransportadoraCad();
 end;
 
 procedure TForm1.btClientesMVCClick(Sender: TObject);
