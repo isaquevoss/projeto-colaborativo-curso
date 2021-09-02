@@ -209,6 +209,7 @@
             <Form>viewClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="controles\uControleCliente.pas"/>
         <DCCReference Include="modelos\uTransportadora.pas"/>
         <DCCReference Include="controles\uControleTransportadora.pas"/>
         <BuildConfiguration Include="Release">
