@@ -51,7 +51,9 @@ uses
   uEstoque in 'modelos\uEstoque.pas',
   uCliente in 'modelos\uCliente.pas',
   uViewCliente in 'views\uViewCliente.pas' {viewClientes},
-  uControleCliente in 'controles\uControleCliente.pas';
+  uControleCliente in 'controles\uControleCliente.pas',
+  uTransportadora in 'modelos\uTransportadora.pas',
+  uControleTransportadora in 'controles\uControleTransportadora.pas';
 
 {$R *.res}
 
