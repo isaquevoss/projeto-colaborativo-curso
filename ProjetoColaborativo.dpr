@@ -50,7 +50,9 @@ uses
   uViewTransportadora in 'views\uViewTransportadora.pas' {viewTransportadora},
   uEstoque in 'modelos\uEstoque.pas',
   uCliente in 'modelos\uCliente.pas',
-  uViewCliente in 'views\uViewCliente.pas' {viewClientes};
+  uViewCliente in 'views\uViewCliente.pas' {viewClientes},
+  uTransportadora in 'modelos\uTransportadora.pas',
+  uControleTransportadora in 'controles\uControleTransportadora.pas';
 
 {$R *.res}
 
