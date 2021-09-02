@@ -50,6 +50,7 @@ uses
   uViewTransportadora in 'views\uViewTransportadora.pas' {viewTransportadora},
   uEstoque in 'modelos\uEstoque.pas',
   uCliente in 'modelos\uCliente.pas',
+  uViewCliente in 'views\uViewCliente.pas' {viewClientes},
   uTransportadora in 'modelos\uTransportadora.pas',
   uControleTransportadora in 'controles\uControleTransportadora.pas';
 
@@ -91,6 +92,7 @@ begin
   Application.CreateForm(TCadastroUsuario, CadastroUsuario);
   Application.CreateForm(TviewVendedor, viewVendedor);
   Application.CreateForm(TviewTransportadora, viewTransportadora);
+  Application.CreateForm(TviewClientes, viewClientes);
   if frmLogin.ShowModal <> mrOk then
     Application.Terminate;
 
