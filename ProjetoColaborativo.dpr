@@ -49,7 +49,9 @@ uses
   uControleApp in 'controles\uControleApp.pas',
   uViewTransportadora in 'views\uViewTransportadora.pas' {viewTransportadora},
   uEstoque in 'modelos\uEstoque.pas',
-  uCliente in 'modelos\uCliente.pas';
+  uCliente in 'modelos\uCliente.pas',
+  uTransportadora in 'modelos\uTransportadora.pas',
+  uControleTransportadora in 'controles\uControleTransportadora.pas';
 
 {$R *.res}
 
